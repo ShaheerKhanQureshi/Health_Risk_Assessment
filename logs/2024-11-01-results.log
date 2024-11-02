@@ -1,0 +1,106 @@
+2024-11-01T01:28:01.809Z [info]: Server running on http://localhost:5000 
+2024-11-01T01:28:09.572Z [info]: GET / 
+2024-11-01T01:28:13.195Z [info]: GET /favicon.ico 
+2024-11-01T01:32:53.824Z [info]: Server running on http://localhost:5000 
+2024-11-01T01:33:44.004Z [info]: Server running on http://localhost:5000 
+2024-11-01T01:33:51.513Z [info]: Server running on http://localhost:5000 
+2024-11-01T01:34:46.586Z [info]: POST /api/auth/login 
+2024-11-01T01:35:03.134Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-01T01:36:20.219Z [info]: POST /api/companies 
+2024-11-01T01:37:35.626Z [info]: POST /api/auth/login 
+2024-11-01T01:44:53.281Z [info]: Server running on http://localhost:5000 
+2024-11-01T01:45:40.131Z [info]: Server running on http://localhost:5000 
+2024-11-01T11:21:00.651Z [info]: Server running on http://localhost:5000 
+2024-11-01T11:22:47.940Z [error]: Error stack: 
+2024-11-01T11:22:56.503Z [info]: GET /api/companies 
+2024-11-01T11:22:56.509Z [warn]: Authorization header is required 
+2024-11-01T11:27:29.752Z [info]: POST /api/auth/login 
+2024-11-01T11:27:59.984Z [info]: GET /api/companies 
+2024-11-01T11:30:02.169Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-01T11:30:11.416Z [info]: POST /api/companies 
+2024-11-01T11:30:37.937Z [info]: POST /api/companies 
+2024-11-01T11:32:46.619Z [info]: Server running on http://localhost:5000 
+2024-11-01T11:32:48.205Z [info]: POST /api/companies 
+2024-11-01T11:32:48.408Z [info]: Checking for existing slug... 
+2024-11-01T11:32:48.420Z [warn]: Slug already exists for name: Empresa Falsa 
+2024-11-01T11:33:53.704Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-01T11:40:46.748Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-01T11:41:54.249Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-01T11:42:33.262Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-01T12:32:12.594Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:37:51.527Z [info]: POST /api/auth/login 
+2024-11-01T12:38:03.585Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-01T12:39:21.536Z [info]: GET /api/companies/methologik 
+2024-11-01T12:39:50.941Z [info]: GET /api/companies/methologik 
+2024-11-01T12:44:59.836Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:45:08.882Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:45:13.536Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:45:35.409Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:46:04.199Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:46:40.346Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:46:47.428Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:46:57.090Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:47:15.685Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:47:18.489Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:47:58.919Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:48:00.603Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:49:22.992Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:50:01.709Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:50:50.008Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:55:04.359Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:55:06.588Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:55:08.339Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:56:20.903Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:56:57.080Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:57:04.148Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:57:07.179Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:57:08.461Z [error]: Error stack: 
+2024-11-01T12:57:20.744Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:57:23.663Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:57:40.964Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:58:13.774Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:58:18.799Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:58:24.746Z [info]: Server running on http://localhost:5000 
+2024-11-01T12:58:32.333Z [info]: Server running on http://localhost:5000 
+2024-11-01T13:12:34.096Z [info]: Server running on http://localhost:5000 
+2024-11-01T13:13:16.910Z [info]: Server running on http://localhost:5000 
+2024-11-01T13:13:20.243Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-01T13:13:30.745Z [info]: POST /api/companies 
+2024-11-01T13:13:30.759Z [info]: Checking for existing slug... 
+2024-11-01T13:13:30.761Z [info]: Inserting new company into database... 
+2024-11-01T13:13:30.809Z [info]: Inserting form structure for company... 
+2024-11-01T13:13:30.812Z [error]: Error creating company: Table 'risk_assessment_new.form_structure' doesn't exist {"code":"ER_NO_SUCH_TABLE","errno":1146,"sql":"INSERT INTO form_structure (company_id) VALUES ('58444b78-e70f-4e3f-81fa-ab78e387cced')","sqlState":"42S02","sqlMessage":"Table 'risk_assessment_new.form_structure' doesn't exist","stack":"Error: Table 'risk_assessment_new.form_structure' doesn't exist\n    at PromisePool.query (E:\\Projects\\Shaheer\\New folder (2)\\HRA\\node_modules\\mysql2\\promise.js:356:22)\n    at createCompany (E:\\Projects\\Shaheer\\New folder (2)\\HRA\\src\\controllers\\companyController.js:196:16)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2024-11-01T13:13:46.842Z [info]: Server running on http://localhost:5000 
+2024-11-01T13:13:48.516Z [info]: POST /api/companies 
+2024-11-01T13:13:48.549Z [info]: Checking for existing slug... 
+2024-11-01T13:13:48.552Z [warn]: Slug already exists for name: Fake Company11 
+2024-11-01T13:13:56.058Z [info]: POST /api/companies 
+2024-11-01T13:13:56.068Z [info]: Checking for existing slug... 
+2024-11-01T13:13:56.071Z [info]: Inserting new company into database... 
+2024-11-01T13:13:56.107Z [info]: Inserting form structure for company... 
+2024-11-01T13:13:56.109Z [info]: Company created successfully with slug: fake-company111 
+2024-11-01T13:14:57.644Z [info]: POST /api/companies 
+2024-11-01T13:14:57.652Z [info]: Checking for existing slug... 
+2024-11-01T13:14:57.654Z [info]: Inserting new company into database... 
+2024-11-01T13:14:57.656Z [error]: Error creating company: Duplicate entry '9' for key 'PRIMARY' {"code":"ER_DUP_ENTRY","errno":1062,"sql":"INSERT INTO companies (id, name, companyType, phoneNumber, email, city, url) VALUES ('9ddbe206-6959-4c66-8a66-fe3eff4442c4', 'Empresa Falsa2', 'Empresa Falsa', '3121286800', 'teste@exemplo.us', 'Belo Horizonte', 'empresa-falsa2')","sqlState":"23000","sqlMessage":"Duplicate entry '9' for key 'PRIMARY'","stack":"Error: Duplicate entry '9' for key 'PRIMARY'\n    at PromisePool.query (E:\\Projects\\Shaheer\\New folder (2)\\HRA\\node_modules\\mysql2\\promise.js:356:22)\n    at createCompany (E:\\Projects\\Shaheer\\New folder (2)\\HRA\\src\\controllers\\companyController.js:190:16)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2024-11-01T13:15:18.295Z [info]: POST /api/companies 
+2024-11-01T13:15:18.299Z [info]: Checking for existing slug... 
+2024-11-01T13:15:18.300Z [info]: Inserting new company into database... 
+2024-11-01T13:15:18.302Z [error]: Error creating company: Duplicate entry '1' for key 'PRIMARY' {"code":"ER_DUP_ENTRY","errno":1062,"sql":"INSERT INTO companies (id, name, companyType, phoneNumber, email, city, url) VALUES ('1cbbe138-fdfe-4caf-b7a6-029a625a919c', 'Empresa Falsa2', 'Empresa Falsa', '3121286800', 'teste@exemplo.us', 'Belo Horizonte', 'empresa-falsa2')","sqlState":"23000","sqlMessage":"Duplicate entry '1' for key 'PRIMARY'","stack":"Error: Duplicate entry '1' for key 'PRIMARY'\n    at PromisePool.query (E:\\Projects\\Shaheer\\New folder (2)\\HRA\\node_modules\\mysql2\\promise.js:356:22)\n    at createCompany (E:\\Projects\\Shaheer\\New folder (2)\\HRA\\src\\controllers\\companyController.js:190:16)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2024-11-01T13:16:33.121Z [info]: Server running on http://localhost:5000 
+2024-11-01T13:16:37.783Z [info]: Server running on http://localhost:5000 
+2024-11-01T13:16:40.089Z [info]: POST /api/companies 
+2024-11-01T13:16:40.118Z [info]: Checking for existing slug... 
+2024-11-01T13:16:40.121Z [info]: Inserting new company into database... 
+2024-11-01T13:16:40.176Z [info]: Inserting form structure for company... 
+2024-11-01T13:16:40.181Z [info]: Company created successfully with slug: empresa-falsa2 
+2024-11-01T13:16:40.396Z [info]: GET /api/companies/6ae15f5b-d2a1-4f79-9403-8105553cf9c2 
+2024-11-01T13:17:48.886Z [info]: Server running on http://localhost:5000 
+2024-11-01T13:18:35.760Z [info]: Server running on http://localhost:5000 
+2024-11-01T13:18:40.284Z [info]: Server running on http://localhost:5000 
+2024-11-01T13:18:53.636Z [info]: POST /api/companies 
+2024-11-01T13:18:53.681Z [info]: Checking for existing slug... 
+2024-11-01T13:18:53.687Z [info]: Inserting new company into database... 
+2024-11-01T13:18:53.743Z [info]: Inserting form structure for company... 
+2024-11-01T13:18:53.747Z [info]: Company created successfully with slug: fake-company1111 
+2024-11-01T13:18:53.834Z [info]: GET /api/companies/undefined 

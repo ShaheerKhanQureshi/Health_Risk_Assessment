@@ -1,0 +1,210 @@
+2024-10-28T19:12:25.504Z [info]: Server running on http://localhost:5000 
+2024-10-28T19:12:47.892Z [info]: POST /api/auth/login 
+2024-10-28T19:12:55.817Z [info]: POST /api/auth/login 
+2024-10-28T19:12:59.273Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-10-28T19:13:44.011Z [info]: POST /api/companies 
+2024-10-28T19:13:44.018Z [error]: Error creating company: Duplicate entry '' for key 'PRIMARY' {"code":"ER_DUP_ENTRY","errno":1062,"sql":"INSERT INTO form_structure (company_id) VALUES ('30ab0a6a-8b7b-4d6c-b169-48beea075942')","sqlState":"23000","sqlMessage":"Duplicate entry '' for key 'PRIMARY'","stack":"Error: Duplicate entry '' for key 'PRIMARY'\n    at PromisePool.query (D:\\backup\\login\\my-node-backend\\git code\\risk_assessment\\node_modules\\mysql2\\promise.js:356:22)\n    at exports.createCompany (D:\\backup\\login\\my-node-backend\\git code\\risk_assessment\\src\\controllers\\companyController.js:32:18)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+2024-10-28T19:13:44.047Z [info]: POST /api/companies 
+2024-10-28T19:14:17.082Z [info]: POST /api/companies 
+2024-10-28T19:14:17.086Z [error]: Error creating company: Duplicate entry '2147483647' for key 'PRIMARY' {"code":"ER_DUP_ENTRY","errno":1062,"sql":"INSERT INTO companies (id, name, companyType, phoneNumber, email, city, url) VALUES ('56e81b99-aace-475e-b13e-930fcd5fda83', 'faiza', 'IT', '0213562986', 'faizan@gmail.com', 'karachi', 'faiza')","sqlState":"23000","sqlMessage":"Duplicate entry '2147483647' for key 'PRIMARY'","stack":"Error: Duplicate entry '2147483647' for key 'PRIMARY'\n    at PromisePool.query (D:\\backup\\login\\my-node-backend\\git code\\risk_assessment\\node_modules\\mysql2\\promise.js:356:22)\n    at exports.createCompany (D:\\backup\\login\\my-node-backend\\git code\\risk_assessment\\src\\controllers\\companyController.js:29:18)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+2024-10-28T19:22:23.280Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-10-28T19:22:56.010Z [info]: POST /api/companies 
+2024-10-28T19:22:56.014Z [error]: Error creating company: Duplicate entry '' for key 'PRIMARY' {"code":"ER_DUP_ENTRY","errno":1062,"sql":"INSERT INTO form_structure (company_id) VALUES ('9fe954b3-42a6-41f7-8b77-4ab7fd8103a2')","sqlState":"23000","sqlMessage":"Duplicate entry '' for key 'PRIMARY'","stack":"Error: Duplicate entry '' for key 'PRIMARY'\n    at PromisePool.query (D:\\backup\\login\\my-node-backend\\git code\\risk_assessment\\node_modules\\mysql2\\promise.js:356:22)\n    at exports.createCompany (D:\\backup\\login\\my-node-backend\\git code\\risk_assessment\\src\\controllers\\companyController.js:32:18)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+2024-10-29T17:15:05.240Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:15:10.629Z [info]: POST /api/auth/login 
+2024-10-29T17:15:59.192Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-10-29T17:16:25.003Z [info]: POST /api/companies 
+2024-10-29T17:16:25.062Z [error]: Error creating company: Duplicate entry '' for key 'PRIMARY' {"code":"ER_DUP_ENTRY","errno":1062,"sql":"INSERT INTO form_structure (company_id) VALUES ('589d791b-26b4-494d-9e09-07245161f189')","sqlState":"23000","sqlMessage":"Duplicate entry '' for key 'PRIMARY'","stack":"Error: Duplicate entry '' for key 'PRIMARY'\n    at PromisePool.query (E:\\Projects\\Shaheer\\New folder\\risk_assessment\\node_modules\\mysql2\\promise.js:356:22)\n    at exports.createCompany (E:\\Projects\\Shaheer\\New folder\\risk_assessment\\src\\controllers\\companyController.js:32:18)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2024-10-29T17:18:02.055Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:18:05.374Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:18:10.787Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:18:19.060Z [info]: POST /api/companies 
+2024-10-29T17:18:51.839Z [info]: POST /api/companies 
+2024-10-29T17:22:00.480Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-10-29T17:23:07.615Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:23:27.988Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:23:32.402Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:23:41.363Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:24:22.189Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:24:25.030Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:24:26.607Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:24:37.939Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:25:35.590Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:25:40.186Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:25:45.673Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:26:55.871Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:27:04.632Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:28:12.809Z [info]: POST /api/companies 
+2024-10-29T17:28:20.665Z [info]: POST /api/companies 
+2024-10-29T17:28:50.622Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:28:53.258Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:29:01.631Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:29:05.009Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:29:32.430Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:29:35.258Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:30:14.327Z [info]: POST /api/companies 
+2024-10-29T17:30:44.095Z [info]: POST /api/companies 
+2024-10-29T17:31:03.963Z [info]: POST /api/companies 
+2024-10-29T17:38:19.262Z [info]: GET /api/companies/10 
+2024-10-29T17:38:19.273Z [warn]: Authorization header is required 
+2024-10-29T17:38:33.135Z [info]: GET /api/companies/10 
+2024-10-29T17:38:33.137Z [warn]: Authorization header is required 
+2024-10-29T17:39:18.745Z [info]: GET /api/companies/10 
+2024-10-29T17:40:02.596Z [info]: Server running on http://localhost:5000 
+2024-10-29T17:40:02.644Z [info]: GET /api/companies/10 
+2024-10-29T17:41:26.224Z [info]: GET /api/companies/10 
+2024-10-29T17:42:05.024Z [info]: GET /api/companies/10 
+2024-10-29T17:43:08.333Z [info]: GET /api/companies/10 
+2024-10-29T17:43:24.207Z [info]: GET /api/companies/10 
+2024-10-29T17:44:01.704Z [info]: GET /api/companies/10 
+2024-10-29T17:44:11.906Z [info]: GET /api/companies/10 
+2024-10-29T17:44:15.033Z [info]: GET /api/companies/10 
+2024-10-29T17:45:18.922Z [info]: GET /api/companies/10 
+2024-10-29T17:45:21.796Z [info]: GET /api/companies/10 
+2024-10-29T17:45:24.969Z [info]: GET /api/companies/10 
+2024-10-29T17:45:30.352Z [info]: GET /api/companies/10 
+2024-10-29T17:45:37.030Z [info]: GET /api/companies/10 
+2024-10-29T17:45:42.293Z [info]: GET /api/companies/10 
+2024-10-29T17:45:53.217Z [info]: GET /api/companies/10 
+2024-10-29T17:47:28.690Z [info]: POST /api/personal-info 
+2024-10-29T17:47:32.282Z [info]: POST /api/personal-info 
+2024-10-29T17:47:38.899Z [info]: POST /api/personal-info 
+2024-10-29T17:47:42.321Z [info]: POST /api/personal-info 
+2024-10-29T17:47:52.819Z [info]: POST /api/personal-info 
+2024-10-29T17:48:13.140Z [info]: POST /api/submit-form 
+2024-10-29T17:50:41.196Z [info]: GET /api/companies/10 
+2024-10-29T17:55:13.083Z [info]: GET /api/companies/10 
+2024-10-29T17:58:45.597Z [info]: GET /api/companies/10 
+2024-10-29T17:58:53.551Z [info]: GET /api/companies/10 
+2024-10-29T17:58:57.485Z [info]: GET /api/companies/10 
+2024-10-29T17:59:24.106Z [info]: GET /api/companies/10 
+2024-10-29T17:59:56.801Z [info]: GET /api/companies/10 
+2024-10-29T18:00:00.423Z [info]: GET /api/companies/10 
+2024-10-29T18:00:12.122Z [info]: GET /api/companies/10 
+2024-10-29T18:00:40.926Z [info]: GET /api/companies/10 
+2024-10-29T18:01:13.984Z [info]: GET /api/companies/10 
+2024-10-29T18:01:18.623Z [info]: GET /api/companies/10 
+2024-10-29T18:01:28.347Z [info]: GET /api/companies/10 
+2024-10-29T18:02:45.051Z [info]: GET /api/companies/10 
+2024-10-29T18:03:02.595Z [info]: GET /api/companies/10 
+2024-10-29T18:03:22.552Z [info]: GET /api/companies/10 
+2024-10-29T18:03:27.601Z [info]: GET /api/companies/10 
+2024-10-29T18:04:24.186Z [info]: GET /api/companies/10 
+2024-10-29T18:04:43.955Z [info]: GET /api/companies/10 
+2024-10-29T18:05:28.984Z [info]: POST /api/personal-info 
+2024-10-29T18:05:29.841Z [info]: GET /api/companies/10 
+2024-10-29T18:09:40.994Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:09:57.461Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:12:48.336Z [info]: POST /api/personal-info 
+2024-10-29T18:23:01.201Z [info]: GET /api/companies/10 
+2024-10-29T18:23:10.251Z [info]: GET /api/companies/10 
+2024-10-29T18:23:50.684Z [info]: GET /api/companies/10 
+2024-10-29T18:24:03.570Z [info]: GET /api/companies/10 
+2024-10-29T18:24:16.555Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:24:21.708Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:24:29.152Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:24:38.114Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:24:50.735Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:24:54.552Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:24:56.411Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:25:07.183Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:25:10.199Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:25:12.143Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:25:14.252Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:25:20.621Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:25:32.831Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-10-29T18:25:41.072Z [info]: POST /api/companies 
+2024-10-29T18:25:41.132Z [error]: Error creating company tables: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '-company6_assessment_response (
+        id BIGINT AUTO_INCREMENT PRIMARY KEY,...' at line 1 {"code":"ER_PARSE_ERROR","errno":1064,"sql":"\n    CREATE TABLE IF NOT EXISTS fake-company6_assessment_response (\n        id BIGINT AUTO_INCREMENT PRIMARY KEY,\n        employee_info TEXT,\n        health_assessment TEXT,\n        createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n    );\n","sqlState":"42000","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '-company6_assessment_response (\n        id BIGINT AUTO_INCREMENT PRIMARY KEY,...' at line 1","stack":"Error: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '-company6_assessment_response (\n        id BIGINT AUTO_INCREMENT PRIMARY KEY,...' at line 1\n    at PromisePool.query (E:\\Projects\\Shaheer\\New folder\\risk_assessment\\node_modules\\mysql2\\promise.js:356:22)\n    at createCompanyTables (E:\\Projects\\Shaheer\\New folder\\risk_assessment\\src\\controllers\\companyController.js:132:14)\n    at exports.createCompany (E:\\Projects\\Shaheer\\New folder\\risk_assessment\\src\\controllers\\companyController.js:92:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2024-10-29T18:25:41.135Z [error]: Error creating company: Table creation failed {"stack":"Error: Table creation failed\n    at createCompanyTables (E:\\Projects\\Shaheer\\New folder\\risk_assessment\\src\\controllers\\companyController.js:136:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async exports.createCompany (E:\\Projects\\Shaheer\\New folder\\risk_assessment\\src\\controllers\\companyController.js:92:5)"}
+2024-10-29T18:27:19.039Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:27:23.378Z [info]: POST /api/companies 
+2024-10-29T18:27:30.670Z [info]: POST /api/companies 
+2024-10-29T18:28:44.674Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:28:49.591Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:28:54.113Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:29:06.245Z [info]: POST /api/companies 
+2024-10-29T18:29:06.924Z [info]: GET /api/companies/undefined 
+2024-10-29T18:29:45.641Z [info]: GET /api/companies/undefined 
+2024-10-29T18:29:46.877Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-10-29T18:29:55.108Z [info]: POST /api/companies 
+2024-10-29T18:29:55.428Z [info]: GET /api/companies/14 
+2024-10-29T18:33:06.460Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:33:21.211Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:33:43.791Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:34:24.768Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:34:31.361Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:34:41.057Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:34:42.671Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:34:52.571Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:34:57.208Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:34:59.333Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:35:03.164Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:35:05.570Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:35:29.359Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:35:30.866Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:35:33.722Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:35:42.116Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:35:46.334Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:35:52.261Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:35:54.491Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:36:02.649Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:36:41.919Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:36:54.609Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:36:57.910Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:37:03.154Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:37:17.352Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:37:23.889Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:37:30.895Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:37:35.207Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:37:43.331Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:37:45.871Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:37:54.675Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:38:06.498Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:38:11.751Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:38:19.360Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:38:26.179Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:38:39.657Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:38:41.710Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:38:46.758Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:39:39.712Z [info]: GET /api/companies/14 
+2024-10-29T18:39:42.622Z [info]: GET /api/companies/14 
+2024-10-29T18:39:56.889Z [info]: GET /api/companies/14 
+2024-10-29T18:40:01.954Z [info]: GET /api/companies/14 
+2024-10-29T18:40:17.701Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:40:21.138Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:40:30.082Z [info]: GET /api/companies/14 
+2024-10-29T18:40:51.683Z [info]: GET /api/companies/14 
+2024-10-29T18:41:21.018Z [info]: GET /api/companies/14 
+2024-10-29T18:41:28.541Z [info]: GET /api/companies/14 
+2024-10-29T18:41:38.636Z [info]: GET /api/companies/14 
+2024-10-29T18:41:45.004Z [info]: GET /api/companies/14 
+2024-10-29T18:41:48.333Z [info]: GET /api/companies/14 
+2024-10-29T18:41:51.820Z [info]: GET /api/companies/14 
+2024-10-29T18:41:55.639Z [info]: GET /api/companies/14 
+2024-10-29T18:43:43.964Z [info]: POST /api/assessment/submitAssessment/fake-company9 
+2024-10-29T18:44:19.973Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:44:20.198Z [info]: POST /api/assessment/submitAssessment/fake-company9 
+2024-10-29T18:44:23.323Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:44:41.204Z [info]: POST /api/assessment/submitAssessment/fake-company9 
+2024-10-29T18:45:02.510Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:45:02.550Z [info]: POST /api/assessment/submitAssessment/fake-company9 
+2024-10-29T18:45:56.378Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:46:11.669Z [info]: POST /api/assessment/submitAssessment/fake-company9 
+2024-10-29T18:46:31.635Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:46:31.732Z [info]: POST /api/assessment/submitAssessment/fake-company9 
+2024-10-29T18:46:38.348Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:46:50.181Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:47:19.940Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:47:33.559Z [info]: POST /api/assessment/submitAssessment/fake-company9 
+2024-10-29T18:48:12.314Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:48:13.795Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:48:18.003Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:48:19.771Z [info]: Server running on http://localhost:5000 
+2024-10-29T18:48:27.241Z [info]: POST /api/assessment/submitAssessment/fake-company9 
+2024-10-29T18:49:57.035Z [info]: POST /api/assessment/submitAssessment/fake-company9 
+2024-10-29T18:52:39.719Z [info]: GET /api/companies/14 
+2024-10-29T18:52:46.854Z [info]: GET /api/companies/14 
+2024-10-29T18:53:04.580Z [info]: GET /api/companies/14 
+2024-10-29T18:53:07.803Z [info]: GET /api/companies/14 
+2024-10-29T18:53:21.777Z [info]: GET /api/companies/14 

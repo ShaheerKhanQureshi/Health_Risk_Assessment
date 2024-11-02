@@ -1,0 +1,16 @@
+2024-11-02T13:46:30.620Z [info]: Server running on http://localhost:5000 
+2024-11-02T13:47:17.738Z [info]: POST /api/auth/login 
+2024-11-02T13:47:30.283Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-11-02T13:49:42.590Z [info]: POST /api/auth/createAdmin 
+2024-11-02T13:50:00.131Z [info]: POST /api/auth/login 
+2024-11-02T13:50:03.837Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-02T13:50:18.301Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-02T13:50:52.103Z [info]: POST /api/companies 
+2024-11-02T13:50:52.119Z [info]: Checking for existing slug... 
+2024-11-02T13:50:52.165Z [info]: Inserting new company into database... 
+2024-11-02T13:50:52.171Z [error]: Error creating company: Out of range value for column 'id' at row 1 {"code":"HA_ERR_AUTOINC_ERANGE","errno":167,"sql":"INSERT INTO companies (name, companyType, phoneNumber, email, city, url) VALUES ('MaazCorp', 'Car Rental', '022653235323', 'maazcorp@gmail.com', 'Karachi', 'maazcorp')","sqlState":"22003","sqlMessage":"Out of range value for column 'id' at row 1","stack":"Error: Out of range value for column 'id' at row 1\n    at PromisePool.query (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend\\node_modules\\mysql2\\promise.js:356:22)\n    at createCompany (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend\\src\\controllers\\companyController.js:190:31)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2024-11-02T13:51:30.964Z [info]: Server running on http://localhost:5000 
+2024-11-02T13:51:57.632Z [info]: POST /api/companies 
+2024-11-02T13:51:57.651Z [info]: Checking for existing slug... 
+2024-11-02T13:51:57.655Z [info]: Inserting new company into database... 
+2024-11-02T13:51:57.658Z [error]: Error creating company: Out of range value for column 'id' at row 1 {"code":"HA_ERR_AUTOINC_ERANGE","errno":167,"sql":"INSERT INTO companies (name, companyType, phoneNumber, email, city, url) VALUES ('MaazCorp', 'Car Rental', '022653235323', 'maazcorp@gmail.com', 'Karachi', 'maazcorp')","sqlState":"22003","sqlMessage":"Out of range value for column 'id' at row 1","stack":"Error: Out of range value for column 'id' at row 1\n    at PromisePool.query (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend\\node_modules\\mysql2\\promise.js:356:22)\n    at createCompany (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend\\src\\controllers\\companyController.js:189:31)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}

@@ -1,0 +1,118 @@
+2024-10-26T19:01:40.766Z [info]: POST /api/companies 
+2024-10-26T19:01:40.774Z [warn]: Authentication failed: Token has expired 
+2024-10-26T19:02:59.536Z [error]: Error stack: 
+2024-10-26T19:03:38.971Z [info]: POST /api/auth/login 
+2024-10-26T19:04:07.888Z [info]: POST /api/companies 
+2024-10-26T19:06:52.695Z [info]: POST /api/companies 
+2024-10-26T19:08:18.061Z [info]: Shutting down gracefully... 
+2024-10-26T19:46:27.108Z [info]: Server running on http://localhost:5000 
+2024-10-26T19:47:21.824Z [info]: POST /api/auth/login 
+2024-10-26T19:47:24.802Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-10-26T19:48:12.173Z [info]: POST /api/companies 
+2024-10-26T20:08:43.009Z [info]: Shutting down gracefully... 
+2024-10-26T20:14:01.926Z [info]: Server running on http://localhost:5000 
+2024-10-26T20:14:12.659Z [info]: POST /api/companies 
+2024-10-26T20:14:12.666Z [warn]: Authentication failed: Token has expired 
+2024-10-26T20:15:11.001Z [info]: POST /api/auth/login 
+2024-10-26T20:15:37.587Z [info]: POST /api/companies 
+2024-10-26T20:15:37.589Z [warn]: Authentication failed: Token has expired 
+2024-10-26T20:16:39.807Z [error]: Error stack: 
+2024-10-26T20:16:49.619Z [info]: POST /api/companies 
+2024-10-26T20:16:49.622Z [warn]: Authentication failed: No authorization header found 
+2024-10-26T20:16:57.811Z [info]: POST /api/auth/login 
+2024-10-26T20:17:25.245Z [info]: POST /api/companies 
+2024-10-26T20:32:45.323Z [info]: POST /api/companies 
+2024-10-26T20:32:57.926Z [info]: GET /quiz/4b3b9ee5-f0ac-4b62-ab01-e127730406e2 
+2024-10-26T20:35:20.022Z [info]: POST /api/auth/login 
+2024-10-26T20:35:26.583Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-10-26T20:35:42.197Z [info]: POST /api/companies 
+2024-10-26T20:36:08.877Z [info]: GET /quiz/2ded3bd3-b8bb-4d29-8aa5-aad33e492984 
+2024-10-26T20:42:55.270Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-10-26T20:42:55.273Z [warn]: Authentication failed: Token has expired 
+2024-10-26T20:43:02.198Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-26T20:43:02.201Z [warn]: Authentication failed: Token has expired 
+2024-10-26T20:43:03.628Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-10-26T20:43:03.633Z [warn]: Authentication failed: Token has expired 
+2024-10-26T20:43:04.868Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-26T20:43:04.873Z [warn]: Authentication failed: Token has expired 
+2024-10-26T20:43:05.419Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-10-26T20:43:05.423Z [warn]: Authentication failed: Token has expired 
+2024-10-26T20:45:20.092Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-26T20:45:20.096Z [warn]: Authentication failed: Token has expired 
+2024-10-26T20:45:21.187Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-10-26T20:45:21.190Z [warn]: Authentication failed: Token has expired 
+2024-10-26T20:49:45.364Z [info]: POST /api/companies 
+2024-10-26T20:49:45.367Z [warn]: Authentication failed: Token has expired 
+2024-10-26T20:49:47.040Z [info]: POST /api/companies 
+2024-10-26T20:49:47.045Z [warn]: Authentication failed: Token has expired 
+2024-10-26T22:33:20.387Z [info]: Shutting down gracefully... 
+2024-10-26T22:33:23.009Z [info]: Server running on http://localhost:5000 
+2024-10-26T22:33:47.412Z [info]: POST /api/auth/login 
+2024-10-26T22:33:57.663Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-10-26T22:34:06.308Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-26T22:34:07.567Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-10-26T22:35:10.459Z [info]: POST /api/companies 
+2024-10-26T22:35:24.504Z [info]: GET /quiz/8bfec80f-0d56-4331-97d6-f33d75ef9d61 
+2024-10-26T22:46:06.604Z [info]: POST /api/companies 
+2024-10-26T22:46:06.607Z [warn]: Authentication failed: Token has expired 
+2024-10-26T22:52:28.279Z [info]: POST /api/auth/login 
+2024-10-26T22:52:33.490Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-10-26T22:54:17.778Z [info]: GET /quiz/8bfec80f-0d56-4331-97d6-f33d75ef9d61 
+2024-10-26T22:54:27.446Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-10-26T23:15:23.232Z [info]: Shutting down gracefully... 
+2024-10-26T23:16:15.802Z [info]: Server running on http://localhost:5000 
+2024-10-26T23:21:01.401Z [info]: POST /api/auth/login 
+2024-10-26T23:21:03.950Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-10-26T23:21:22.931Z [info]: POST /api/companies 
+2024-10-26T23:27:58.954Z [info]: POST /api/auth/login 
+2024-10-26T23:59:35.555Z [info]: Shutting down gracefully... 
+2024-10-26T23:59:38.181Z [info]: Server running on http://localhost:5000 
+2024-10-26T23:59:58.861Z [info]: POST /api/auth/login 
+2024-10-27T00:00:01.944Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-10-27T00:03:50.080Z [info]: POST /api/companies 
+2024-10-27T00:06:43.372Z [info]: Shutting down gracefully... 
+2024-10-27T00:06:45.856Z [info]: Server running on http://localhost:5000 
+2024-10-27T00:06:50.186Z [info]: POST /api/companies 
+2024-10-27T00:07:46.589Z [info]: POST /api/companies 
+2024-10-27T00:07:59.703Z [info]: POST /api/companies 
+2024-10-27T00:09:33.500Z [info]: POST /api/companies 
+2024-10-27T00:10:38.569Z [info]: POST /api/companies 
+2024-10-27T00:10:49.482Z [info]: POST /api/companies 
+2024-10-27T00:11:04.495Z [info]: POST /api/companies 
+2024-10-27T00:11:39.582Z [info]: POST /api/companies 
+2024-10-27T00:13:00.919Z [info]: POST /api/companies 
+2024-10-27T01:51:36.137Z [info]: Server running on http://localhost:5000 
+2024-10-27T01:52:54.685Z [info]: POST /api/auth/login 
+2024-10-27T01:53:41.174Z [info]: POST /api/companies 
+2024-10-27T02:01:13.899Z [info]: POST /api/companies 
+2024-10-27T02:02:03.145Z [info]: POST /companies 
+2024-10-27T02:04:17.586Z [info]: Shutting down gracefully... 
+2024-10-27T02:21:20.649Z [info]: Server running on http://localhost:5000 
+2024-10-27T02:21:31.484Z [info]: POST /api/companies 
+2024-10-27T02:23:11.837Z [info]: POST /api/companies 
+2024-10-27T02:24:27.904Z [info]: POST /api/companies 
+2024-10-27T02:25:31.329Z [info]: POST /api/companies 
+2024-10-27T02:25:53.590Z [info]: POST /api/companies 
+2024-10-27T02:26:27.588Z [info]: Server running on http://localhost:5000 
+2024-10-27T02:26:29.259Z [info]: POST /api/companies 
+2024-10-27T02:26:44.306Z [info]: POST /api/companies 
+2024-10-27T02:26:54.047Z [info]: POST /api/companies 
+2024-10-27T02:27:03.319Z [info]: Server running on http://localhost:5000 
+2024-10-27T02:27:04.919Z [info]: POST /api/companies 
+2024-10-27T02:29:20.669Z [info]: Server running on http://localhost:5000 
+2024-10-27T02:29:22.164Z [info]: POST /api/companies 
+2024-10-27T02:33:53.450Z [info]: GET /api/companies 
+2024-10-27T02:33:53.453Z [warn]: Authentication failed: No authorization header found 
+2024-10-27T02:34:35.434Z [info]: GET /api/companies 
+2024-10-27T02:34:35.435Z [warn]: Authentication failed: No authorization header found 
+2024-10-27T02:34:42.881Z [info]: GET /api/auth/login 
+2024-10-27T02:35:01.024Z [info]: GET /api/auth/login 
+2024-10-27T02:35:14.384Z [info]: GET /api/auth/login 
+2024-10-27T02:35:21.807Z [info]: POST /api/auth/login 
+2024-10-27T02:36:04.138Z [info]: POST /api/companies 
+2024-10-27T02:50:14.866Z [info]: POST /api/companies 
+2024-10-27T02:52:11.319Z [info]: POST /api/companies 
+2024-10-27T05:53:50.854Z [info]: Server running on http://localhost:5000 
+2024-10-27T05:56:06.731Z [info]: POST /api/auth/login 
+2024-10-27T05:57:07.667Z [info]: POST /api/companies 
+2024-10-27T06:06:21.451Z [info]: Shutting down gracefully... 

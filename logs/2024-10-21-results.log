@@ -1,0 +1,144 @@
+2024-10-21T09:09:06.950Z [info]: Connected to MySQL database. 
+2024-10-21T09:33:15.468Z [info]: Connected to MySQL database. 
+2024-10-21T09:47:17.489Z [info]: Connected to MySQL database. 
+2024-10-21T09:55:31.368Z [info]: Connected to MySQL database. 
+2024-10-21T09:56:03.054Z [warn]: Authentication failed: No authorization header found 
+2024-10-21T09:56:15.402Z [warn]: Authentication failed: No authorization header found 
+2024-10-21T10:04:40.197Z [info]: Connected to MySQL database. 
+2024-10-21T10:11:30.170Z [info]: Connected to MySQL database. 
+2024-10-21T10:46:18.676Z [info]: Connected to MySQL database. 
+2024-10-21T10:46:27.546Z [info]: Connected to MySQL database. 
+2024-10-21T10:46:35.778Z [info]: Connected to MySQL database. 
+2024-10-21T10:47:36.192Z [error]: Error submitting assessment: Error retrieving question: db.query is not a function {"stack":"Error: Error retrieving question: db.query is not a function\n    at Object.findById (F:\\login\\my-node-backend\\src - Copy\\src\\models\\Question.js:40:19)\n    at submitForm (F:\\login\\my-node-backend\\src - Copy\\src\\controllers\\assessmentController.js:32:45)\n    at Layer.handle [as handle_request] (F:\\login\\my-node-backend\\src - Copy\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (F:\\login\\my-node-backend\\src - Copy\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (F:\\login\\my-node-backend\\src - Copy\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (F:\\login\\my-node-backend\\src - Copy\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at F:\\login\\my-node-backend\\src - Copy\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (F:\\login\\my-node-backend\\src - Copy\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (F:\\login\\my-node-backend\\src - Copy\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (F:\\login\\my-node-backend\\src - Copy\\node_modules\\express\\lib\\router\\index.js:175:3)"}
+2024-10-21T11:22:20.595Z [info]: Server running on http://localhost:5000 
+2024-10-21T11:22:40.990Z [info]: POST /api/assessment/submit 
+2024-10-21T11:22:40.999Z [error]: Error submitting assessment: Error retrieving question: db.query is not a function {"stack":"Error: Error retrieving question: db.query is not a function\n    at Object.findById (F:\\login\\my-node-backend\\src - Copy\\src\\models\\Question.js:40:19)\n    at submitForm (F:\\login\\my-node-backend\\src - Copy\\src\\controllers\\assessmentController.js:32:45)\n    at Layer.handle [as handle_request] (F:\\login\\my-node-backend\\src - Copy\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (F:\\login\\my-node-backend\\src - Copy\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at Route.dispatch (F:\\login\\my-node-backend\\src - Copy\\node_modules\\express\\lib\\router\\route.js:119:3)\n    at Layer.handle [as handle_request] (F:\\login\\my-node-backend\\src - Copy\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at F:\\login\\my-node-backend\\src - Copy\\node_modules\\express\\lib\\router\\index.js:284:15\n    at Function.process_params (F:\\login\\my-node-backend\\src - Copy\\node_modules\\express\\lib\\router\\index.js:346:12)\n    at next (F:\\login\\my-node-backend\\src - Copy\\node_modules\\express\\lib\\router\\index.js:280:10)\n    at Function.handle (F:\\login\\my-node-backend\\src - Copy\\node_modules\\express\\lib\\router\\index.js:175:3)"}
+2024-10-21T11:25:25.847Z [info]: Shutting down gracefully... 
+2024-10-21T11:25:30.747Z [info]: Server running on http://localhost:5000 
+2024-10-21T11:26:52.400Z [info]: Shutting down gracefully... 
+2024-10-21T11:33:52.698Z [info]: Server running on http://localhost:5000 
+2024-10-21T12:04:46.775Z [info]: Server running on http://localhost:5000 
+2024-10-21T12:21:38.549Z [info]: GET / 
+2024-10-21T12:21:38.740Z [info]: GET /favicon.ico 
+2024-10-21T12:37:32.112Z [info]: GET /api/auth/login 
+2024-10-21T12:39:55.676Z [info]: GET /api/login 
+2024-10-21T12:40:23.342Z [info]: GET /api/auth/login 
+2024-10-21T12:40:30.848Z [info]: GET /api/auth/login 
+2024-10-21T12:41:28.103Z [info]: GET /api/auth/createAdmin 
+2024-10-21T12:41:53.072Z [info]: POST /api/auth/createAdmin 
+2024-10-21T12:42:02.773Z [info]: POST /api/auth/createAdmin 
+2024-10-21T12:42:22.545Z [info]: POST /api/auth/createAdmin 
+2024-10-21T12:42:41.169Z [info]: POST /api/auth/createAdmin 
+2024-10-21T12:42:54.904Z [info]: POST /api/auth/createAdmin 
+2024-10-21T13:03:26.027Z [info]: Server running on http://localhost:5000 
+2024-10-21T13:03:55.771Z [info]: Server running on http://localhost:5000 
+2024-10-21T13:03:57.359Z [info]: Server running on http://localhost:5000 
+2024-10-21T13:30:51.133Z [info]: Server running on http://localhost:5000 
+2024-10-21T13:31:11.089Z [info]: POST /api/auth/createAdmin 
+2024-10-21T13:31:19.222Z [info]: POST /api/auth/createAdmin 
+2024-10-21T13:33:44.579Z [info]: Server running on http://localhost:5000 
+2024-10-21T13:33:48.347Z [info]: POST /api/auth/createAdmin 
+2024-10-21T13:37:41.254Z [info]: Server running on http://localhost:5000 
+2024-10-21T13:37:48.263Z [info]: Server running on http://localhost:5000 
+2024-10-21T13:38:45.581Z [info]: Server running on http://localhost:5000 
+2024-10-21T13:40:23.388Z [info]: Server running on http://localhost:5000 
+2024-10-21T13:42:20.324Z [info]: Server running on http://localhost:5000 
+2024-10-21T15:17:13.749Z [info]: Server running on http://localhost:5000 
+2024-10-21T15:20:20.138Z [info]: Server running on http://localhost:5000 
+2024-10-21T15:21:26.239Z [info]: Server running on http://localhost:5000 
+2024-10-21T15:21:28.482Z [info]: Server running on http://localhost:5000 
+2024-10-21T15:21:41.978Z [info]: POST /api/auth/createAdmin 
+2024-10-21T15:29:01.020Z [info]: Server running on http://localhost:5000 
+2024-10-21T15:29:31.782Z [info]: POST /api/auth/createAdmin 
+2024-10-21T15:30:54.227Z [info]: Server running on http://localhost:5000 
+2024-10-21T15:32:25.139Z [info]: Server running on http://localhost:5000 
+2024-10-21T15:32:48.285Z [info]: Server running on http://localhost:5000 
+2024-10-21T15:32:49.734Z [info]: Server running on http://localhost:5000 
+2024-10-21T15:33:02.208Z [info]: POST /api/auth/createAdmin 
+2024-10-21T15:35:19.323Z [info]: POST /api/admin/all 
+2024-10-21T15:35:25.987Z [info]: GET /api/admin/all 
+2024-10-21T15:35:45.478Z [info]: GET /api/admin/all 
+2024-10-21T15:35:54.383Z [info]: GET /api 
+2024-10-21T15:36:53.226Z [info]: POST /api/form/generateLink 
+2024-10-21T15:40:20.781Z [info]: POST /api/auth/createAdmin 
+2024-10-21T15:40:33.841Z [info]: POST /api/auth/createAdmin 
+2024-10-21T15:40:45.666Z [info]: POST /api/auth/createAdmin 
+2024-10-21T15:41:05.696Z [info]: POST /api/auth/createAdmin 
+2024-10-21T15:41:31.427Z [info]: POST /api/auth/login 
+2024-10-21T15:42:19.536Z [info]: POST /api/auth/login 
+2024-10-21T15:43:55.431Z [info]: POST /api/auth/login 
+2024-10-21T15:44:39.790Z [info]: POST /api/auth/login 
+2024-10-21T15:45:16.773Z [info]: GET /api/auth/all 
+2024-10-21T15:50:09.142Z [info]: Server running on http://localhost:5000 
+2024-10-21T15:51:47.331Z [info]: Server running on http://localhost:5000 
+2024-10-21T15:51:50.008Z [info]: Server running on http://localhost:5000 
+2024-10-21T15:52:16.865Z [info]: Server running on http://localhost:5000 
+2024-10-21T15:52:39.715Z [info]: Server running on http://localhost:5000 
+2024-10-21T15:52:57.879Z [info]: Server running on http://localhost:5000 
+2024-10-21T15:53:20.430Z [info]: GET /api/auth/all 
+2024-10-21T15:53:20.433Z [warn]: Authentication failed: No authorization header found 
+2024-10-21T15:57:50.612Z [info]: GET /api/auth/createAdmin 
+2024-10-21T15:58:13.938Z [info]: POST /api/auth/createAdmin 
+2024-10-21T15:58:36.956Z [error]: Error stack: 
+2024-10-21T15:58:44.020Z [info]: POST /api/auth/Login 
+2024-10-21T15:58:53.277Z [info]: POST /api/auth/login 
+2024-10-21T16:02:21.611Z [info]: Server running on http://localhost:5000 
+2024-10-21T16:02:26.202Z [info]: Shutting down gracefully... 
+2024-10-21T16:02:30.124Z [info]: Server running on http://localhost:5000 
+2024-10-21T16:03:43.891Z [info]: POST /api/auth/createAdmin 
+2024-10-21T16:04:37.170Z [info]: POST /api/auth/login 
+2024-10-21T16:06:55.422Z [info]: POST /api/form/generateLink 
+2024-10-21T16:09:46.714Z [info]: GET /api//all 
+2024-10-21T16:17:45.499Z [info]: Server running on http://localhost:5000 
+2024-10-21T16:18:39.225Z [info]: GET /api/generateLink 
+2024-10-21T16:20:40.128Z [info]: POST /api/generateLink 
+2024-10-21T16:20:50.056Z [info]: POST /api/users 
+2024-10-21T16:20:57.967Z [info]: GET /api/users 
+2024-10-21T16:24:23.497Z [info]: POST /api/assessment/submit 
+2024-10-21T16:25:03.794Z [info]: POST /api/assessment/submit 
+2024-10-21T16:27:22.685Z [info]: POST /api/assessment/submit 
+2024-10-21T16:29:57.141Z [info]: POST /api/assessment/submit 
+2024-10-21T16:31:12.565Z [info]: POST /api/assessment/submit 
+2024-10-21T16:31:54.780Z [info]: Server running on http://localhost:5000 
+2024-10-21T16:32:17.656Z [info]: POST /api/assessment/submit 
+2024-10-21T16:32:45.985Z [info]: Server running on http://localhost:5000 
+2024-10-21T16:38:20.401Z [info]: POST /api/assessment/submit 
+2024-10-21T16:41:48.902Z [info]: Server running on http://localhost:5000 
+2024-10-21T16:41:53.993Z [info]: POST /api/assessment/submit 
+2024-10-21T16:42:20.149Z [info]: POST /api/assessment/submit 
+2024-10-21T16:43:41.418Z [info]: POST /api/assessment/generateLink 
+2024-10-21T16:43:41.419Z [warn]: Authentication failed: No authorization header found 
+2024-10-21T16:43:58.167Z [info]: POST /api/assessment/generateLink 
+2024-10-21T16:43:58.185Z [warn]: Access denied for user 7: insufficient permissions 
+2024-10-21T16:45:23.811Z [info]: POST /api/auth/login 
+2024-10-21T16:47:25.617Z [info]: POST /api/assessment/generateLink 
+2024-10-21T16:47:25.619Z [warn]: Access denied for user 4: insufficient permissions 
+2024-10-21T16:47:54.121Z [info]: POST /api/assessment/generateLink 
+2024-10-21T16:47:54.124Z [warn]: Authentication failed: Invalid token 
+2024-10-21T16:48:04.520Z [info]: POST /api/assessment/generateLink 
+2024-10-21T16:48:04.523Z [warn]: Access denied for user 4: insufficient permissions 
+2024-10-21T16:50:27.226Z [info]: POST /api/assessment/submit 
+2024-10-21T16:50:55.829Z [info]: POST /api/assessment/submit 
+2024-10-21T16:51:11.374Z [info]: POST /api/assessment/submit 
+2024-10-21T16:51:38.193Z [info]: POST /api/assessment/submit 
+2024-10-21T16:53:58.014Z [info]: Server running on http://localhost:5000 
+2024-10-21T16:54:16.323Z [info]: Server running on http://localhost:5000 
+2024-10-21T16:54:19.264Z [info]: Server running on http://localhost:5000 
+2024-10-21T16:54:29.922Z [info]: Server running on http://localhost:5000 
+2024-10-21T16:54:39.570Z [info]: POST /api/assessment/submit 
+2024-10-21T16:54:48.355Z [info]: POST /api/assessment/submit 
+2024-10-21T16:57:01.818Z [error]: Error stack: 
+2024-10-21T16:57:19.107Z [info]: POST /api/assessment/submit 
+2024-10-21T16:57:19.129Z [error]: Question not found: 605c72efc2b1f7c62e8f9c17 
+2024-10-21T17:33:47.419Z [info]: Server running on http://localhost:5000 
+2024-10-21T17:56:04.207Z [info]: POST /api/auth/login 
+2024-10-21T18:04:38.040Z [info]: POST /api/auth/login 
+2024-10-21T18:12:24.978Z [info]: Server running on http://localhost:5000 
+2024-10-21T18:28:22.943Z [info]: POST /api/auth/login 
+2024-10-21T18:28:52.259Z [info]: POST /api/auth/login 
+2024-10-21T18:28:54.433Z [info]: POST /api/auth/login 
+2024-10-21T18:28:55.498Z [info]: POST /api/auth/login 
+2024-10-21T18:28:57.618Z [info]: POST /api/auth/login 
+2024-10-21T18:29:02.223Z [info]: POST /api/auth/login 
+2024-10-21T18:29:03.854Z [info]: POST /api/auth/login 
+2024-10-21T18:29:26.032Z [info]: POST /api/auth/login 

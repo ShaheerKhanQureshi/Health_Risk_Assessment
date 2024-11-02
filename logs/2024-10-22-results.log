@@ -1,0 +1,185 @@
+2024-10-21T20:11:08.048Z [info]: Server running on http://localhost:5000 
+2024-10-21T20:13:42.898Z [info]: POST /api/auth/login 
+2024-10-21T20:13:44.570Z [info]: POST /api/auth/login 
+2024-10-21T20:13:45.480Z [info]: POST /api/auth/login 
+2024-10-21T20:13:45.944Z [info]: POST /api/auth/login 
+2024-10-21T20:13:56.564Z [info]: POST /api/auth/login 
+2024-10-21T20:15:22.249Z [info]: POST /api/auth/createAdmin 
+2024-10-21T20:15:24.509Z [info]: POST /api/auth/createAdmin 
+2024-10-21T20:25:49.439Z [info]: POST /api/auth/createAdmin 
+2024-10-21T20:26:26.327Z [info]: POST /api/auth/createAdmin 
+2024-10-21T20:26:56.652Z [info]: POST /api/auth/createAdmin 
+2024-10-21T20:30:59.360Z [info]: Server running on http://localhost:5000 
+2024-10-21T20:34:42.136Z [info]: Server running on http://localhost:5000 
+2024-10-21T20:34:48.370Z [info]: Server running on http://localhost:5000 
+2024-10-21T20:34:50.329Z [info]: Server running on http://localhost:5000 
+2024-10-21T20:34:55.160Z [info]: Server running on http://localhost:5000 
+2024-10-21T20:34:56.915Z [info]: Server running on http://localhost:5000 
+2024-10-21T20:35:00.295Z [info]: Server running on http://localhost:5000 
+2024-10-21T20:35:17.366Z [info]: Server running on http://localhost:5000 
+2024-10-21T20:35:29.431Z [info]: Server running on http://localhost:5000 
+2024-10-21T20:35:58.732Z [info]: GET / 
+2024-10-21T20:35:58.954Z [info]: GET /favicon.ico 
+2024-10-21T20:36:36.263Z [info]: Shutting down gracefully... 
+2024-10-21T20:36:38.805Z [info]: Server running on http://localhost:5000 
+2024-10-21T20:36:44.524Z [info]: GET / 
+2024-10-21T20:36:45.504Z [info]: GET / 
+2024-10-21T20:36:46.173Z [info]: GET / 
+2024-10-21T20:36:46.654Z [info]: GET / 
+2024-10-21T20:36:47.092Z [info]: GET / 
+2024-10-21T20:36:47.537Z [info]: GET / 
+2024-10-21T20:36:48.097Z [info]: GET / 
+2024-10-21T20:37:05.727Z [info]: POST /api/auth/createAdmin 
+2024-10-21T20:38:35.734Z [info]: POST /api/auth/createAdmin 
+2024-10-21T20:38:52.856Z [info]: POST /api/auth/createAdmin 
+2024-10-21T20:39:05.067Z [info]: POST /api/auth/createAdmin 
+2024-10-21T20:39:20.911Z [info]: POST /api/auth/createAdmin 
+2024-10-21T20:39:29.931Z [info]: POST /api/auth/createAdmin 
+2024-10-21T20:40:08.374Z [info]: POST /api/auth/createAdmin 
+2024-10-21T20:40:24.748Z [info]: POST /api/auth/createAdmin 
+2024-10-21T20:40:57.388Z [info]: POST /api/auth/createAdmin 
+2024-10-21T20:41:06.518Z [info]: Shutting down gracefully... 
+2024-10-21T20:44:33.104Z [info]: Server running on http://localhost:5000 
+2024-10-21T20:45:03.321Z [info]: POST /api/auth/createAdmin 
+2024-10-21T20:51:52.809Z [info]: POST /api/auth/createAdmin 
+2024-10-21T20:58:22.786Z [info]: POST /api/auth/createAdmin 
+2024-10-21T20:58:38.131Z [info]: POST /api/auth/createAdmin 
+2024-10-21T20:59:07.645Z [info]: POST /api/auth/createAdmin 
+2024-10-21T21:06:16.044Z [info]: Server running on http://localhost:5000 
+2024-10-21T21:06:22.704Z [info]: POST /api/auth/createAdmin 
+2024-10-21T21:07:53.474Z [info]: POST /api/auth/createAdmin 
+2024-10-21T21:07:55.340Z [info]: POST /api/auth/createAdmin 
+2024-10-21T21:09:21.901Z [info]: Server running on http://localhost:5000 
+2024-10-21T21:09:31.907Z [info]: Server running on http://localhost:5000 
+2024-10-21T21:09:38.124Z [info]: Server running on http://localhost:5000 
+2024-10-21T21:09:42.401Z [info]: Server running on http://localhost:5000 
+2024-10-21T21:09:48.870Z [info]: POST /api/auth/createAdmin 
+2024-10-21T21:09:50.581Z [info]: POST /api/auth/createAdmin 
+2024-10-21T21:11:06.974Z [info]: POST /api/auth/createAdmin 
+2024-10-21T21:15:21.317Z [info]: POST /api/auth/createAdmin 
+2024-10-21T21:18:34.000Z [info]: POST /api/auth/createAdmin 
+2024-10-21T21:20:12.284Z [info]: POST /api/auth/createAdmin 
+2024-10-21T21:20:44.325Z [info]: POST /api/auth/createAdmin 
+2024-10-21T21:21:19.056Z [info]: POST /api/auth/login 
+2024-10-21T21:21:39.425Z [info]: POST /api/auth/login 
+2024-10-21T21:21:46.169Z [info]: POST /api/auth/login 
+2024-10-21T21:45:07.584Z [info]: POST /api/companies 
+2024-10-21T21:45:07.586Z [warn]: Authentication failed: No authorization header found 
+2024-10-21T21:52:24.568Z [info]: POST /api/companies 
+2024-10-21T21:52:24.570Z [warn]: Authentication failed: Invalid token 
+2024-10-21T21:55:23.938Z [info]: POST /api/auth/login 
+2024-10-21T21:55:46.349Z [info]: POST /api/companies 
+2024-10-21T21:57:52.056Z [info]: POST /api/assessment/generateLink 
+2024-10-21T21:57:52.059Z [warn]: Access denied for user 2: insufficient permissions 
+2024-10-21T21:59:02.892Z [info]: POST /api/auth/login 
+2024-10-21T21:59:20.309Z [info]: POST /api/assessment/generateLink 
+2024-10-21T21:59:20.311Z [warn]: Access denied for user 2: insufficient permissions 
+2024-10-21T23:00:06.037Z [info]: POST /api/assessment/generateLink 
+2024-10-21T23:00:06.040Z [warn]: Authentication failed: Token has expired 
+2024-10-21T23:18:12.306Z [info]: Shutting down gracefully... 
+2024-10-21T23:20:54.971Z [info]: Server running on http://localhost:5000 
+2024-10-21T23:21:14.755Z [info]: POST /api/auth/login 
+2024-10-21T23:22:46.598Z [info]: POST /api/companies 
+2024-10-21T23:23:59.886Z [info]: POST /api/companies 
+2024-10-21T23:24:44.664Z [info]: POST /api/assessment/generateLink 
+2024-10-21T23:24:44.667Z [warn]: Access denied for user 2: insufficient permissions 
+2024-10-21T23:27:40.351Z [info]: POST /api/assessment/generateLink 
+2024-10-21T23:27:40.354Z [warn]: Access denied for user 2: insufficient permissions 
+2024-10-21T23:28:49.079Z [info]: POST /api/auth/createAdmin 
+2024-10-21T23:54:20.016Z [info]: GET /api/auth/login 
+2024-10-21T23:54:40.394Z [info]: POST /api/auth/login 
+2024-10-21T23:56:05.116Z [info]: POST /api/auth/createAdmin 
+2024-10-21T23:56:34.483Z [info]: POST /api/auth/login 
+2024-10-21T23:57:35.525Z [info]: GET /api/auth/all 
+2024-10-22T00:00:51.476Z [info]: POST /api/auth/createAdmin 
+2024-10-22T00:01:27.203Z [info]: POST /api/auth/login 
+2024-10-22T00:01:57.439Z [info]: POST /api/assessment/generateLink 
+2024-10-22T00:01:57.443Z [warn]: Access denied for user 5: insufficient permissions 
+2024-10-22T00:43:40.357Z [info]: POST /api/form/generateLink 
+2024-10-22T00:43:51.760Z [info]: POST /api/form/createcompany 
+2024-10-22T00:44:19.179Z [info]: POST /api/companies 
+2024-10-22T00:47:10.376Z [info]: POST /api/companies 
+2024-10-22T00:48:56.445Z [info]: POST /api/companies 
+2024-10-22T00:49:48.309Z [info]: GET /api/companies 
+2024-10-22T00:51:03.558Z [info]: POST /api/auth/login 
+2024-10-22T00:51:30.944Z [info]: POST /api/auth/login 
+2024-10-22T00:51:40.430Z [info]: POST /api/auth/login 
+2024-10-22T00:51:50.940Z [info]: POST /api/auth/login 
+2024-10-22T00:52:40.668Z [info]: GET /api/auth/createAdmin 
+2024-10-22T00:52:55.152Z [info]: POST /api/auth/createAdmin 
+2024-10-22T00:53:14.679Z [info]: POST /api/auth/login 
+2024-10-22T00:53:35.637Z [info]: POST /api/companies 
+2024-10-22T00:56:07.817Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-22T00:56:07.818Z [warn]: Authentication failed: No authorization header found 
+2024-10-22T01:19:54.944Z [info]: POST /api/auth/login 
+2024-10-22T01:21:25.205Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-22T01:21:25.206Z [warn]: Authentication failed: No authorization header found 
+2024-10-22T01:22:14.444Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-22T01:22:14.445Z [warn]: Authentication failed: No authorization header found 
+2024-10-22T01:22:27.480Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-22T01:22:27.481Z [warn]: Authentication failed: No authorization header found 
+2024-10-22T01:22:36.250Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-22T01:22:36.251Z [warn]: Authentication failed: No authorization header found 
+2024-10-22T01:32:16.141Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-22T01:32:16.142Z [warn]: Authentication failed: Invalid token 
+2024-10-22T01:32:42.829Z [info]: POST /api/auth/login 
+2024-10-22T01:32:52.571Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-22T01:32:52.572Z [warn]: Authentication failed: Invalid token 
+2024-10-22T01:40:45.146Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-22T01:42:11.261Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-22T01:42:11.262Z [warn]: Authentication failed: Invalid token 
+2024-10-22T01:42:14.245Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-22T01:42:15.110Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-22T01:59:06.523Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-22T02:06:44.287Z [info]: Server running on http://localhost:5000 
+2024-10-22T02:07:52.059Z [info]: Server running on http://localhost:5000 
+2024-10-22T02:10:12.847Z [info]: Server running on http://localhost:5000 
+2024-10-22T02:11:41.209Z [info]: Server running on http://localhost:5000 
+2024-10-22T02:12:00.713Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-22T02:16:51.430Z [info]: Server running on http://localhost:5000 
+2024-10-22T02:18:05.258Z [info]: POST /api/auth/login 
+2024-10-22T02:18:08.882Z [info]: POST /api/auth/login 
+2024-10-22T02:18:27.189Z [info]: POST /api/auth/login 
+2024-10-22T02:18:27.477Z [info]: POST /api/auth/login 
+2024-10-22T02:20:05.073Z [info]: POST /api/companies 
+2024-10-22T02:28:31.236Z [info]: POST /api/auth/login 
+2024-10-22T02:28:33.468Z [info]: POST /api/auth/login 
+2024-10-22T02:28:34.057Z [info]: POST /api/auth/login 
+2024-10-22T02:28:34.363Z [info]: POST /api/auth/login 
+2024-10-22T02:28:34.558Z [info]: POST /api/auth/login 
+2024-10-22T02:28:34.738Z [info]: POST /api/auth/login 
+2024-10-22T02:28:34.910Z [info]: POST /api/auth/login 
+2024-10-22T02:28:35.096Z [info]: POST /api/auth/login 
+2024-10-22T02:28:35.284Z [info]: POST /api/auth/login 
+2024-10-22T02:28:35.459Z [info]: POST /api/auth/login 
+2024-10-22T02:28:35.643Z [info]: POST /api/auth/login 
+2024-10-22T02:28:35.828Z [info]: POST /api/auth/login 
+2024-10-22T02:28:36.001Z [info]: POST /api/auth/login 
+2024-10-22T02:28:36.187Z [info]: POST /api/auth/login 
+2024-10-22T02:28:36.190Z [info]: POST /api/auth/login 
+2024-10-22T02:28:36.387Z [info]: POST /api/auth/login 
+2024-10-22T02:28:42.916Z [info]: POST /api/auth/login 
+2024-10-22T02:29:31.285Z [info]: POST /api/companies 
+2024-10-22T02:30:48.186Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-22T02:31:24.320Z [info]: POST /api/auth/createAdmin 
+2024-10-22T02:31:27.095Z [info]: POST /api/auth/createAdmin 
+2024-10-22T02:31:27.367Z [info]: POST /api/auth/createAdmin 
+2024-10-22T02:31:27.528Z [info]: POST /api/auth/createAdmin 
+2024-10-22T02:31:27.686Z [info]: POST /api/auth/createAdmin 
+2024-10-22T02:31:35.927Z [info]: POST /api/auth/createAdmin 
+2024-10-22T02:32:16.994Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-22T02:32:42.930Z [info]: POST /api/auth/login 
+2024-10-22T02:32:44.727Z [info]: POST /api/auth/login 
+2024-10-22T02:32:45.229Z [info]: POST /api/auth/login 
+2024-10-22T02:32:45.735Z [info]: POST /api/auth/login 
+2024-10-22T02:32:53.630Z [info]: POST /api/auth/login 
+2024-10-22T02:32:54.791Z [info]: POST /api/auth/login 
+2024-10-22T02:32:54.980Z [info]: POST /api/auth/login 
+2024-10-22T02:32:55.182Z [info]: POST /api/auth/login 
+2024-10-22T02:32:55.358Z [info]: POST /api/auth/login 
+2024-10-22T02:33:22.433Z [info]: POST /api/auth/login 
+2024-10-22T02:33:24.600Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-22T02:33:57.964Z [info]: POST /api/auth/createAdmin 
+2024-10-22T02:34:24.065Z [info]: POST /api/auth/login 
+2024-10-22T02:34:33.845Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-10-22T02:34:33.848Z [warn]: Access denied for user 8: insufficient permissions 

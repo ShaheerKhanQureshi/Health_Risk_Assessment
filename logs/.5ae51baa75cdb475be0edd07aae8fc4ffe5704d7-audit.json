@@ -1,0 +1,65 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "logs\\.5ae51baa75cdb475be0edd07aae8fc4ffe5704d7-audit.json",
+    "files": [
+        {
+            "date": 1729373426843,
+            "name": "logs\\2024-10-20-results.log",
+            "hash": "bd5e5f73d5315b658838c543db91ecabf221b3a4fef36dbccc58e294cc51f46f"
+        },
+        {
+            "date": 1729501745841,
+            "name": "logs\\2024-10-21-results.log",
+            "hash": "0f57309a64b75047e34e15a03a03045570753aac4ea7ab337440ded72267c53d"
+        },
+        {
+            "date": 1729541467126,
+            "name": "logs\\2024-10-22-results.log",
+            "hash": "e3f465c7f6ac5a9eccec19760a7f07a0e40c5c4fc056dce329f1fa30aaba4425"
+        },
+        {
+            "date": 1729963738384,
+            "name": "logs\\2024-10-26-results.log",
+            "hash": "9e43167c869573f74225f7015eb1c810def99ece1b7ba916e4376fe3f711cbd0"
+        },
+        {
+            "date": 1729969300768,
+            "name": "logs\\2024-10-27-results.log",
+            "hash": "67c115aba0f0ff948a65e52c2bd94a44c432f379456bf64f1247c74740a058a1"
+        },
+        {
+            "date": 1730067088921,
+            "name": "logs\\2024-10-28-results.log",
+            "hash": "c7eb614888fb7c689bbc3dc4908b9b9c8218b2d24a1a63a9ba04d09e80f60295"
+        },
+        {
+            "date": 1730142745127,
+            "name": "logs\\2024-10-29-results.log",
+            "hash": "1dabea8d2b3647ea972f34aa0e778b586c94598d91a07b480f75459195a657fa"
+        },
+        {
+            "date": 1730234441034,
+            "name": "logs\\2024-10-30-results.log",
+            "hash": "90a6853163400474561cefadfc73841db051b4917e9ed737370035ed798c420c"
+        },
+        {
+            "date": 1730321239354,
+            "name": "logs\\2024-10-31-results.log",
+            "hash": "ce2a2494fe915aeb8e6594bd764d6e100857f9557bddac4b709f3455b67ef5a2"
+        },
+        {
+            "date": 1730424388145,
+            "name": "logs\\2024-11-01-results.log",
+            "hash": "0ea9596f4823f3e50b519433b027ab942cc89c5308d97a7a4c4acac2ba932ce1"
+        },
+        {
+            "date": 1730555114904,
+            "name": "logs\\2024-11-02-results.log",
+            "hash": "9fd987c8c56850153a68be23ca00ae03d4e6eb281249a22918e3742f456e7885"
+        }
+    ],
+    "hashType": "sha256"
+}
