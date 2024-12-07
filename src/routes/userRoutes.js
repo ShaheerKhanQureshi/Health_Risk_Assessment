@@ -64,7 +64,6 @@ router.post(
     }
 );
 
-// User Login (only for admin and sub-admin)
 router.post(
     '/login',
     [
@@ -80,33 +79,61 @@ router.post(
         const { email, password } = req.body;
 
         try {
-            // Check if the user exists in the database
-            const [results] = await db.query('SELECT * FROM users WHERE email = ?', [email]);
+            // Fetch user data from the database
+            const [results] = await db.query(
+                'SELECT id, first_name, last_name, email, role FROM users WHERE email = ?',
+                [email]
+            );
+
+            console.log('Database query result:', results);
+
             if (results.length === 0) {
                 return res.status(401).json({ success: false, message: 'Invalid credentials' });
             }
 
             const user = results[0];
+            console.log('User data:', user);
 
-            // Verify the user role (only 'admin' and 'sub-admin' allowed)
             if (!['admin', 'sub-admin'].includes(user.role)) {
                 return res.status(403).json({ success: false, message: 'Access denied' });
             }
 
-            // Check if the password matches
             const isMatch = await bcrypt.compare(password, user.password);
             if (!isMatch) {
                 return res.status(401).json({ success: false, message: 'Invalid credentials' });
             }
 
-            // Create JWT token
             const token = jwt.sign(
                 { id: user.id, role: user.role },
                 process.env.JWT_SECRET,
-                { expiresIn: '1h' }
+                { expiresIn: '5h' }
             );
 
-            res.json({ success: true, message: 'Login successful', token });
+            // Log the response structure before sending it
+            console.log({
+                success: true,
+                message: 'Login successful',
+                token,
+                user: {
+                    id: user.id,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    role: user.role
+                }
+            });
+
+            // Send the response
+            res.json({
+                success: true,
+                message: 'Login successful',
+                token,
+                user: {
+                    id: user.id,
+                    first_name: user.first_name,
+                    last_name: user.last_name,
+                    role: user.role
+                }
+            });
         } catch (error) {
             console.error('Login error:', error);
             res.status(500).json({ success: false, message: 'Internal server error during login' });

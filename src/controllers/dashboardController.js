@@ -1,13 +1,7 @@
-// src/controllers/assessmentController.js
-const Assessment = require('../models/Assessment');
-const Answer = require('../models/Answer');
-const Question = require('../models/Question');
 const Report = require('../models/Report');
-const { createPdfFromResponses, createPdfFromReport } = require('../utils/pdfGenerator');
-const { sendEmailToUser } = require('../utils/email');
 const { body, validationResult } = require('express-validator');
 const logger = require('../utils/logger');
-const calculateRisk = require('../utils/calculateRisk'); // Ensure this function is defined
+const db = require('../config/db');
 
 // View responses for the logged-in user
 exports.viewResponses = async (req, res) => {
@@ -110,5 +104,136 @@ exports.generateReport = async (req, res) => {
     } catch (err) {
         logger.error('Error generating report:', err);
         res.status(500).json({ error: 'An error occurred while generating the report' });
+    }
+};
+
+//dashboard grapghs and logs
+// exports.getTotalUsers = (req, res) => {
+//     connection.query("SELECT employee_info FROM assessment_response", (err, results) => {
+//       if (err) throw err;
+//       const totalUsers = results.length;
+//       res.json({ totalUsers });
+//     });
+//   };
+  
+//   exports.getTotalCompanies = (req, res) => {
+//     connection.query("SELECT COUNT(*) AS totalCompanies FROM companies", (err, results) => {
+//       if (err) throw err;
+//       res.json(results[0]);
+//     });
+//   };
+  
+//   exports.getSessionByCompany = (req, res) => {
+//     connection.query(`
+//       SELECT company_slug, COUNT(*) AS sessions, AVG(health_assessment) AS averageScore
+//       FROM assessment_response
+//       GROUP BY company_slug
+//     `, (err, results) => {
+//       if (err) throw err;
+//       res.json(results);
+//     });
+//   };
+  
+//   exports.getUserLogs = (req, res) => {
+//     connection.query("SELECT name, role, status, created_at FROM user", (err, results) => {
+//       if (err) throw err;
+//       res.json(results);
+//     });
+//   };
+  
+//   exports.getPerformanceMetrics = (req, res) => {
+//     connection.query(`
+//       SELECT company_slug, COUNT(*) AS count
+//       FROM assessment_response
+//       GROUP BY company_slug
+//     `, (err, results) => {
+//       if (err) throw err;
+//       res.json(results);
+//     });
+//   };
+exports.getTotalUsers = async (req, res) => {
+    try {
+        const [results] = await db.query("SELECT employee_info FROM assessment_response");
+
+        // Decode JSON strings and extract relevant information
+        const totalUsers = results.length; // Count of records
+        const users = results.map(row => {
+            try {
+                return JSON.parse(row.employee_info); // Decode JSON
+            } catch (error) {
+                console.error('Error parsing JSON:', error);
+                return null; // Handle parsing error (e.g., return null or default value)
+            }
+        }).filter(user => user !== null); // Filter out any null values
+
+        res.json({ totalUsers, users }); // Return total users count and decoded user data
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Database query failed" });
+    }
+};
+
+exports.getTotalCompanies = async (req, res) => {
+    try {
+        const [results] = await db.query("SELECT COUNT(*) AS totalCompanies FROM companies");
+        res.json(results[0]);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Database query failed" });
+    }
+};
+
+// exports.getSessionByCompany = async (req, res) => {
+//     try {
+//         const [results] = await db.query(`
+//             SELECT company_slug, COUNT(*) AS sessions, AVG(health_assessment) AS averageScore
+//             FROM assessment_response
+//             GROUP BY company_slug
+//         `);
+//         res.json(results);
+//     } catch (err) {
+//         console.error(err);
+//         res.status(500).json({ message: "Database query failed" });
+//     }
+// };
+exports.getSessionByCompany = async (req, res) => {
+    try {
+        const [results] = await db.query(`
+            SELECT company_slug, COUNT(*) AS sessions, AVG(health_assessment) AS averageScore
+            FROM assessment_response
+            GROUP BY company_slug
+            ORDER BY sessions DESC
+            LIMIT 5
+        `);
+        res.json(results);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Database query failed" });
+    }
+};
+
+exports.getUserLogs = async (req, res) => {
+    try {
+        const [results] = await db.query("SELECT first_name, role, designation, gender, created_at FROM users ORDER BY created_at DESC");
+        console.log("🚀 ~ exports.getUserLogs= ~ results:", results);
+        res.json(results);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Database query failed" });
+    }
+};
+
+
+exports.getPerformanceMetrics = async (req, res) => {
+    try {
+        const [results] = await db.query(`
+            SELECT company_slug, COUNT(*) AS count
+            FROM assessment_response
+            GROUP BY company_slug
+        `);
+        res.json(results);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: "Database query failed" });
     }
 };

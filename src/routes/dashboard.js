@@ -1,7 +1,7 @@
 const express = require("express");
 const db = require('../config/db'); // Ensure this path points to the correct db.js file
 const { authenticate } = require("../middlewares/auth");
-
+const dashboardController = require('../controllers/dashboardController');
 const router = express.Router();
 
 // Dashboard stats
@@ -32,5 +32,12 @@ router.get("/stats", authenticate("admin"), async (req, res) => {
     res.status(500).json({ error: "Internal server error while retrieving stats" });
   }
 });
+
+
+router.get('/totalUsers', dashboardController.getTotalUsers);
+router.get('/totalCompanies', dashboardController.getTotalCompanies);
+router.get('/sessionByCompany', dashboardController.getSessionByCompany);
+router.get('/userLogs', dashboardController.getUserLogs);
+router.get('/performanceMetrics', dashboardController.getPerformanceMetrics);
 
 module.exports = router;

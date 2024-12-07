@@ -1,64 +1,3 @@
-// // src/controllers/assessmentController.js
-// const db = require('../config/db'); // Import the database configuration
-// const Report = require('../models/Report'); // Import the Report model
-// const { calculateScores } = require('../utils/scoreCalculator'); // Import score calculation logic
-
-// // Function to submit a health assessment
-// const submitForm = async (req, res) => {
-//     try {
-//         const { answers, userId, companyId, bmi } = req.body;
-
-//         // Validate input
-//         if (!answers || !userId || !companyId) {
-//             return res.status(400).json({ error: "Answers, userId, and companyId are required" });
-//         }
-
-//         // Calculate the scores based on the answers
-//         const scoreResults = calculateScores(answers);
-
-//         // Create a report based on the calculated scores
-//         const newReport = {
-//             userId,
-//             companyId,
-//             healthRiskScore: scoreResults.totalScore,
-//             emotionalHealthScore: scoreResults.sectionScores.mentalEmotionalWellBeing,
-//             nutritionalHabitsScore: scoreResults.sectionScores.nutrition,
-//             bmi: bmi || 0, // Optional field, adjust as needed
-//             prevalentRiskFactors: scoreResults.riskFactors || [],
-//             recommendations: scoreResults.recommendations || "Keep up the good work!"
-//         };
-
-//         // Save the report to the database using the Report model
-//         const report = await Report.create(newReport);
-
-//         res.status(201).json({ message: "Assessment submitted successfully", report });
-//     } catch (error) {
-//         console.error('Error submitting assessment:', error);
-//         res.status(500).json({ error: "Error submitting assessment: " + error.message });
-//     }
-// };
-
-// // Additional controller methods
-// const viewResponses = async (userId) => {
-//     // Logic to view individual responses for the given userId
-// };
-
-// const createAssessment = async (assessmentData) => {
-//     // Logic to create a new assessment
-// };
-
-// const getAssessment = async (id) => {
-//     // Logic to get a specific assessment by ID
-// };
-
-// // Exporting all methods
-// module.exports = {
-//     submitForm,
-//     viewResponses,
-//     createAssessment,
-//     getAssessment,
-// };
-
 // src/routes/assessmentRoutes.js
 const express = require("express");
 const router = express.Router();
@@ -68,7 +7,7 @@ const assessmentController = require("../controllers/assessmentController");
 
 // Submit health assessment form (no authorization required)
 router.post("/submitAssessment/:slug", assessmentController.submitAssessment);
-router.post("/submit", assessmentController.submitForm);
+// router.post("/submit", assessmentController.submitForm);
 
 
 // View individual responses (accessible by admins)
@@ -181,5 +120,6 @@ router.post("/form/:formLink", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
 
 module.exports = router;

@@ -1,18 +1,4 @@
-// router.get("/formdata/:companyId", async (req, res) => {
-//     const { companyId } = req.params;
 
-//     // Assuming you have a function to get the form structure from the database
-//     try {
-//         const formData = await getFormStructureByCompanyId(companyId); // Implement this function
-//         if (!formData) {
-//             return res.status(404).json({ error: "Form data not found" });
-//         }
-//         res.json(formData);
-//     } catch (error) {
-//         console.error("Error fetching form data:", error);
-//         res.status(500).json({ error: "Internal server error" });
-//     }
-// });
 
 const express = require("express");
 const db = require('../config/db');

@@ -1,90 +1,94 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const helmet = require('helmet');
-const rateLimit = require('express-rate-limit');
-const db = require('../src/config/db');
-const logger = require('./utils/logger');
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const dotenv = require("dotenv");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
+const path = require("path");
+const db = require("../src/config/db");
+const logger = require("./utils/logger");
 
-// Import routes
-const authRoutes = require('./routes/auth');
-const userRoutes = require('./routes/userRoutes');
-const companies = require('./routes/companies'); // Update: New route
-const dashboardRoutes = require('./routes/dashboard');
-const assessmentRoutes = require('./routes/assessmentRoutes');
-const adminRoutes = require('./routes/adminRoutes');
-
+// Load environment variables
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const companyEmployeeRoutes = require('./routes/companyEmployeeRoutes');
-// const companyRoutes = require('./routes/companyRoutes'); 
-// app.use('/api', companyRoutes);
-app.use('/api', companyEmployeeRoutes);
 
-app.use(helmet());
+// Import routes
+const dashboardRoutes = require("./routes/dashboard");
+const authRoutes = require("./routes/auth");
+const userRoutes = require("./routes/userRoutes");
+const companies = require("./routes/companies");
+const assessmentRoutes = require("./routes/assessmentRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+const companyEmployeeRoutes = require("./routes/companyEmployeeRoutes");
+const companyCalculationsRoutes = require("./routes/companyCalculationsRoutes");
+const single_employeeRoutes = require("./routes/single_employeeRoutes");
 
-// Rate limiting to prevent abuse
-app.use(rateLimit({
+// Security headers and middleware setup
+app.use([
+  helmet(), // Sets various HTTP headers for security
+  rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100, // Limit each IP to 100 requests per window
-}));
-
-// CORS configuration
-app.use(cors({
-    origin: process.env.CORS_ORIGIN || '*',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true,
-}));
-
-// Body parser middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+    max: 200, // Allow up to 200 requests per 15 minutes
+  }),
+  cors({
+    origin: process.env.CORS_ORIGIN || "*", // Allow CORS from environment-defined origins or all
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // Allow credentials like cookies
+  }),
+  bodyParser.json(),
+  bodyParser.urlencoded({ extended: true }), // Support URL-encoded bodies
+]);
 
 // Logging middleware
 app.use((req, res, next) => {
-    logger.info(`${req.method} ${req.url}`);
-    next();
+  logger.info(`${req.method} ${req.url}`);
+  next();
 });
 
-// Route definitions
-app.use('/api/auth', authRoutes);
-app.use('/api/users', userRoutes);
-app.use('/api', companies); 
-app.use('/api/dashboard', dashboardRoutes);
-app.use('/api/assessment', assessmentRoutes);
-app.use('/api/admin', adminRoutes);
-// app.use("/api", CompanyRoutes);
-// Basic health check route
-app.get('/', (req, res) => {
-    res.json({
-        message: 'Health Risk Assessment API is running',
-        dbStatus: db.connection ? 'Connected' : 'Disconnected',
-    });
+// Route definitions - Same base URL structure, no change to route functionality
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api", companies); // Handles the `/api/companies` routes
+app.use("/api/dashboard", dashboardRoutes);
+app.use("/api/assessment", assessmentRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/company-employees", companyEmployeeRoutes);
+app.use("/api/company-calculation", companyCalculationsRoutes);
+app.use("/api/single-emp", single_employeeRoutes);
+
+// Static files for PDF reports (unchanged)
+app.use("/reports", express.static(path.join(__dirname, "public", "reports")));
+
+// Basic health check route (unchanged)
+app.get("/", (req, res) => {
+  res.json({
+    message: "Health Risk Assessment API is running",
+    dbStatus: db.connection ? "Connected" : "Disconnected",
+  });
 });
 
-// Error handling middleware for better debugging
+// Error handling middleware (unchanged)
 app.use((err, req, res, next) => {
-    logger.error('Error stack:', err.stack);
-    res.status(err.status || 500).json({
-        message: err.message || 'Internal Server Error',
-    });
+  logger.error("Error stack:", err.stack);
+  res.status(err.status || 500).json({
+    message: err.message || "Internal Server Error",
+  });
 });
 
 // Start the server
 const server = app.listen(PORT, () => {
-    logger.info(`Server running on http://localhost:${PORT}`);
+  logger.info(`Server running on http://localhost:${PORT}`);
 });
 
 // Graceful shutdown
-process.on('SIGINT', () => {
-    logger.info('Shutting down gracefully...');
-    server.close(() => {
-        logger.info('Closed all connections');
-        process.exit(0);
-    });
+process.on("SIGINT", () => {
+  logger.info("Shutting down gracefully...");
+  server.close(() => {
+    logger.info("Closed all connections");
+    process.exit(0);
+  });
 });
-console.log()
+
 module.exports = app;

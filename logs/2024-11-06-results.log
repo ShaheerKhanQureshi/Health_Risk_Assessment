@@ -1,0 +1,94 @@
+2024-11-06T08:01:07.548Z [info]: Server running on http://localhost:5000 
+2024-11-06T08:29:34.080Z [info]: Server running on http://localhost:5000 
+2024-11-06T09:41:21.313Z [info]: Server running on http://localhost:5000 
+2024-11-06T11:01:55.107Z [info]: Server running on http://localhost:5000 
+2024-11-06T11:02:03.195Z [info]: Server running on http://localhost:5000 
+2024-11-06T11:02:27.768Z [info]: Server running on http://localhost:5000 
+2024-11-06T12:52:24.873Z [info]: Server running on http://localhost:5000 
+2024-11-06T12:52:35.781Z [info]: Server running on http://localhost:5000 
+2024-11-06T13:12:50.814Z [info]: Server running on http://localhost:5000 
+2024-11-06T13:22:22.153Z [info]: Server running on http://localhost:5000 
+2024-11-06T14:09:37.481Z [info]: Server running on http://localhost:5000 
+2024-11-06T14:36:24.856Z [info]: Server running on http://localhost:5000 
+2024-11-06T14:37:46.347Z [info]: POST /api/auth/login 
+2024-11-06T14:37:52.161Z [info]: GET /api/dashboard/sessionByCompany 
+2024-11-06T14:37:52.167Z [info]: GET /api/dashboard/totalUsers 
+2024-11-06T14:37:52.204Z [info]: GET /api/dashboard/totalCompanies 
+2024-11-06T14:37:52.225Z [info]: GET /api/dashboard/userLogs 
+2024-11-06T14:38:00.381Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-11-06T14:38:01.003Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-06T14:38:11.138Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-11-06T14:38:16.779Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-06T14:40:08.067Z [info]: Server running on http://localhost:5000 
+2024-11-06T14:41:19.272Z [info]: Server running on http://localhost:5000 
+2024-11-06T14:42:37.696Z [info]: Server running on http://localhost:5000 
+2024-11-06T14:42:48.574Z [info]: Server running on http://localhost:5000 
+2024-11-06T14:42:56.612Z [info]: Server running on http://localhost:5000 
+2024-11-06T14:53:54.354Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-06T14:55:40.083Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-11-06T14:55:41.843Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-06T14:55:42.664Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-11-06T14:55:43.593Z [info]: GET /api/dashboard/sessionByCompany 
+2024-11-06T14:55:43.602Z [info]: GET /api/dashboard/totalUsers 
+2024-11-06T14:55:43.633Z [info]: GET /api/dashboard/totalCompanies 
+2024-11-06T14:55:43.652Z [info]: GET /api/dashboard/userLogs 
+2024-11-06T14:56:01.004Z [info]: POST /api/auth/login 
+2024-11-06T14:56:01.866Z [info]: GET /api/dashboard/sessionByCompany 
+2024-11-06T14:56:01.872Z [info]: GET /api/dashboard/totalUsers 
+2024-11-06T14:56:01.895Z [info]: GET /api/dashboard/totalCompanies 
+2024-11-06T14:56:01.909Z [info]: GET /api/dashboard/userLogs 
+2024-11-06T14:56:35.824Z [info]: GET /api/companies 
+2024-11-06T14:59:33.871Z [info]: Server running on http://localhost:5000 
+2024-11-06T14:59:39.577Z [info]: GET /api/companies 
+2024-11-06T15:00:18.421Z [info]: Server running on http://localhost:5000 
+2024-11-06T15:00:21.551Z [info]: GET /api/companies 
+2024-11-06T15:00:35.938Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-06T15:00:38.861Z [info]: GET /api/companies/healthsolutions?page=1&limit=8&sort=newest 
+2024-11-06T15:01:08.988Z [info]: Server running on http://localhost:5000 
+2024-11-06T15:01:40.348Z [info]: Server running on http://localhost:5000 
+2024-11-06T15:01:59.002Z [info]: GET /api/companies/techinnovators 
+2024-11-06T15:02:05.625Z [info]: GET /api/company/techinnovators 
+2024-11-06T15:02:12.468Z [info]: GET /api/companies/techinnovators 
+2024-11-06T15:02:19.299Z [info]: GET /api/companies/Methologik 
+2024-11-06T15:02:31.991Z [info]: Server running on http://localhost:5000 
+2024-11-06T15:02:42.660Z [info]: Server running on http://localhost:5000 
+2024-11-06T15:02:45.820Z [info]: GET /api/companies/Methologik 
+2024-11-06T15:03:34.632Z [info]: Server running on http://localhost:5000 
+2024-11-06T15:09:36.039Z [info]: Server running on http://localhost:5000 
+2024-11-06T15:09:38.894Z [info]: GET /api/companies/Methologik 
+2024-11-06T15:09:59.690Z [info]: Server running on http://localhost:5000 
+2024-11-06T15:10:02.728Z [info]: Server running on http://localhost:5000 
+2024-11-06T15:10:35.669Z [info]: Server running on http://localhost:5000 
+2024-11-06T15:10:39.445Z [info]: GET /api/companies/Methologik 
+2024-11-06T15:11:34.642Z [info]: Server running on http://localhost:5000 
+2024-11-06T15:11:38.731Z [info]: GET /api/companies/Methologik 
+2024-11-06T15:11:41.485Z [info]: GET /api/companies/Methologik 
+2024-11-06T15:11:58.158Z [info]: Server running on http://localhost:5000 
+2024-11-06T15:12:00.634Z [info]: GET /api/companies/Methologik 
+2024-11-06T15:30:51.059Z [info]: POST /api/companies 
+2024-11-06T15:31:02.371Z [info]: GET /api/companies/healthsolutions?page=1&limit=8&sort=newest 
+2024-11-06T15:31:06.336Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-06T15:31:39.829Z [info]: POST /api/companies 
+2024-11-06T15:31:57.450Z [info]: Server running on http://localhost:5000 
+2024-11-06T15:32:18.981Z [info]: Server running on http://localhost:5000 
+2024-11-06T15:32:27.938Z [info]: Server running on http://localhost:5000 
+2024-11-06T15:36:51.005Z [info]: POST /api/companies 
+2024-11-06T15:36:54.313Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-06T15:37:09.450Z [info]: Server running on http://localhost:5000 
+2024-11-06T15:37:19.197Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-06T15:37:21.939Z [info]: GET /api/companies/techinnovators?page=1&limit=8&sort=newest 
+2024-11-06T15:37:26.533Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-06T15:37:31.201Z [info]: GET /api/companies/askani-fc?page=1&limit=8&sort=newest 
+2024-11-06T15:37:33.439Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-06T15:37:35.935Z [info]: GET /api/dashboard/sessionByCompany 
+2024-11-06T15:37:35.946Z [info]: GET /api/dashboard/totalUsers 
+2024-11-06T15:37:36.006Z [info]: GET /api/dashboard/totalCompanies 
+2024-11-06T15:37:36.040Z [info]: GET /api/dashboard/userLogs 
+2024-11-06T15:37:37.172Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-06T15:38:06.325Z [info]: POST /api/companies 
+2024-11-06T15:38:06.363Z [info]: Checking for existing slug... 
+2024-11-06T15:38:06.368Z [info]: Inserting new company into database... 
+2024-11-06T15:38:06.375Z [info]: Inserting form structure for company... 
+2024-11-06T15:38:06.377Z [info]: Company created successfully with slug: nns 
+2024-11-06T15:38:06.467Z [info]: GET /api/companies/undefined 
+2024-11-06T15:42:23.215Z [info]: POST /api/assessment/submitAssessment/nns 
