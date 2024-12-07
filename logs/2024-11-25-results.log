@@ -1,0 +1,71 @@
+2024-11-25T08:52:23.457Z [info]: Server running on http://localhost:5000 
+2024-11-25T09:35:18.652Z [info]: POST /api/auth/login 
+2024-11-25T09:36:18.840Z [info]: GET /api/dashboard/sessionByCompany 
+2024-11-25T09:36:18.845Z [info]: GET /api/dashboard/totalUsers 
+2024-11-25T09:36:18.865Z [info]: GET /api/dashboard/totalCompanies 
+2024-11-25T09:36:18.908Z [info]: GET /api/dashboard/userLogs 
+2024-11-25T11:15:10.106Z [info]: GET /api/dashboard/sessionByCompany 
+2024-11-25T11:15:10.113Z [info]: GET /api/dashboard/totalUsers 
+2024-11-25T11:15:10.196Z [info]: GET /api/dashboard/totalCompanies 
+2024-11-25T11:15:10.269Z [info]: GET /api/dashboard/userLogs 
+2024-11-25T13:08:32.624Z [info]: GET /api/dashboard/sessionByCompany 
+2024-11-25T13:08:32.629Z [info]: GET /api/dashboard/totalUsers 
+2024-11-25T13:08:32.698Z [info]: GET /api/dashboard/totalCompanies 
+2024-11-25T13:08:32.719Z [info]: GET /api/dashboard/userLogs 
+2024-11-25T13:20:47.470Z [info]: POST /api/auth/login 
+2024-11-25T13:21:38.724Z [info]: POST /api/auth/login 
+2024-11-25T13:21:40.482Z [info]: GET /api/dashboard/sessionByCompany 
+2024-11-25T13:21:40.487Z [info]: GET /api/dashboard/totalUsers 
+2024-11-25T13:21:40.516Z [info]: GET /api/dashboard/totalCompanies 
+2024-11-25T13:21:40.554Z [info]: GET /api/dashboard/userLogs 
+2024-11-25T13:22:01.384Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-11-25T13:25:13.146Z [info]: POST /api/auth/createAdmin 
+2024-11-25T13:27:58.593Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-11-25T13:28:03.713Z [info]: GET /api/dashboard/sessionByCompany 
+2024-11-25T13:28:03.715Z [info]: GET /api/dashboard/totalUsers 
+2024-11-25T13:28:03.730Z [info]: GET /api/dashboard/totalCompanies 
+2024-11-25T13:28:03.743Z [info]: GET /api/dashboard/userLogs 
+2024-11-25T14:24:50.655Z [info]: Shutting down gracefully... 
+2024-11-25T14:26:54.401Z [info]: Server running on http://localhost:5000 
+2024-11-25T14:27:40.487Z [info]: POST /api/auth/login 
+2024-11-25T14:27:41.321Z [info]: GET /api/dashboard/sessionByCompany 
+2024-11-25T14:27:41.327Z [info]: GET /api/dashboard/totalUsers 
+2024-11-25T14:27:41.351Z [info]: GET /api/dashboard/totalCompanies 
+2024-11-25T14:27:41.366Z [info]: GET /api/dashboard/userLogs 
+2024-11-25T14:27:45.632Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-25T14:28:22.603Z [info]: POST /api/companies 
+2024-11-25T14:28:22.652Z [error]: Error creating company: Unknown column 'uuid' in 'field list' {"code":"ER_BAD_FIELD_ERROR","errno":1054,"sql":"INSERT INTO companies (name, companyType, phoneNumber, email, city, url, uuid) VALUES ('zameer', 'Industrial', '0323659632', 'info@zameer.com', 'Karachi', 'zameer', 'ea932e62-8b7c-4ebf-9b4a-b9eb9608731a')","sqlState":"42S22","sqlMessage":"Unknown column 'uuid' in 'field list'","stack":"Error: Unknown column 'uuid' in 'field list'\n    at PromisePool.query (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\node_modules\\mysql2\\promise.js:356:22)\n    at createCompany (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\controllers\\companyController.js:117:14)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2024-11-25T14:32:25.041Z [info]: Server running on http://localhost:5000 
+2024-11-25T14:32:27.055Z [info]: POST /api/companies 
+2024-11-25T14:32:27.366Z [info]: GET /api/companies/undefined 
+2024-11-25T14:47:59.263Z [info]: Server running on http://localhost:5000 
+2024-11-25T14:48:44.702Z [info]: Server running on http://localhost:5000 
+2024-11-25T14:55:04.842Z [info]: Server running on http://localhost:5000 
+2024-11-25T14:55:08.424Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-25T14:58:04.698Z [info]: Server running on http://localhost:5000 
+2024-11-25T14:58:21.606Z [info]: Server running on http://localhost:5000 
+2024-11-25T14:59:44.015Z [info]: Server running on http://localhost:5000 
+2024-11-25T14:59:45.375Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-25T15:01:43.186Z [info]: Server running on http://localhost:5000 
+2024-11-25T15:01:47.638Z [info]: Server running on http://localhost:5000 
+2024-11-25T15:01:50.443Z [info]: Server running on http://localhost:5000 
+2024-11-25T15:01:53.943Z [info]: Server running on http://localhost:5000 
+2024-11-25T15:02:02.570Z [info]: Server running on http://localhost:5000 
+2024-11-25T15:02:11.623Z [info]: Server running on http://localhost:5000 
+2024-11-25T15:02:15.739Z [info]: Server running on http://localhost:5000 
+2024-11-25T15:02:21.107Z [info]: Server running on http://localhost:5000 
+2024-11-25T15:02:22.489Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-25T15:02:24.877Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-25T15:03:00.101Z [info]: Server running on http://localhost:5000 
+2024-11-25T15:03:48.195Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-25T15:03:49.356Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-25T15:11:35.208Z [info]: Server running on http://localhost:5000 
+2024-11-25T15:11:42.121Z [info]: Server running on http://localhost:5000 
+2024-11-25T15:11:47.598Z [info]: Server running on http://localhost:5000 
+2024-11-25T15:11:58.152Z [info]: Server running on http://localhost:5000 
+2024-11-25T15:12:06.267Z [info]: Server running on http://localhost:5000 
+2024-11-25T15:12:18.621Z [info]: Server running on http://localhost:5000 
+2024-11-25T15:12:28.215Z [info]: Server running on http://localhost:5000 
+2024-11-25T15:12:33.617Z [info]: Server running on http://localhost:5000 
+2024-11-25T15:12:36.262Z [info]: Server running on http://localhost:5000 
+2024-11-25T15:12:44.780Z [info]: Server running on http://localhost:5000 

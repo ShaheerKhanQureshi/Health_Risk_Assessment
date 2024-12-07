@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Your Health Assessment Results</title>
+    <style>
+      body { font-family: Arial, sans-serif; }
+      .container { width: 600px; margin: auto; padding: 20px; }
+      .header { text-align: center; font-size: 24px; margin-bottom: 20px; }
+      .content { font-size: 18px; }
+      .footer { font-size: 12px; text-align: center; margin-top: 40px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Health Assessment Report</h1>
+      </div>
+      <div class="content">
+        <p><strong>Name:</strong> {{name}}</p>
+        <p><strong>Age:</strong> {{age}}</p>
+        <p><strong>Gender:</strong> {{gender}}</p>
+        <p><strong>Weight:</strong> {{weight}} kg</p>
+        <p><strong>BMI:</strong> {{bmi}}</p>
+        <p><strong>Health Score:</strong> {{healthScore}}</p>
+        <p><strong>Recommendation:</strong> {{recommendation}}</p>
+      </div>
+      <div class="footer">
+        <p>Thank you for using our health assessment service!</p>
+      </div>
+    </div>
+  </body>
+</html>

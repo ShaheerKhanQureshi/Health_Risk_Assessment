@@ -1,4 +1,3 @@
-
 // // src/controllers/assessmentController.js
 // const Answer = require("../models/Answer");
 // const Question = require("../models/Question");
@@ -12,48 +11,65 @@
 // const logger = require("../utils/logger");
 // const calculateScores = require("../utils/scoreCalculator");
 // const db = require("../config/db"); // Database connection
-// const { check, validationResult } = require('express-validator');
+// const { check, validationResult, body } = require('express-validator');
+
+// // Middleware to validate submission data
+// const validateSubmitForm = [
+//   body("answers").isArray().withMessage("Answers must be an array"),
+//   body("answers.*.questionId").notEmpty().withMessage("Question ID is required"),
+//   body("answers.*.response").notEmpty().withMessage("Response is required"),
+//   (req, res, next) => {
+//     const errors = validationResult(req);
+//     if (!errors.isEmpty()) {
+//       return res.status(400).json({ errors: errors.array() });
+//     }
+//     next();
+//   },
+// ];
+
+// // Submit Assessment (stores health and employee info) using assessment_id
 // const submitAssessment = async (req, res) => {
 //   const { slug } = req.params;
-//   const { employee_info, health_assessment } = req.body;
-//   console.log("Running submitAssessment function");
-//   console.log(employee_info,health_assessment);
+//   const { assessment_id, employee_info, health_assessment } = req.body;
+
+//   if (!assessment_id || !employee_info || !health_assessment) {
+//     return res.status(400).json({ message: "assessment_id, employee_info, and health_assessment are required" });
+//   }
+
 //   try {
-//     const query = `INSERT INTO \`assessment_response\` (company_slug ,employee_info, health_assessment) VALUES (?, ?, ?)`;
+//     const query = `
+//       INSERT INTO \`assessment_response\` (company_slug, assessment_id, employee_info, health_assessment)
+//       VALUES (?, ?, ?, ?)
+//     `;
+//     const [result] = await db.query(query, [slug, assessment_id, employee_info, health_assessment]);
 
-//     // Await the result of the query
-//     const [result] = await db.query(query, [slug ,employee_info, health_assessment]);
-
-//     res.status(200).json({ message: "Success", result });
+//     res.status(200).json({ message: "Assessment submitted successfully", result });
 //   } catch (err) {
-//     console.error("Database insertion error:", err); // Log error for debugging
-//     res.status(500).json({ message: "Error while entering form", err });
+//     logger.error("Database insertion error:", err); // Log error for debugging
+//     res.status(500).json({ message: "Error while submitting assessment", err });
 //   }
 // };
 
-// // Function to submit a health assessment
+// // Submit Health Assessment Form - Calculate scores, save answers, generate report, and send email
 // const submitForm = async (req, res) => {
 //   try {
 //     const { answers, userId, companyId, bmi = 0 } = req.body;
-//     console.log(req.body);
-//     // Validate input
+
 //     if (!answers || !userId || !companyId) {
-//       return res.status(400).json({ error: "Answers are required" });
+//       return res.status(400).json({ error: "Answers, User ID, and Company ID are required" });
 //     }
 
 //     // Calculate the scores based on the answers
 //     const scoreResults = calculateScores(answers);
-
-//     // Fetch questions and validate answers
 //     const answerRecords = [];
 //     let totalScore = 0;
 
+//     // Process each answer, find corresponding question, and save it
 //     for (const answerData of answers) {
 //       const { questionId, response } = answerData;
 //       const question = await Question.findById(questionId);
 
 //       if (!question) {
-//         logger.error(`Question not found: ${questionId}`);
 //         return res.status(400).json({ error: "Question not found" });
 //       }
 
@@ -67,7 +83,7 @@
 //       totalScore += question.scoring; // Adjust based on your scoring logic
 //     }
 
-//     // Create a report based on the calculated scores
+//     // Create a new report based on the calculated scores
 //     const newReport = {
 //       userId,
 //       companyId,
@@ -79,7 +95,6 @@
 //       recommendations: scoreResults.recommendations || "Keep up the good work!",
 //     };
 
-//     // Save the report to the database
 //     const report = await Report.create(newReport);
 
 //     // Save assessment data (optional)
@@ -92,35 +107,27 @@
 //     await assessmentData.save();
 
 //     // Send email to user
-//     sendEmailToUser(req.user.email, report);
+//     await sendEmailToUser(req.user.email, report);
 
-//     res
-//       .status(201)
-//       .json({ message: "Assessment submitted successfully", report });
+//     res.status(201).json({ message: "Assessment submitted successfully", report });
 //   } catch (error) {
 //     logger.error("Error submitting assessment:", error);
-//     res
-//       .status(500)
-//       .json({ error: "Error submitting assessment: " + error.message });
+//     res.status(500).json({ error: "Error submitting assessment: " + error.message });
 //   }
 // };
 
 // // View responses for the logged-in user
 // const viewResponses = async (req, res) => {
 //   try {
-//     const responses = await Answer.find({ user: req.user.id }).populate(
-//       "question"
-//     );
+//     const responses = await Answer.find({ user: req.user.id }).populate("question");
 //     res.status(200).json(responses);
 //   } catch (err) {
 //     logger.error("Error fetching responses:", err);
-//     res
-//       .status(500)
-//       .json({ error: "An error occurred while fetching responses" });
+//     res.status(500).json({ error: "An error occurred while fetching responses" });
 //   }
 // };
 
-// // Download forms as PDF
+// // Download form as a PDF
 // const downloadForm = async (req, res) => {
 //   const { userId } = req.params;
 //   try {
@@ -131,13 +138,11 @@
 //     res.send(pdfBuffer);
 //   } catch (err) {
 //     logger.error("Error downloading form:", err);
-//     res
-//       .status(500)
-//       .json({ error: "An error occurred while downloading the form" });
+//     res.status(500).json({ error: "An error occurred while downloading the form" });
 //   }
 // };
 
-// // Generate report functionality
+// // Generate the final report and download as a PDF
 // const generateReport = async (req, res) => {
 //   const { userId } = req.params;
 
@@ -151,27 +156,9 @@
 //     res.send(pdfBuffer);
 //   } catch (err) {
 //     logger.error("Error generating report:", err);
-//     res
-//       .status(500)
-//       .json({ error: "An error occurred while generating the report" });
+//     res.status(500).json({ error: "An error occurred while generating the report" });
 //   }
 // };
-
-// // // Validation middleware for submitting the form
-// // const validateSubmitForm = [
-// //   body("answers").isArray().withMessage("Answers must be an array"),
-// //   body("answers.*.questionId")
-// //     .notEmpty()
-// //     .withMessage("Question ID is required"),
-// //   body("answers.*.response").notEmpty().withMessage("Response is required"),
-// //   (req, res, next) => {
-// //     const errors = validationResult(req);
-// //     if (!errors.isEmpty()) {
-// //       return res.status(400).json({ errors: errors.array() });
-// //     }
-// //     next();
-// //   },
-// // ];
 
 // module.exports = {
 //   submitAssessment,
@@ -181,185 +168,244 @@
 //   generateReport,
 // };
 
-// src/controllers/assessmentController.js
-// src/controllers/assessmentController.js
 
-const Answer = require("../models/Answer");
-const Question = require("../models/Question");
-const Report = require("../models/Report");
-const Assessment = require("../models/Assessment"); // For tracking assessments
-const {
-  createPdfFromResponses,
-  createPdfFromReport,
-} = require("../utils/pdfGenerator");
-const { sendEmailToUser } = require("../utils/email");
-const logger = require("../utils/logger");
-const calculateScores = require("../utils/scoreCalculator");
-const db = require("../config/db"); // Database connection
-const { check, validationResult, body } = require('express-validator');
+  // src/controllers/assessmentController.js
 
-// Helper function for validation
-const validateSubmitForm = [
-  body("answers").isArray().withMessage("Answers must be an array"),
-  body("answers.*.questionId").notEmpty().withMessage("Question ID is required"),
-  body("answers.*.response").notEmpty().withMessage("Response is required"),
-  (req, res, next) => {
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+  const Assessment = require("../models/Assessment"); // Keeping this for tracking assessments
+  const logger = require("../utils/logger");
+  const calculateScores = require("../utils/scoreCalculator");
+  const db = require("../config/db"); // Database connection
+  
+  const submitAssessment = async (req, res) => {
+    const { slug } = req.params;
+    const { employee_info, health_assessment } = req.body;
+  
+    if (!slug || !employee_info || !health_assessment) {
+      return res.status(400).json({ message: "Missing required fields." });
     }
-    next();
-  },
-];
-
-// Submit Assessment (new) - stores health and employee info
-const submitAssessment = async (req, res) => {
-  const { slug } = req.params;
-  const { employee_info, health_assessment } = req.body;
-  console.log("Running submitAssessment function");
-  console.log(employee_info, health_assessment);
-
-  try {
-    if (!employee_info || !health_assessment) {
-      return res.status(400).json({ message: "Both employee_info and health_assessment are required" });
+  
+    try {
+      const query = `INSERT INTO \`assessment_response\` (company_slug, employee_info, health_assessment) VALUES (?, ?, ?)`;
+      const [result] = await db.query(query, [slug, employee_info, health_assessment]);
+  
+      const assessment_id = result.insertId; // Assuming insertId is returned by the query
+      res.status(200).json({ message: "Success", assessment_id });
+    } catch (err) {
+      console.error("Database insertion error:", err);
+      res.status(500).json({ message: "Error while entering form", error: err.message });
     }
-
-    // Query to insert data into the assessment_response table
-    const query = `
-      INSERT INTO \`assessment_response\` (company_slug, employee_info, health_assessment)
-      VALUES (?, ?, ?)
-    `;
-
-    // Execute the query
-    const [result] = await db.query(query, [slug, employee_info, health_assessment]);
-
-    res.status(200).json({ message: "Assessment submitted successfully", result });
-  } catch (err) {
-    console.error("Database insertion error:", err); // Log error for debugging
-    res.status(500).json({ message: "Error while submitting assessment", err });
-  }
-};
-
-// Submit Health Assessment Form - Calculate scores, save answers, generate report
-const submitForm = async (req, res) => {
-  try {
-    const { answers, userId, companyId, bmi = 0 } = req.body;
-    console.log("Form Data: ", req.body);
-
-    // Validate input
-    if (!answers || !userId || !companyId) {
-      return res.status(400).json({ error: "Answers, User ID, and Company ID are required" });
-    }
-
-    // Calculate the scores based on the answers
-    const scoreResults = calculateScores(answers);
-
-    // Save answers to the database and calculate total score
-    const answerRecords = [];
-    let totalScore = 0;
-
-    for (const answerData of answers) {
-      const { questionId, response } = answerData;
-      const question = await Question.findById(questionId);
-
-      if (!question) {
-        logger.error(`Question not found: ${questionId}`);
-        return res.status(400).json({ error: "Question not found" });
+  };
+  
+  const submitForm = async (req, res) => {
+    try {
+      const { answers, userId, companyId, bmi = 0 } = req.body;
+  
+      if (!answers || !userId || !companyId) {
+        return res.status(400).json({ error: "Answers, User ID, and Company ID are required" });
       }
-
-      const answer = new Answer({
-        user: userId,
-        question: questionId,
-        response,
+  
+      // Initialize section scores
+      const sectionScores = {
+        "Personal Health Habits": 0,
+        "Personal Medical History": 0,
+        "Women Health": 0,
+        "Lifestyle and Diet": 0,
+        "Mental and Emotional Well Being": 0,
+        "Occupational Health": 0,
+        "Burnout and Stress at Work": 0,
+      };
+  
+      // Define the category thresholds for each section
+      const sectionCategories = {
+        "Personal Health Habits": [
+          { range: [0, 10], category: "Healthy Habits" },
+          { range: [11, 20], category: "Good Habits" },
+          { range: [21, 30], category: "Moderately Healthy Habits" },
+          { range: [31, 40], category: "Risky Habits (High Risk)" },
+          { range: [41, 50], category: "Unhealthy Habits" },
+        ],
+        "Personal Medical History": [
+          { range: [0, 30], category: "Healthy Records" },
+          { range: [31, 60], category: "Mild Risk" },
+          { range: [61, 90], category: "Moderate Risk" },
+          { range: [91, 120], category: "Elevated Risk" },
+          { range: [121, 156], category: "High Risk" },
+        ],
+        "Women Health": [
+          { range: [0, 10], category: "Optimal Health" },
+          { range: [11, 20], category: "Moderate Risk" },
+          { range: [21, 23], category: "High Risk" },
+        ],
+        "Lifestyle and Diet": [
+          { range: [0, 10], category: "Health Lifestyle and Diet" },
+          { range: [11, 20], category: "Balanced lifestyle and Diet Risk" },
+          { range: [21, 31], category: "Unhealthy Lifestyle and Diet" },
+        ],
+        "Mental and Emotional Well Being": [
+          { range: [0, 8], category: "Mental Fortitude" },
+          { range: [9, 16], category: "Stable but sensitive" },
+          { range: [17, 24], category: "Vulnerable to Stress" },
+          { range: [25, 32], category: "Mental Health at Risk" },
+          { range: [33, 40], category: "Critical Mental Health concern" },
+        ],
+        "Occupational Health": [
+          { range: [0, 20], category: "Optimal Work Life Balance" },
+          { range: [21, 40], category: "Generally Good Health" },
+          { range: [41, 60], category: "Moderate Risk" },
+          { range: [61, 80], category: "High Risk of Occupational Strain" },
+          { range: [81, 100], category: "Critical Occupational Health Concern" },
+        ],
+        "Burnout and Stress at Work": [
+          { range: [0, 20], category: "Low Risk of Burnout" },
+          { range: [21, 40], category: "Moderate Risk of Burnout" },
+          { range: [41, 60], category: "Noticeable Risk of Burnout" },
+          { range: [61, 80], category: "High risk Of Burnout" },
+          { range: [81, 100], category: "Severe Burnout" },
+        ],
+      };
+  
+      // Process each answer, find corresponding question, and save it
+      const answerRecords = [];
+  
+      // Loop through answers to calculate section-wise scores
+      for (const answerData of answers) {
+        const { questionId, response, section } = answerData;
+        const question = await Question.findById(questionId);
+  
+        if (!question) {
+          return res.status(400).json({ error: "Question not found" });
+        }
+  
+        // Create the answer record and save it
+        const answer = new Answer({
+          user: userId,
+          question: questionId,
+          response,
+        });
+        await answer.save();
+        answerRecords.push(answer);
+  
+        // Get the score based on the response option selected
+        const scoring = question.options.find((option) => option.answer === response)?.marks || 0;
+  
+        // Add the score to the relevant section
+        sectionScores[section] += scoring;
+      }
+  
+      // Function to get section category based on score
+      const getCategory = (section, score) => {
+        const categoryRange = sectionCategories[section];
+        const category = categoryRange.find(
+          (range) => score >= range.range[0] && score <= range.range[1]
+        );
+        return category ? category.category : "Unknown";
+      };
+  
+      // Generate report with sections and categories
+      const sectionsWithCategories = {};
+      let totalScore = 0;
+  
+      // Calculate total score and get the category for each section
+      for (const [section, score] of Object.entries(sectionScores)) {
+        totalScore += score; // Aggregate the total score
+        sectionsWithCategories[section] = {
+          score,
+          category: getCategory(section, score),
+        };
+      }
+  
+      // Create the final report data
+      const newReport = {
+        Assessment_Id,
+        companyId,
+        healthRiskScore: totalScore,
+        sections: sectionsWithCategories,
+        bmi,
+      };
+  
+      // Save the report in the database
+      const report = await Report.create(newReport);
+  
+      // Save the assessment data (linking answers to the report)
+      const assessmentData = new Assessment({
+        Assessment_Id,
+        companyId,
+        answers: answerRecords.map((a) => a._id), // Save references to the answers
+        reportId: report._id, // Link to the created report
       });
-      await answer.save();
-      answerRecords.push(answer);
-      totalScore += question.scoring; // Adjust scoring logic based on your setup
+      await assessmentData.save();
+  
+      // Optionally, send an email to the user
+      await sendEmailToUser(req.user.email, report);
+  
+      // Return response with the report
+      res.status(201).json({ message: "Assessment submitted successfully", report });
+    } catch (error) {
+      logger.error("Error submitting assessment:", error);
+      res.status(500).json({ error: "Error submitting assessment: " + error.message });
     }
-
-    // Create and save the report based on the calculated scores
-    const newReport = {
-      userId,
-      companyId,
-      healthRiskScore: scoreResults.totalScore,
-      emotionalHealthScore: scoreResults.sectionScores.mentalEmotionalWellBeing,
-      nutritionalHabitsScore: scoreResults.sectionScores.nutrition,
-      bmi,
-      prevalentRiskFactors: scoreResults.riskFactors || [],
-      recommendations: scoreResults.recommendations || "Keep up the good work!",
-    };
-
-    const report = await Report.create(newReport);
-
-    // Save the assessment data, linking answers and the generated report
-    const assessmentData = new Assessment({
-      userId,
-      companyId,
-      answers: answerRecords.map((a) => a._id), // Save references to answers
-      reportId: report._id, // Link to the created report
-    });
-    await assessmentData.save();
-
-    // Send email to the user with the generated report
-    sendEmailToUser(req.user.email, report);
-
-    res.status(201).json({ message: "Assessment submitted successfully", report });
-  } catch (error) {
-    logger.error("Error submitting assessment:", error);
-    res.status(500).json({ error: "Error submitting assessment: " + error.message });
-  }
-};
-
-// View responses for the logged-in user
-const viewResponses = async (req, res) => {
-  try {
-    const responses = await Answer.find({ user: req.user.id }).populate("question");
-    res.status(200).json(responses);
-  } catch (err) {
-    logger.error("Error fetching responses:", err);
-    res.status(500).json({ error: "An error occurred while fetching responses" });
-  }
-};
-
-// Download form as a PDF
-const downloadForm = async (req, res) => {
-  const { userId } = req.params;
-  try {
-    const responses = await Answer.find({ user: userId }).populate("question");
-    const pdfBuffer = await createPdfFromResponses(responses);
-    res.set("Content-Type", "application/pdf");
-    res.set("Content-Disposition", `attachment; filename=form-${userId}.pdf`);
-    res.send(pdfBuffer);
-  } catch (err) {
-    logger.error("Error downloading form:", err);
-    res.status(500).json({ error: "An error occurred while downloading the form" });
-  }
-};
-
-// Generate the final report and download as a PDF
-const generateReport = async (req, res) => {
-  const { userId } = req.params;
-
-  try {
-    const report = await Report.findOne({ user: userId }).populate("answers");
-    if (!report) return res.status(404).json({ error: "Report not found" });
-
-    const pdfBuffer = await createPdfFromReport(report);
-    res.set("Content-Type", "application/pdf");
-    res.set("Content-Disposition", `attachment; filename=report-${userId}.pdf`);
-    res.send(pdfBuffer);
-  } catch (err) {
-    logger.error("Error generating report:", err);
-    res.status(500).json({ error: "An error occurred while generating the report" });
-  }
-};
-
-// Export functions
-module.exports = {
-  submitAssessment,
-  submitForm,
-  viewResponses,
-  downloadForm,
-  generateReport,
-  validateSubmitForm, 
-};
+  };
+  
+  
+  // View responses for the logged-in user
+  const viewResponses = async (req, res) => {
+    try {
+      const responses = await Answer.find({ user: req.user.id }).populate(
+        "question"
+      );
+      res.status(200).json(responses);
+    } catch (err) {
+      logger.error("Error fetching responses:", err);
+      res
+        .status(500)
+        .json({ error: "An error occurred while fetching responses" });
+    }
+  };
+  
+  // Download forms as PDF
+  const downloadForm = async (req, res) => {
+    const { Assessment_Id } = req.params;
+    try {
+      const responses = await Answer.find({ user: Assessment_Id }).populate("question");
+      const pdfBuffer = await createPdfFromResponses(responses);
+      res.set("Content-Type", "application/pdf");
+      res.set("Content-Disposition", `attachment; filename=form-${Assessment_Id}.pdf`);
+      res.send(pdfBuffer);
+    } catch (err) {
+      logger.error("Error downloading form:", err);
+      res
+        .status(500)
+        .json({ error: "An error occurred while downloading the form" });
+    }
+  };
+  
+  // Generate report functionality
+  const generateReport = async (req, res) => {
+    const { Assessment_Id } = req.params;
+  
+    try {
+      const report = await Report.findOne({ user: Assessment_Id }).populate("answers");
+      if (!report) return res.status(404).json({ error: "Report not found" });
+  
+      const pdfBuffer = await createPdfFromReport(report);
+      res.set("Content-Type", "application/pdf");
+      res.set("Content-Disposition", `attachment; filename=report-${Assessment_Id}.pdf`);
+      res.send(pdfBuffer);
+    } catch (err) {
+      logger.error("Error generating report:", err);
+      res
+        .status(500)
+        .json({ error: "An error occurred while generating the report" });
+    }
+  };
+  
+ 
+  
+  module.exports = {
+    submitAssessment,
+    submitForm,
+    viewResponses,
+    downloadForm,
+    generateReport,
+  };
+  

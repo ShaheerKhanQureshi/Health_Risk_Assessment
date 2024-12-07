@@ -1,5 +1,3 @@
-
-
 const express = require("express");
 const db = require("../config/db");
 const { authenticate } = require("../middlewares/auth");
@@ -12,11 +10,8 @@ const CompanyCalculationsController = require('../controllers/CompanyCalculation
 
 
 const {
-  createCompany,
   getCompanyById,
   getAllCompanies,
-  updateCompany,
-  deleteCompany,
   getCompanyAndEmployees,
   getEmployeeDetails
 } = companyController;
@@ -27,12 +22,76 @@ router.get("/employee/:id", authenticate("admin", "sub-admin"), getEmployeeDetai
 // router.use('/', CompanyCalculationsController);
 router.get("/companies", authenticate("admin", "sub-admin"), getAllCompanies);
 // Utility function to generate slug
+// function generateSlug(name) {
+//   return name
+//     .toLowerCase()
+//     .replace(/[^a-z0-9]+/g, "-")
+//     .replace(/^-|-$/g, "")
+//     .substring(0, 200);
+// }
+
+// // Create a new company
+// router.post(
+//   '/companies',
+//   authenticate('admin', 'sub-admin'),
+//   [
+//     body('name').isString().notEmpty().withMessage('Name is required'),
+//     body('companyType').isString().notEmpty().withMessage('Company Type is required'),
+//     body('phoneNumber').isString().optional(),
+//     body('email').isEmail().withMessage('Valid email is required'),
+//     body('city').isString().optional(),
+
+//   ],
+//   createCompany
+// );
+// async (req, res) => {
+//   const errors = validationResult(req);
+//   if (!errors.isEmpty()) {
+//     return res.status(400).json({ errors: errors.array() });
+//   }
+
+//   const { name, companyType, phoneNumber, email, city } = req.body;
+//   const id = uuidv4();
+//   const slug = generateSlug(name);
+
+//   try {
+//     // Check for slug uniqueness
+//     const [results] = await db.query("SELECT * FROM companies WHERE url = ?", [slug]);
+//     if (results.length > 0) {
+//       return res.status(400).json({ message: "Slug already exists. Please choose a different name." });
+//     }
+
+//     // Insert new company into the database
+//     await db.query(
+//       "INSERT INTO companies (id, name, companyType, phoneNumber, email, city, url) VALUES (?, ?, ?, ?, ?, ?, ?)",
+//       [id, name, companyType, phoneNumber, email, city, slug]
+//     );
+
+//     // Construct the full URL for the form
+//     // const fullUrl = `${req.protocol}://${req.get('host')}/form/${slug}`;
+//      const fullUrl = `http://localhost:3000/form/${slug}`;
+
+//     // Send success response
+//     res.status(201).json({
+//       message: "Company added successfully", 
+//       data: { id, slug: fullUrl },
+//     });
+//   } catch (error) {
+//     logger.error("Error creating company:", error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// }
+// Utility function to generate slug with additional unique six-digit number
 function generateSlug(name) {
-  return name
+  const slug = name
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "")
     .substring(0, 200);
+  
+  // Generate a unique 6-digit number (random, or you could use UUID and format it)
+  const uniqueId = Math.floor(100000 + Math.random() * 900000);  // Generates a 6-digit number
+  return `${slug}-${uniqueId}`;
 }
 
 // Create a new company
@@ -45,22 +104,22 @@ router.post(
     body('phoneNumber').isString().optional(),
     body('email').isEmail().withMessage('Valid email is required'),
     body('city').isString().optional(),
-
   ],
   createCompany
 );
-async (req, res) => {
+
+async function createCompany(req, res) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
 
   const { name, companyType, phoneNumber, email, city } = req.body;
-  const id = uuidv4();
-  const slug = generateSlug(name);
+  const id = uuidv4();  // Unique UUID for the company record
+  const slug = generateSlug(name);  // This will generate a slug with a unique ID
 
   try {
-    // Check for slug uniqueness
+    // Check for slug uniqueness in the database
     const [results] = await db.query("SELECT * FROM companies WHERE url = ?", [slug]);
     if (results.length > 0) {
       return res.status(400).json({ message: "Slug already exists. Please choose a different name." });
@@ -73,12 +132,21 @@ async (req, res) => {
     );
 
     // Construct the full URL for the form
-    const fullUrl = `${req.protocol}://${req.get('host')}/form/${slug}`;
+    const fullUrl = `http://localhost:3000/form/${slug}`;
 
     // Send success response
     res.status(201).json({
       message: "Company added successfully",
-      data: { id, slug: fullUrl },
+      data: {
+        id,
+        name,
+        companyType,
+        phoneNumber,
+        email,
+        city,
+        fullUrl,  // Full URL with the slug and unique ID
+        slug: `/form/${slug}`,  // Relative URL with unique ID
+      },
     });
   } catch (error) {
     logger.error("Error creating company:", error);
@@ -130,5 +198,23 @@ router.delete("/:id", authenticate("admin", "sub-admin"), async (req, res) => {
   }
 });
 
+router.get("/companies/detail/:slug", authenticate("admin", "sub-admin"), async (req, res) => {
+  const { slug } = req.params;
 
+  try {
+    const [results] = await db.query("SELECT * FROM companies WHERE url = ?", [slug]);
+
+    if (results.length === 0) {
+      return res.status(404).json({ message: "Company not found" });
+    }
+
+    res.json({
+      message: "Company fetched successfully",
+      data: results[0],
+    });
+  } catch (err) {
+    logger.error("Error fetching company:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 module.exports = router;

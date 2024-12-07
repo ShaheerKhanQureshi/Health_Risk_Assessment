@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const path = require("path");
-const db = require("../src/config/db");
+const db = require("./config/db");
 const logger = require("./utils/logger");
 
 // Load environment variables
@@ -23,8 +23,8 @@ const assessmentRoutes = require("./routes/assessmentRoutes");
 const adminRoutes = require("./routes/adminRoutes");
 const companyEmployeeRoutes = require("./routes/companyEmployeeRoutes");
 const companyCalculationsRoutes = require("./routes/companyCalculationsRoutes");
-const single_employeeRoutes = require("./routes/single_employeeRoutes");
-
+const singleroute = require("./routes/singleroute");
+const employeeSubmit = require('./routes/OnSubmit');
 // Security headers and middleware setup
 app.use([
   helmet(), // Sets various HTTP headers for security
@@ -55,12 +55,14 @@ app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/assessment", assessmentRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/company-employees", companyEmployeeRoutes);
-app.use("/api/company-calculation", companyCalculationsRoutes);
-app.use("/api/single-emp", single_employeeRoutes);
-
+app.use("/api", companyCalculationsRoutes);
+app.use('/api', employeeSubmit);
+// app.use("/api/single-emp", singleroute);
+app.use('/api', singleroute);
 // Static files for PDF reports (unchanged)
 app.use("/reports", express.static(path.join(__dirname, "public", "reports")));
-
+app.use(cors());
+app.use(bodyParser.json());
 // Basic health check route (unchanged)
 app.get("/", (req, res) => {
   res.json({

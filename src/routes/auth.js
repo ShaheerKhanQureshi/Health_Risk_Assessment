@@ -3,7 +3,6 @@ const db = require("../config/db");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
-const { sendPasswordResetEmail } = require('../utils/email');
 const { body, validationResult } = require('express-validator');
 const Joi = require('joi');
 const { authenticate } = require('../middlewares/auth');
@@ -70,13 +69,22 @@ router.post('/login', async (req, res) => {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
 
-        const token = jwt.sign({ id: user.id, role: user.role }, process.env.JWT_SECRET, { expiresIn: '5h' });
-        res.json({ message: 'Login successful', token });
+        // Generate JWT token with user id, role, and email
+        const token = jwt.sign({ id: user.id, role: user.role, email: user.email }, process.env.JWT_SECRET, { expiresIn: '5h' });
+
+        // Return the login response with the token, email, and role
+        res.json({
+            message: 'Login successful',
+            token,
+            email: user.email,  // Return the user's email
+            role: user.role     // Return the user's role
+        });
     } catch (error) {
         console.error('Login error:', error);
         res.status(500).json({ message: 'Internal server error' });
     }
 });
+
 
 // Password Reset Request
 router.post('/password-reset', [

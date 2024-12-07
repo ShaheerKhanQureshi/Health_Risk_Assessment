@@ -1,0 +1,70 @@
+2024-11-28T19:00:24.827Z [info]: GET /api/companies/undefined 
+2024-11-28T19:05:55.521Z [info]: Server running on http://localhost:5000 
+2024-11-28T19:29:40.194Z [info]: Server running on http://localhost:5000 
+2024-11-28T19:29:44.739Z [info]: Server running on http://localhost:5000 
+2024-11-28T19:31:25.807Z [info]: Server running on http://localhost:5000 
+2024-11-28T19:31:31.997Z [info]: Server running on http://localhost:5000 
+2024-11-28T19:35:45.454Z [info]: Server running on http://localhost:5000 
+2024-11-28T19:36:00.049Z [info]: POST /api/auth/login 
+2024-11-28T19:36:00.460Z [info]: GET /api/dashboard/sessionByCompany 
+2024-11-28T19:36:00.464Z [info]: GET /api/dashboard/totalUsers 
+2024-11-28T19:36:00.493Z [info]: GET /api/dashboard/totalCompanies 
+2024-11-28T19:36:00.514Z [info]: GET /api/dashboard/userLogs 
+2024-11-28T19:36:03.490Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-28T19:36:35.316Z [info]: POST /api/companies 
+2024-11-28T19:36:35.430Z [info]: GET /api/companies/undefined 
+2024-11-28T19:41:34.106Z [info]: Server running on http://localhost:5000 
+2024-11-28T19:41:49.966Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-28T19:42:22.166Z [info]: POST /api/companies 
+2024-11-28T19:42:22.240Z [info]: GET /api/companies/undefined 
+2024-11-28T19:56:30.615Z [info]: Server running on http://localhost:5000 
+2024-11-28T19:56:46.333Z [info]: Server running on http://localhost:5000 
+2024-11-28T19:58:14.831Z [info]: POST /api/auth/login 
+2024-11-28T19:58:16.254Z [info]: GET /api/dashboard/sessionByCompany 
+2024-11-28T19:58:16.265Z [info]: GET /api/dashboard/totalUsers 
+2024-11-28T19:58:16.333Z [info]: GET /api/dashboard/totalCompanies 
+2024-11-28T19:58:16.365Z [info]: GET /api/dashboard/userLogs 
+2024-11-28T19:58:18.802Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-28T19:59:01.041Z [info]: POST /api/companies 
+2024-11-28T19:59:01.101Z [error]: Error creating company: Duplicate entry '2' for key 'PRIMARY' {"code":"ER_DUP_ENTRY","errno":1062,"sql":"INSERT INTO companies (id, name, companyType, phoneNumber, email, city, url) VALUES ('2fe157b7-e85b-4521-bec0-0520758124a8', 'rutaba', 'IT', '0323659632', 'ruttu@gmail.com', 'karachi', 'rutaba-697614')","sqlState":"23000","sqlMessage":"Duplicate entry '2' for key 'PRIMARY'","stack":"Error: Duplicate entry '2' for key 'PRIMARY'\n    at PromisePool.query (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\node_modules\\mysql2\\promise.js:356:22)\n    at createCompany (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\routes\\companies.js:131:14)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2024-11-28T20:00:04.688Z [info]: Server running on http://localhost:5000 
+2024-11-28T20:00:09.189Z [info]: POST /api/companies 
+2024-11-28T20:00:43.605Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-28T20:05:00.083Z [info]: POST /api/companies 
+2024-11-28T20:06:07.753Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2024-11-28T20:06:12.251Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-28T20:06:17.190Z [info]: GET /api/company-calculation/companies/xtremefit/report-calculation 
+2024-11-28T20:06:17.199Z [error]: Error fetching report data: No employees found for the company {"stack":"Error: No employees found for the company\n    at getReportData (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\controllers\\CompanyCalculationsController.js:1383:44)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\routes\\companyCalculationsRoutes.js:562:24"}
+2024-11-28T20:06:20.092Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-28T20:06:23.559Z [info]: GET /api/company-calculation/companies/shaheercorp/report-calculation 
+2024-11-28T20:15:49.000Z [info]: GET /api/company-calculation/companies/shaheercorp/report-calculation 
+2024-11-28T20:17:45.356Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-28T20:17:50.018Z [info]: GET /api/dashboard/sessionByCompany 
+2024-11-28T20:17:50.026Z [info]: GET /api/dashboard/totalUsers 
+2024-11-28T20:17:50.159Z [info]: GET /api/dashboard/totalCompanies 
+2024-11-28T20:17:50.193Z [info]: GET /api/dashboard/userLogs 
+2024-11-28T20:18:11.926Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-28T20:19:26.119Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2024-11-28T20:19:27.672Z [info]: GET /api/company-calculation/companies/shaheercorp/report-calculation 
+2024-11-28T20:27:10.842Z [info]: POST /api/assessment/submitAssessment/rutaba-962275?assessment_id=6 
+2024-11-28T20:28:03.605Z [info]: GET /api/company-calculation/companies/rutaba-962275/report-calculation 
+2024-11-28T20:28:31.746Z [info]: GET /api/company-calculation/companies/rutaba-962275/report-calculation 
+2024-11-28T22:23:35.270Z [info]: Shutting down gracefully... 
+2024-11-28T22:29:59.030Z [info]: Server running on http://localhost:5000 
+2024-11-28T22:30:04.086Z [info]: Server running on http://localhost:5000 
+2024-11-28T22:32:22.997Z [info]: Server running on http://localhost:5000 
+2024-11-28T22:32:49.437Z [info]: Server running on http://localhost:5000 
+2024-11-28T22:33:35.267Z [info]: GET /api/company-calculation/companies/rutaba-962275/report-calculation 
+2024-11-28T22:38:04.489Z [info]: POST /api/assessment/submitAssessment/rutaba-962275?assessment_id=6 
+2024-11-28T22:38:49.150Z [info]: GET /api/company-calculation/companies/rutaba-962275/report-calculation 
+2024-11-29T00:28:21.870Z [info]: GET /api/company-calculation/companies/rutaba-962275/report-calculation 
+2024-11-29T00:44:28.228Z [info]: Server running on http://localhost:5000 
+2024-11-29T00:44:33.152Z [info]: Server running on http://localhost:5000 
+2024-11-29T00:44:40.513Z [info]: Server running on http://localhost:5000 
+2024-11-29T00:44:47.348Z [info]: Server running on http://localhost:5000 
+2024-11-29T00:44:51.108Z [info]: Server running on http://localhost:5000 
+2024-11-29T00:45:10.149Z [info]: Server running on http://localhost:5000 
+2024-11-29T00:45:26.464Z [info]: Server running on http://localhost:5000 
+2024-11-29T00:45:33.398Z [info]: Server running on http://localhost:5000 
+2024-11-29T00:45:37.120Z [info]: Server running on http://localhost:5000 
+2024-11-29T14:55:01.150Z [info]: Server running on http://localhost:5000 

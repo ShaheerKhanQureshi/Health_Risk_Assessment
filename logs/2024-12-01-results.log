@@ -1,0 +1,14 @@
+2024-11-30T23:10:26.450Z [info]: Server running on http://localhost:5000 
+2024-11-30T23:10:35.487Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-30T23:10:45.444Z [info]: GET /api/company-calculation/companies/rutaba/report-calculation 
+2024-11-30T23:10:45.491Z [error]: Error fetching report data: Company not found {"stack":"Error: Company not found\n    at getReportData (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\controllers\\CompanyCalculationsController.js:1378:43)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\routes\\companyCalculationsRoutes.js:10:24"}
+2024-11-30T23:11:07.248Z [info]: GET /api/company-calculation/companies/rutaba-962275/report-calculation 
+2024-11-30T23:17:51.256Z [info]: Server running on http://localhost:5000 
+2024-11-30T23:17:55.301Z [info]: GET /api/company-calculation/companies/rutaba-962275/report-calculation 
+2024-11-30T23:21:15.670Z [info]: Server running on http://localhost:5000 
+2024-11-30T23:21:18.626Z [info]: GET /api/company-calculation/companies/rutaba-962275/report-calculation 
+2024-11-30T23:22:51.132Z [info]: Server running on http://localhost:5000 
+2024-11-30T23:22:51.626Z [info]: GET /api/company-calculation/companies/rutaba-962275/report-calculation 
+2024-12-01T00:49:02.661Z [info]: Server running on http://localhost:5000 
+2024-12-01T00:49:13.874Z [info]: GET /api/company-calculation/companies/rutaba-962275/report-calculation 
+2024-12-01T00:49:31.489Z [info]: GET /api/auth/login 

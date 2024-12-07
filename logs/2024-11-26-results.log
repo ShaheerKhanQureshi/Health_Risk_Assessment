@@ -1,0 +1,48 @@
+2024-11-26T07:54:32.062Z [info]: Server running on http://localhost:5000 
+2024-11-26T07:56:24.238Z [info]: POST /api/auth/login 
+2024-11-26T07:57:21.740Z [info]: POST /api/auth/login 
+2024-11-26T07:57:43.821Z [info]: GET /api/dashboard/sessionByCompany 
+2024-11-26T07:57:43.829Z [info]: GET /api/dashboard/totalUsers 
+2024-11-26T07:57:44.101Z [info]: GET /api/dashboard/totalCompanies 
+2024-11-26T07:57:44.223Z [info]: GET /api/dashboard/userLogs 
+2024-11-26T09:49:53.619Z [info]: Server running on http://localhost:5000 
+2024-11-26T09:50:01.141Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-26T09:52:34.571Z [info]: Server running on http://localhost:5000 
+2024-11-26T09:52:36.032Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-26T09:52:38.492Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-26T09:53:01.785Z [info]: Server running on http://localhost:5000 
+2024-11-26T09:53:26.971Z [info]: Server running on http://localhost:5000 
+2024-11-26T09:53:32.634Z [info]: Server running on http://localhost:5000 
+2024-11-26T09:53:34.245Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-26T10:30:03.737Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-26T10:37:03.408Z [info]: Server running on http://localhost:5000 
+2024-11-26T10:37:12.117Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-26T11:37:38.624Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-26T11:38:53.513Z [info]: Server running on http://localhost:5000 
+2024-11-26T11:38:54.551Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-26T11:40:32.610Z [info]: Server running on http://localhost:5000 
+2024-11-26T11:40:35.669Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-26T11:42:39.304Z [info]: Server running on http://localhost:5000 
+2024-11-26T11:42:40.747Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-26T11:43:48.116Z [info]: Server running on http://localhost:5000 
+2024-11-26T11:43:49.612Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-26T11:43:49.671Z [error]: Error fetching report data: Cannot read properties of undefined (reading 'forEach') {"stack":"TypeError: Cannot read properties of undefined (reading 'forEach')\n    at calculateSatisfactionLevels (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\controllers\\CompanyCalculationsController.js:1229:13)\n    at getReportData (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\controllers\\CompanyCalculationsController.js:1380:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\routes\\companyCalculationsRoutes.js:562:24"}
+2024-11-26T11:43:50.428Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-26T11:43:50.441Z [error]: Error fetching report data: Cannot read properties of undefined (reading 'forEach') {"stack":"TypeError: Cannot read properties of undefined (reading 'forEach')\n    at calculateSatisfactionLevels (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\controllers\\CompanyCalculationsController.js:1229:13)\n    at getReportData (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\controllers\\CompanyCalculationsController.js:1380:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\routes\\companyCalculationsRoutes.js:562:24"}
+2024-11-26T11:44:31.509Z [info]: Server running on http://localhost:5000 
+2024-11-26T11:44:34.672Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-26T12:27:09.082Z [info]: Server running on http://localhost:5000 
+2024-11-26T12:28:31.896Z [info]: Server running on http://localhost:5000 
+2024-11-26T12:28:42.501Z [info]: Server running on http://localhost:5000 
+2024-11-26T12:28:44.115Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-26T12:53:30.572Z [info]: Server running on http://localhost:5000 
+2024-11-26T12:54:09.934Z [info]: Server running on http://localhost:5000 
+2024-11-26T12:55:10.207Z [info]: Server running on http://localhost:5000 
+2024-11-26T12:55:14.717Z [info]: Server running on http://localhost:5000 
+2024-11-26T12:55:39.166Z [info]: Server running on http://localhost:5000 
+2024-11-26T12:55:42.608Z [info]: Server running on http://localhost:5000 
+2024-11-26T12:55:45.329Z [info]: Server running on http://localhost:5000 
+2024-11-26T12:55:48.511Z [info]: Server running on http://localhost:5000 
+2024-11-26T12:56:50.385Z [info]: Server running on http://localhost:5000 
+2024-11-26T12:56:56.977Z [info]: Server running on http://localhost:5000 
+2024-11-26T17:36:34.992Z [info]: Server running on http://localhost:5000 

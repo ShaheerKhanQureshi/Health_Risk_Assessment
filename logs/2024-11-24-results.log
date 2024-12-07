@@ -1,0 +1,76 @@
+2024-11-23T21:38:02.151Z [info]: Server running on http://localhost:5000 
+2024-11-23T21:38:11.407Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-23T21:40:00.451Z [info]: Server running on http://localhost:5000 
+2024-11-23T21:40:38.375Z [info]: Server running on http://localhost:5000 
+2024-11-23T21:40:54.057Z [info]: Server running on http://localhost:5000 
+2024-11-23T21:41:42.634Z [info]: Server running on http://localhost:5000 
+2024-11-23T21:42:11.544Z [info]: Server running on http://localhost:5000 
+2024-11-23T21:42:17.929Z [info]: Server running on http://localhost:5000 
+2024-11-23T21:55:10.262Z [info]: Server running on http://localhost:5000 
+2024-11-23T21:55:11.993Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-23T21:56:02.677Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-23T22:01:22.135Z [info]: Server running on http://localhost:5000 
+2024-11-23T22:01:23.627Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-23T22:13:11.382Z [info]: Server running on http://localhost:5000 
+2024-11-23T22:13:19.135Z [info]: Server running on http://localhost:5000 
+2024-11-23T22:13:20.538Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-23T22:16:30.346Z [info]: Server running on http://localhost:5000 
+2024-11-23T22:16:47.482Z [info]: Server running on http://localhost:5000 
+2024-11-23T22:17:09.774Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-24T01:52:32.130Z [info]: Server running on http://localhost:5000 
+2024-11-24T01:52:37.258Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-24T01:52:37.316Z [error]: Error fetching report data: Cannot read properties of undefined (reading 'filter') {"stack":"TypeError: Cannot read properties of undefined (reading 'filter')\n    at calculateHealthData (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\controllers\\CompanyCalculationsController.js:864:45)\n    at getReportData (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\controllers\\CompanyCalculationsController.js:1295:26)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\routes\\companyCalculationsRoutes.js:562:24"}
+2024-11-24T01:54:31.404Z [info]: Server running on http://localhost:5000 
+2024-11-24T01:54:33.607Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-24T01:54:33.616Z [error]: Error fetching report data: Cannot read properties of undefined (reading 'filter') {"stack":"TypeError: Cannot read properties of undefined (reading 'filter')\n    at calculateHealthData (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\controllers\\CompanyCalculationsController.js:863:45)\n    at getReportData (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\controllers\\CompanyCalculationsController.js:1294:26)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\routes\\companyCalculationsRoutes.js:562:24"}
+2024-11-24T01:55:33.364Z [info]: Server running on http://localhost:5000 
+2024-11-24T01:55:37.842Z [info]: Server running on http://localhost:5000 
+2024-11-24T01:55:43.232Z [info]: Server running on http://localhost:5000 
+2024-11-24T01:55:45.517Z [info]: Server running on http://localhost:5000 
+2024-11-24T01:55:46.685Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-24T01:55:46.695Z [error]: Error fetching report data: allEmployeesData is not iterable {"stack":"TypeError: allEmployeesData is not iterable\n    at calculateHealthData (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\controllers\\CompanyCalculationsController.js:865:26)\n    at getReportData (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\controllers\\CompanyCalculationsController.js:1296:26)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\routes\\companyCalculationsRoutes.js:562:24"}
+2024-11-24T01:56:57.392Z [info]: Server running on http://localhost:5000 
+2024-11-24T01:57:01.621Z [info]: Server running on http://localhost:5000 
+2024-11-24T01:57:03.629Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-24T01:58:30.509Z [info]: Server running on http://localhost:5000 
+2024-11-24T01:58:35.306Z [info]: Server running on http://localhost:5000 
+2024-11-24T01:58:39.909Z [info]: Server running on http://localhost:5000 
+2024-11-24T01:58:46.217Z [info]: Server running on http://localhost:5000 
+2024-11-24T01:58:50.709Z [info]: Server running on http://localhost:5000 
+2024-11-24T01:59:01.464Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-24T02:00:26.939Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:01:17.223Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:01:32.458Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-24T02:01:32.467Z [error]: Error fetching report data: Cannot access 'calculateFitnessHealthData' before initialization {"stack":"ReferenceError: Cannot access 'calculateFitnessHealthData' before initialization\n    at getReportData (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\controllers\\CompanyCalculationsController.js:1296:24)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\routes\\companyCalculationsRoutes.js:562:24"}
+2024-11-24T02:01:56.737Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:01:58.249Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-24T02:01:58.261Z [error]: Error fetching report data: processEmployeeData is not defined {"stack":"ReferenceError: processEmployeeData is not defined\n    at getReportData (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\controllers\\CompanyCalculationsController.js:1337:32)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\routes\\companyCalculationsRoutes.js:562:24"}
+2024-11-24T02:04:57.819Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:04:59.340Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-24T02:04:59.352Z [error]: Error fetching report data: Cannot access 'calculateFitnessHealthData' before initialization {"stack":"ReferenceError: Cannot access 'calculateFitnessHealthData' before initialization\n    at getReportData (C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\controllers\\CompanyCalculationsController.js:1296:24)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async C:\\Users\\Shaheer Khan\\Music\\Health_Risk_New\\backend_new\\src\\routes\\companyCalculationsRoutes.js:562:24"}
+2024-11-24T02:06:11.828Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:06:29.064Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:06:32.812Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-24T02:09:48.744Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:10:58.929Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:11:00.511Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-24T02:12:39.796Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:12:42.727Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:12:44.093Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-24T02:14:23.698Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-24T02:16:10.310Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:16:13.231Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:16:19.078Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:16:20.319Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:18:27.994Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-24T02:20:58.433Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:21:24.462Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:25:37.445Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-24T02:25:37.910Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-24T02:29:50.513Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:29:54.039Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:30:00.086Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:30:01.989Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-24T02:34:14.064Z [info]: Server running on http://localhost:5000 
+2024-11-24T02:34:17.428Z [info]: GET /api/company-calculation/companies/dell/report-calculation 
+2024-11-24T02:37:25.477Z [info]: Server running on http://localhost:5000 

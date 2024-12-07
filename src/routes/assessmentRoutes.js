@@ -50,6 +50,41 @@ router.get("/:id", authenticate(["admin"]), async (req, res) => {
 });
 
 // Generate and Share Assessment Link
+// router.post(
+//   "/generateLink",
+//   authenticate(["admin", "sub-admin"]),
+//   async (req, res) => {
+//     const { name, address, email, city, company_type } = req.body;
+
+//     // Validate input
+//     if (!name || !address || !email || !city || !company_type) {
+//       return res.status(400).json({ message: "All fields are required" });
+//     }
+
+//     try {
+//       // Insert company details into the database
+//       const [companyResult] = await db.query(
+//         "INSERT INTO companies (name, address, email, city, company_type) VALUES (?, ?, ?, ?, ?)",
+//         [name, address, email, city, company_type]
+//       );
+
+//       const companyId = companyResult.insertId;
+
+//       // Generate a unique assessment link (for example, using a UUID)
+//       const assessmentLink = `http://localhost:5000/assessment/form/${companyId}`;
+
+//       res.status(201).json({
+//         message: "Assessment link generated successfully",
+//         link: assessmentLink,
+//       });
+//     } catch (error) {
+//       console.error("Error generating assessment link:", error);
+//       res
+//         .status(500)
+//         .json({ error: "Internal server error during link generation" });
+//     }
+//   }
+// );
 router.post(
   "/generateLink",
   authenticate(["admin", "sub-admin"]),
@@ -58,7 +93,10 @@ router.post(
 
     // Validate input
     if (!name || !address || !email || !city || !company_type) {
-      return res.status(400).json({ message: "All fields are required" });
+      return res.status(400).json({
+        status: "error",
+        message: "All fields are required"
+      });
     }
 
     try {
@@ -70,21 +108,25 @@ router.post(
 
       const companyId = companyResult.insertId;
 
-      // Generate a unique assessment link (for example, using a UUID)
-      const assessmentLink = `http://localhost:5000/assessment/form/${companyId}`;
+      // Generate a unique assessment link (using a UUID for better security)
+      const assessmentLink = `http://localhost:3000/assessment/form/${companyId}`;
 
       res.status(201).json({
+        status: "success",
         message: "Assessment link generated successfully",
-        link: assessmentLink,
+        link: assessmentLink
       });
     } catch (error) {
       console.error("Error generating assessment link:", error);
-      res
-        .status(500)
-        .json({ error: "Internal server error during link generation" });
+      res.status(500).json({
+        status: "error",
+        message: "Internal server error during link generation",
+        error: error.message
+      });
     }
   }
 );
+
 // Submit an assessment through the form link
 router.post("/form/:formLink", async (req, res) => {
   const { formLink } = req.params;

@@ -1,7 +1,6 @@
 // src/controllers/userController.js
 const bcrypt = require('bcryptjs');
 const db = require('../config/db'); // Assuming you're using a SQL database
-const { sendRegistrationEmail } = require('../utils/emailUtils');
 const { body, validationResult } = require('express-validator');
 const logger = require('../utils/logger');
 
