@@ -1,7 +1,7 @@
+// module.exports = router;
 const express = require("express");
 const router = express.Router();
-const { getReportData } = require("../controllers/CompanyCalculationsController");
-const { generatePdfReport } = require('../controllers/CompanyCalculationsController');
+const { getReportData, generatePdfReport } = require("../controllers/CompanyCalculationsController");
 
 // Route to get the report data (JSON response)
 router.get("/company-calculation/companies/:slug/report-calculation", async (req, res) => {
@@ -12,16 +12,16 @@ router.get("/company-calculation/companies/:slug/report-calculation", async (req
     res.status(400).json({ message: error.message });
   }
 });
-// Route to generate and download the corporate health report as a PDF
-router.get('/company-calculation/companies/generate-report/:slug', async (req, res) => {
-  const { slug } = req.params;
 
+// Route to generate and download PDF report
+router.get("/company-calculation/companies/:slug/report-calculation/pdf", async (req, res) => {
   try {
-    const reportData = await getReportData(slug);
-    const pdfPath = await generatePdfReport(reportData);
-    res.sendFile(pdfPath); // Send the generated PDF file
+    const reportData = await getReportData(req.params.slug);
+    const filePath = await generatePdfReport(req.params.slug, reportData);
+    res.download(filePath);
   } catch (error) {
-    res.status(500).send('Error generating report');
+    res.status(400).json({ message: error.message });
   }
 });
+
 module.exports = router;

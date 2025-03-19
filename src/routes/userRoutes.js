@@ -63,6 +63,193 @@ router.post(
         }
     }
 );
+// // Edit user (only admins can access this)
+// router.put(
+//     '/edituser/:userId',
+//     authenticate('admin'), 
+//     [
+//         body('firstName').optional().isString().notEmpty().withMessage('First name must be a valid string'),
+//         body('lastName').optional().isString().notEmpty().withMessage('Last name must be a valid string'),
+//         body('dob').optional().isISO8601().withMessage('Date of birth must be a valid date'),
+//         body('gender').optional().isIn(['male', 'female', 'other']).withMessage('Gender must be valid'),
+//         body('designation').optional().isString().notEmpty().withMessage('Designation must be a valid string'),
+//         body('email')
+//             .optional()
+//             .isEmail().withMessage('Valid email is required')
+//             .custom(async (value, { req }) => {
+//                 if (value) {
+//                     const [results] = await db.query('SELECT * FROM users WHERE email = ? AND id != ?', [value, req.params.userId]);
+//                     if (results.length > 0) {
+//                         return Promise.reject('Email already in use');
+//                     }
+//                 }
+//             }),
+//         body('role')
+//             .optional()
+//             .isIn(['admin', 'sub-admin', 'user']).withMessage('Role must be one of admin, sub-admin, or user'),
+//     ],
+    // async (req, res) => {
+    //     const errors = validationResult(req);
+    //     if (!errors.isEmpty()) {
+    //         return res.status(400).json({ success: false, errors: errors.array() });
+    //     }
+
+    //     const { firstName, lastName, dob, gender, designation, email, role } = req.body;
+    //     const { userId } = req.params;
+
+    //     try {
+    //         const [user] = await db.query('SELECT * FROM users WHERE id = ?', [userId]);
+
+    //         if (user.length === 0) {
+    //             return res.status(404).json({ success: false, message: 'User not found' });
+    //         }
+
+    //         const updatedUser = { 
+    //             first_name: firstName, 
+    //             last_name: lastName, 
+    //             date_of_birth: dob, 
+    //             gender, 
+    //             designation, 
+    //             email, 
+    //             role 
+    //         };
+
+//             // Remove optional fields that are not provided
+//             Object.keys(updatedUser).forEach(key => {
+//                 if (!updatedUser[key]) {
+//                     delete updatedUser[key];
+//                 }
+//             });
+
+//             // Update the user in the database
+//             await db.query('UPDATE users SET ? WHERE id = ?', [updatedUser, userId]);
+
+//             res.status(200).json({ success: true, message: 'User updated successfully' });
+//         } catch (error) {
+//             console.error('Error updating user:', error);
+//             res.status(500).json({ success: false, message: 'Internal server error during user update' });
+//         }
+//     }
+// );
+
+// // Delete user (only admins can access this)
+// router.delete(
+//     '/deleteuser/:Id',
+//     authenticate('admin'), // Only admins can delete users
+//     async (req, res) => {
+//         const { userId } = req.params;
+
+//         try {
+//             const [user] = await db.query('SELECT * FROM users WHERE id = ?', [userId]);
+
+//             if (user.length === 0) {
+//                 return res.status(404).json({ success: false, message: 'User not found' });
+//             }
+
+//             // Delete the user from the database
+//             await db.query('DELETE FROM users WHERE id = ?', [userId]);
+
+//             res.status(200).json({ success: true, message: 'User deleted successfully' });
+//         } catch (error) {
+//             console.error('Error deleting user:', error);
+//             res.status(500).json({ success: false, message: 'Internal server error during user deletion' });
+//         }
+//     }
+// );
+// Edit user (only admins can access this)
+router.put(
+    '/users/edit/:userId',
+    authenticate('admin'),  // Only admin can update users
+    [
+        body('firstName').optional().isString().notEmpty().withMessage('First name must be a valid string'),
+        body('lastName').optional().isString().notEmpty().withMessage('Last name must be a valid string'),
+        body('dob').optional().isISO8601().withMessage('Date of birth must be a valid date'),
+        body('gender').optional().isIn(['male', 'female', 'other']).withMessage('Gender must be valid'),
+        body('designation').optional().isString().notEmpty().withMessage('Designation must be a valid string'),
+        body('email')
+            .optional()
+            .isEmail().withMessage('Valid email is required')
+            .custom(async (value, { req }) => {
+                if (value) {
+                    // Comment or remove this validation if you don't want email checks
+                    const [results] = await db.query('SELECT * FROM users WHERE email = ? AND id != ?', [value, req.params.userId]);
+                    if (results.length > 0) {
+                        return Promise.reject('Email already in use');
+                    }
+                }
+            }),
+        body('role')
+            .optional()
+            .isIn(['admin', 'sub-admin', 'user']).withMessage('Role must be one of admin, sub-admin, or user'),
+    ],
+    async (req, res) => {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ success: false, errors: errors.array() });
+        }
+
+        const { firstName, lastName, dob, gender, designation, email, role, password } = req.body;
+        const { userId } = req.params;
+
+        try {
+            // Skip the user existence check
+            const updatedUser = { 
+                first_name: firstName, 
+                last_name: lastName, 
+                date_of_birth: dob, 
+                gender, 
+                designation, 
+                email, 
+                role 
+            };
+
+            // Only include password if provided
+            if (password) {
+                updatedUser.password = await bcrypt.hash(password, 10);
+            }
+
+            // Remove optional fields that are not provided
+            Object.keys(updatedUser).forEach(key => {
+                if (!updatedUser[key]) {
+                    delete updatedUser[key];
+                }
+            });
+
+            // Directly update the user (without checking if the user exists)
+            await db.query('UPDATE users SET ? WHERE id = ?', [updatedUser, userId]);
+
+            res.status(200).json({ success: true, message: 'User updated successfully' });
+        } catch (error) {
+            console.error('Error updating user:', error);
+            res.status(500).json({ success: false, message: 'Internal server error during user update' });
+        }
+    }
+);
+
+// Delete user (only admins can access this)
+router.delete(
+    '/users/delete/:userId',
+    authenticate('admin'), // Only admins can delete users
+    async (req, res) => {
+        const { userId } = req.params;
+
+        try {
+            const [user] = await db.query('SELECT * FROM users WHERE id = ?', [userId]);
+
+            if (user.length === 0) {
+                return res.status(404).json({ success: false, message: 'User not found' });
+            }
+
+            // Delete the user from the database
+            await db.query('DELETE FROM users WHERE id = ?', [userId]);
+
+            res.status(200).json({ success: true, message: 'User deleted successfully' });
+        } catch (error) {
+            console.error('Error deleting user:', error);
+            res.status(500).json({ success: false, message: 'Internal server error during user deletion' });
+        }
+    }
+);
 
 router.post(
     '/login',
@@ -85,14 +272,14 @@ router.post(
                 [email]
             );
 
-            console.log('Database query result:', results);
+            // console.log('Database query result:', results);
 
             if (results.length === 0) {
                 return res.status(401).json({ success: false, message: 'Invalid credentials' });
             }
 
             const user = results[0];
-            console.log('User data:', user);
+            // console.log('User data:', user);
 
             if (!['admin', 'sub-admin'].includes(user.role)) {
                 return res.status(403).json({ success: false, message: 'Access denied' });

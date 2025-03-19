@@ -54,7 +54,74 @@ exports.createUser = async (req, res) => {
         res.status(500).json({ error: 'Failed to create user', details: error.message });
     }
 };
+// Admin edits an existing user
+exports.editUser = async (req, res) => {
+    const { userId } = req.params;
+    const { name, password, email, role } = req.body;
 
+    try {
+        const user = req.user; // User info from authentication middleware
+        if (user.role !== 'admin') {
+            return res.status(403).json({ error: 'Access denied. Admins only.' });
+        }
+
+        const [existingUser] = await db.query('SELECT * FROM users WHERE id = ?', [userId]);
+
+        if (existingUser.length === 0) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        if (email && email !== existingUser[0].email) {
+            const [emailCheck] = await db.query('SELECT * FROM users WHERE email = ?', [email]);
+
+            if (emailCheck.length > 0) {
+                return res.status(409).json({ error: 'Email already in use' });
+            }
+        }
+
+        const updatedUser = { name, email, role };
+
+        if (password) {
+            updatedUser.password = await bcrypt.hash(password, 10);
+        }
+
+        await db.query('UPDATE users SET ? WHERE id = ?', [updatedUser, userId]);
+
+        res.status(200).json({
+            message: 'User updated successfully.',
+        });
+    } catch (error) {
+        logger.error('Error editing user:', error);
+        res.status(500).json({ error: 'Failed to update user', details: error.message });
+    }
+};
+
+// Admin deletes a user
+exports.deleteUser = async (req, res) => {
+    const { userId } = req.params;
+
+    try {
+        const user = req.user; // User info from authentication middleware
+        if (user.role !== 'admin') {
+            return res.status(403).json({ error: 'Access denied. Admins only.' });
+        }
+
+        const [existingUser] = await db.query('SELECT * FROM users WHERE id = ?', [userId]);
+
+        if (existingUser.length === 0) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+
+        await db.query('DELETE FROM users WHERE id = ?', [userId]);
+
+        res.status(200).json({
+            message: 'User deleted successfully.',
+        });
+    } catch (error) {
+        logger.error('Error deleting user:', error);
+        res.status(500).json({ error: 'Failed to delete user', details: error.message });
+    }
+};
 // Function to handle form submission by employees
 exports.submitForm = async (req, res) => {
     const { answers } = req.body; // Assuming answers are sent in the request body

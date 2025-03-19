@@ -1,0 +1,174 @@
+2025-01-17T19:57:43.410Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T20:00:21.737Z [info]: POST /api/auth/login 
+2025-01-17T20:00:36.080Z [info]: Shutting down gracefully... 
+2025-01-17T20:00:36.091Z [info]: POST /api/auth/login 
+2025-01-17T20:00:37.510Z [info]: GET /api/dashboard/sessionByCompany 
+2025-01-17T20:00:37.514Z [info]: GET /api/dashboard/totalUsers 
+2025-01-17T20:00:37.545Z [info]: GET /api/dashboard/totalCompanies 
+2025-01-17T20:00:37.572Z [info]: GET /api/dashboard/fitnessHealthData 
+2025-01-17T20:00:37.594Z [info]: GET /api/dashboard/userLogs 
+2025-01-17T20:00:39.528Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T20:00:43.617Z [info]: Closed all connections 
+2025-01-17T20:00:45.910Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2025-01-17T20:01:26.387Z [info]: POST /api/companies 
+2025-01-17T20:05:21.326Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T20:05:23.356Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T20:05:44.795Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T20:05:55.049Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T20:06:01.906Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T20:06:24.477Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T20:12:04.835Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T20:12:24.432Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T20:21:30.576Z [info]: POST /api/companies 
+2025-01-17T20:21:30.622Z [error]: Error creating company: Out of range value for column 'id' at row 1 {"code":"HA_ERR_AUTOINC_ERANGE","errno":167,"sql":"INSERT INTO companies (id, name, companyType, phoneNumber, email, city, url) VALUES ('c8a4c1d1-a43b-407b-a72c-23b451829f13', 'zxzxzx', 'IT', '021256536', 'abc@gmail.com', 'Karachi', 'zxzxzx-948124')","sqlState":"22003","sqlMessage":"Out of range value for column 'id' at row 1","stack":"Error: Out of range value for column 'id' at row 1\n    at PromisePool.query (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at createCompany (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\src\\routes\\companies.js:71:14)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2025-01-17T20:23:27.966Z [info]: POST /api/companies 
+2025-01-17T20:51:23.876Z [info]: POST /api/companies 
+2025-01-17T20:51:23.889Z [error]: Error creating company: Out of range value for column 'id' at row 1 {"code":"HA_ERR_AUTOINC_ERANGE","errno":167,"sql":"INSERT INTO companies (id, name, companyType, phoneNumber, email, city, url) VALUES ('ed169669-a51f-478d-8b5d-f51ac373f731', 'reshmacorp', 'Textile', '03236563236', 'shaheerkhan@gmail.com', 'Karachi', 'reshmacorp-191098')","sqlState":"22003","sqlMessage":"Out of range value for column 'id' at row 1","stack":"Error: Out of range value for column 'id' at row 1\n    at PromisePool.query (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at createCompany (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\src\\routes\\companies.js:71:14)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2025-01-17T20:51:53.600Z [info]: POST /api/companies 
+2025-01-17T20:51:53.615Z [error]: Error creating company: Out of range value for column 'id' at row 1 {"code":"HA_ERR_AUTOINC_ERANGE","errno":167,"sql":"INSERT INTO companies (id, name, companyType, phoneNumber, email, city, url) VALUES ('c1f5cc33-89ec-4c0a-b335-f0607c6bbcd9', 'reshmacorp', 'Textile', '03236563236', 'shaheerkhan@gmail.com', 'Karachi', 'reshmacorp-303639')","sqlState":"22003","sqlMessage":"Out of range value for column 'id' at row 1","stack":"Error: Out of range value for column 'id' at row 1\n    at PromisePool.query (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at createCompany (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\src\\routes\\companies.js:71:14)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2025-01-17T20:51:58.556Z [info]: Shutting down gracefully... 
+2025-01-17T20:52:03.676Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T20:52:42.350Z [info]: POST /api/companies 
+2025-01-17T20:52:42.423Z [error]: Error creating company: Out of range value for column 'id' at row 1 {"code":"HA_ERR_AUTOINC_ERANGE","errno":167,"sql":"INSERT INTO companies (id, name, companyType, phoneNumber, email, city, url) VALUES ('bc2803f2-8849-4c73-baed-f9d52d2dbb97', 'reshmacorp', 'Textile', '03236563236', 'shaheerkhan@gmail.com', 'Karachi', 'reshmacorp-415605')","sqlState":"22003","sqlMessage":"Out of range value for column 'id' at row 1","stack":"Error: Out of range value for column 'id' at row 1\n    at PromisePool.query (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at createCompany (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\src\\routes\\companies.js:71:14)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2025-01-17T20:53:41.859Z [info]: POST /api/companies 
+2025-01-17T20:54:03.751Z [info]: POST /api/companies 
+2025-01-17T20:54:35.444Z [info]: POST /api/companies 
+2025-01-17T20:55:02.321Z [info]: POST /api/companies 
+2025-01-17T21:04:32.081Z [info]: Shutting down gracefully... 
+2025-01-17T21:04:35.056Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T21:04:46.727Z [info]: POST /api/companies 
+2025-01-17T21:04:46.742Z [error]: Error creating company: Out of range value for column 'id' at row 1 {"code":"HA_ERR_AUTOINC_ERANGE","errno":167,"sql":"INSERT INTO companies (id, name, companyType, phoneNumber, email, city, url) VALUES ('cb15cb8c-cd89-4873-a118-d38fdf2d4b73', 'DanyCryp', 'Technology', '123-456-7890', 'danycontact@techcorp.com', 'San Francisco', 'danycryp-342784')","sqlState":"22003","sqlMessage":"Out of range value for column 'id' at row 1","stack":"Error: Out of range value for column 'id' at row 1\n    at PromisePool.query (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at createCompany (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\src\\routes\\companies.js:71:14)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2025-01-17T21:05:10.337Z [info]: POST /api/companies 
+2025-01-17T21:27:24.960Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T21:33:44.279Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T21:33:46.208Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T21:34:10.484Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T21:34:34.482Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T21:34:37.341Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T21:34:42.349Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T22:35:47.152Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T22:35:49.251Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T22:36:49.185Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T22:53:29.750Z [info]: POST /api/companies 
+2025-01-17T22:53:29.761Z [warn]: Token has expired 
+2025-01-17T22:55:22.211Z [info]: POST /api/auth/login 
+2025-01-17T22:55:23.823Z [info]: GET /api/dashboard/sessionByCompany 
+2025-01-17T22:55:23.829Z [info]: GET /api/dashboard/totalUsers 
+2025-01-17T22:55:23.873Z [info]: GET /api/dashboard/totalCompanies 
+2025-01-17T22:55:23.897Z [info]: GET /api/dashboard/fitnessHealthData 
+2025-01-17T22:55:23.919Z [info]: GET /api/dashboard/userLogs 
+2025-01-17T22:55:48.397Z [info]: POST /api/companies 
+2025-01-17T22:55:48.433Z [error]: Error creating company: Out of range value for column 'id' at row 1 {"code":"HA_ERR_AUTOINC_ERANGE","errno":167,"sql":"INSERT INTO companies (name, companyType, phoneNumber, email, city, url) VALUES ('DanyCryp 123', 'Technology', '123-456-7890', 'danycontact@techcorp.com', 'San Francisco ', 'danycryp-123-934960')","sqlState":"22003","sqlMessage":"Out of range value for column 'id' at row 1","stack":"Error: Out of range value for column 'id' at row 1\n    at PromisePool.query (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at createCompany (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\src\\routes\\companies.js:129:31)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2025-01-17T22:56:52.465Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T22:56:56.766Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T22:56:59.980Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T22:57:03.989Z [info]: POST /api/companies 
+2025-01-17T22:57:04.021Z [error]: Error creating company: id is not defined {"stack":"ReferenceError: id is not defined\n    at createCompany (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\src\\routes\\companies.js:73:8)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2025-01-17T22:57:47.630Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T22:58:11.303Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T22:58:39.421Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T22:58:54.601Z [info]: POST /api/companies 
+2025-01-17T23:00:30.526Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T23:00:32.758Z [info]: POST /api/companies 
+2025-01-17T23:00:32.791Z [error]: Error creating company: Out of range value for column 'id' at row 1 {"code":"HA_ERR_AUTOINC_ERANGE","errno":167,"sql":"INSERT INTO companies (name, companyType, phoneNumber, email, city, url) VALUES ('DanyCryp 123', 'Technology', '123-456-7890', 'danycontact@techcorp.com', 'San Francisco ', 'danycryp-123-606439')","sqlState":"22003","sqlMessage":"Out of range value for column 'id' at row 1","stack":"Error: Out of range value for column 'id' at row 1\n    at PromisePool.query (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at createCompany (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\src\\routes\\companies.js:69:31)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2025-01-17T23:01:03.917Z [info]: POST /api/companies 
+2025-01-17T23:01:03.947Z [error]: Error creating company: Out of range value for column 'id' at row 1 {"code":"HA_ERR_AUTOINC_ERANGE","errno":167,"sql":"INSERT INTO companies (name, companyType, phoneNumber, email, city, url) VALUES ('DanyCryp 123', 'Technology', '123-456-7890', 'danycontact@techcorp.com', 'San Francisco ', 'danycryp-123-122266')","sqlState":"22003","sqlMessage":"Out of range value for column 'id' at row 1","stack":"Error: Out of range value for column 'id' at row 1\n    at PromisePool.query (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at createCompany (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\src\\routes\\companies.js:69:31)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2025-01-17T23:02:10.478Z [info]: POST /api/companies 
+2025-01-17T23:02:10.502Z [error]: Error creating company: Out of range value for column 'id' at row 1 {"code":"HA_ERR_AUTOINC_ERANGE","errno":167,"sql":"INSERT INTO companies (name, companyType, phoneNumber, email, city, url) VALUES ('DanyCryp 123', 'Technology', '123-456-7890', 'danycontact@techcorp.com', 'San Francisco ', 'danycryp-123-499026')","sqlState":"22003","sqlMessage":"Out of range value for column 'id' at row 1","stack":"Error: Out of range value for column 'id' at row 1\n    at PromisePool.query (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at createCompany (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\src\\routes\\companies.js:69:31)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2025-01-17T23:03:07.996Z [info]: POST /api/companies 
+2025-01-17T23:03:08.012Z [error]: Error creating company: Out of range value for column 'id' at row 1 {"code":"HA_ERR_AUTOINC_ERANGE","errno":167,"sql":"INSERT INTO companies (name, companyType, phoneNumber, email, city, url) VALUES ('DanyCryp 123', 'Technology', '123-456-7890', 'danycontact@techcorp.com', 'San Francisco ', 'danycryp-123-101282')","sqlState":"22003","sqlMessage":"Out of range value for column 'id' at row 1","stack":"Error: Out of range value for column 'id' at row 1\n    at PromisePool.query (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at createCompany (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\src\\routes\\companies.js:69:31)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2025-01-17T23:03:58.319Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T23:04:04.216Z [info]: POST /api/companies 
+2025-01-17T23:04:04.269Z [error]: Error creating company: Out of range value for column 'id' at row 1 {"code":"HA_ERR_AUTOINC_ERANGE","errno":167,"sql":"INSERT INTO companies (name, companyType, phoneNumber, email, city, url) VALUES ('DanyCryp 123', 'Technology', '123-456-7890', 'danycontact@techcorp.com', 'San Francisco ', 'danycryp-123-583108')","sqlState":"22003","sqlMessage":"Out of range value for column 'id' at row 1","stack":"Error: Out of range value for column 'id' at row 1\n    at PromisePool.query (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at createCompany (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\src\\routes\\companies.js:68:31)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2025-01-17T23:04:50.793Z [info]: POST /api/companies 
+2025-01-17T23:05:35.765Z [info]: POST /api/companies 
+2025-01-17T23:08:52.614Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T23:09:15.253Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T23:10:10.417Z [info]: POST /api//updateCompany/2 
+2025-01-17T23:10:19.449Z [info]: POST /api/updateCompany/2 
+2025-01-17T23:10:26.623Z [info]: PUT /api/updateCompany/2 
+2025-01-17T23:11:06.102Z [info]: PUT /api/deleteCompany/2 
+2025-01-17T23:11:10.341Z [info]: DELETE /api/deleteCompany/2 
+2025-01-17T23:15:02.916Z [info]: DELETE /api/deleteCompany/1 
+2025-01-17T23:15:30.253Z [info]: POST /api/companies/1 
+2025-01-17T23:15:36.030Z [info]: POST /api/companies 
+2025-01-17T23:16:17.831Z [info]: PUT /api/updateCompany/3 
+2025-01-17T23:22:50.630Z [info]: POST /api/users/createAdmin 
+2025-01-17T23:27:40.596Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T23:28:43.713Z [info]: POST /api/users/createAdmin 
+2025-01-17T23:29:46.762Z [info]: POST /api/auth/createAdmin 
+2025-01-17T23:30:16.428Z [info]: POST /api/auth/createAdmin 
+2025-01-17T23:30:21.810Z [info]: POST /api/auth/createAdmin 
+2025-01-17T23:30:28.729Z [info]: POST /api/auth/createAdmin 
+2025-01-17T23:34:28.173Z [info]: PUT /api/auth/edituser/13 
+2025-01-17T23:35:45.806Z [info]: DELETE /api/auth/deleteuser/13 
+2025-01-17T23:37:03.292Z [info]: DELETE /api/auth/createAdmin 
+2025-01-17T23:37:09.357Z [info]: POST /api/auth/createAdmin 
+2025-01-17T23:37:29.906Z [info]: POST /api/auth/createAdmin 
+2025-01-17T23:40:13.033Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T23:41:02.596Z [info]: PUT /api/auth/users/edit/12 
+2025-01-17T23:41:41.333Z [info]: DELETE /api/auth/users/delete/12 
+2025-01-17T23:42:56.219Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T23:43:05.018Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T23:43:08.848Z [info]: DELETE /api/auth/users/delete/12 
+2025-01-17T23:43:21.224Z [info]: PUT /api/auth/users/edit/13 
+2025-01-17T23:43:38.272Z [info]: PUT /api/auth/users/edit/11 
+2025-01-17T23:43:53.729Z [info]: PUT /api/auth/users/edit/11 
+2025-01-17T23:46:02.339Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T23:46:22.901Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T23:46:30.112Z [info]: PUT /api/auth/users/edit/12 
+2025-01-17T23:47:02.430Z [info]: PUT /api/auth/users/edit/12 
+2025-01-17T23:47:17.804Z [info]: PUT /api/auth/users/edit/12 
+2025-01-17T23:47:58.467Z [info]: PUT /api/auth/users/edit/12 
+2025-01-17T23:48:05.157Z [info]: PUT /api/auth/users/edit/12 
+2025-01-17T23:48:13.699Z [info]: PUT /api/auth/users/edit/12 
+2025-01-17T23:50:36.828Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T23:50:38.630Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T23:50:48.354Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T23:51:12.798Z [info]: PUT /api/auth/users/edit/12 
+2025-01-17T23:51:24.539Z [info]: PUT /api/auth/users/edit/12 
+2025-01-17T23:52:28.146Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T23:52:29.921Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T23:52:31.782Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T23:52:33.787Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T23:52:53.764Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-18T00:39:20.800Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-18T00:40:41.888Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-18T00:40:43.885Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-18T00:43:04.516Z [info]: PUT /api/updateCompany/danycryp 
+2025-01-18T00:43:04.525Z [error]: Error updating company: Unknown column 'slug' in 'where clause' {"code":"ER_BAD_FIELD_ERROR","errno":1054,"sql":"UPDATE companies SET name = 'Updated Company Name', companyType = 'Technology', phoneNumber = '+1234567890', email = 'updated.email@example.com', city = 'New York', url = 'updated-company-name-130009' WHERE slug = 'danycryp'","sqlState":"42S22","sqlMessage":"Unknown column 'slug' in 'where clause'","stack":"Error: Unknown column 'slug' in 'where clause'\n    at PromisePool.query (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\node_modules\\mysql2\\lib\\promise\\pool.js:36:22)\n    at C:\\Users\\Shaheer Khan\\Desktop\\Backend\\src\\routes\\companies.js:132:32\n    at Layer.handle [as handle_request] (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\node_modules\\express\\lib\\router\\layer.js:95:5)\n    at next (C:\\Users\\Shaheer Khan\\Desktop\\Backend\\node_modules\\express\\lib\\router\\route.js:149:13)\n    at C:\\Users\\Shaheer Khan\\Desktop\\Backend\\src\\middlewares\\auth.js:38:21\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"}
+2025-01-18T00:44:10.320Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-18T00:44:12.202Z [info]: PUT /api/updateCompany/danycryp 
+2025-01-18T02:19:14.231Z [info]: DELETE /api/auth/users/delete/1 
+2025-01-18T02:19:52.125Z [info]: GET /api/dashboard/sessionByCompany 
+2025-01-18T02:19:52.129Z [info]: GET /api/dashboard/totalUsers 
+2025-01-18T02:19:52.156Z [info]: GET /api/dashboard/totalCompanies 
+2025-01-18T02:19:52.166Z [info]: GET /api/dashboard/fitnessHealthData 
+2025-01-18T02:19:52.186Z [info]: GET /api/dashboard/userLogs 
+2025-01-18T02:20:12.724Z [info]: POST /api/auth/login 
+2025-01-18T02:20:35.273Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-18T02:20:38.216Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-18T02:20:41.632Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-18T02:20:59.516Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-18T02:21:09.575Z [info]: POST /api/auth/login 
+2025-01-18T02:21:09.985Z [info]: GET /api/dashboard/sessionByCompany 
+2025-01-18T02:21:09.990Z [info]: GET /api/dashboard/totalUsers 
+2025-01-18T02:21:10.021Z [info]: GET /api/dashboard/totalCompanies 
+2025-01-18T02:21:10.033Z [info]: GET /api/dashboard/fitnessHealthData 
+2025-01-18T02:21:10.058Z [info]: GET /api/dashboard/userLogs 
+2025-01-18T02:23:11.663Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-18T02:26:41.296Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-18T02:26:43.793Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-18T02:28:25.200Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-18T02:28:45.897Z [info]: POST /api/auth/login 
+2025-01-18T02:28:46.205Z [info]: GET /api/dashboard/sessionByCompany 
+2025-01-18T02:28:46.211Z [info]: GET /api/dashboard/totalUsers 
+2025-01-18T02:28:46.239Z [info]: GET /api/dashboard/totalCompanies 
+2025-01-18T02:28:46.252Z [info]: GET /api/dashboard/fitnessHealthData 
+2025-01-18T02:28:46.272Z [info]: GET /api/dashboard/userLogs 
+2025-01-18T02:53:15.064Z [info]: PUT /api/auth/users/edit/1 
+2025-01-18T02:53:21.374Z [info]: PUT /api/auth/users/edit/1 
+2025-01-18T02:54:17.584Z [info]: PUT /api/auth/users/edit/7 
+2025-01-18T02:54:58.934Z [info]: GET /api/auth/users/edit/7 
+2025-01-18T02:55:05.398Z [info]: GET /api/auth/users/edit/7 
+2025-01-18T02:56:05.218Z [info]: GET /api/auth/users/allAdmins 

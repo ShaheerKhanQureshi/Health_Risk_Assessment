@@ -362,42 +362,42 @@
     }
   };
   
-  // Download forms as PDF
-  const downloadForm = async (req, res) => {
-    const { Assessment_Id } = req.params;
-    try {
-      const responses = await Answer.find({ user: Assessment_Id }).populate("question");
-      const pdfBuffer = await createPdfFromResponses(responses);
-      res.set("Content-Type", "application/pdf");
-      res.set("Content-Disposition", `attachment; filename=form-${Assessment_Id}.pdf`);
-      res.send(pdfBuffer);
-    } catch (err) {
-      logger.error("Error downloading form:", err);
-      res
-        .status(500)
-        .json({ error: "An error occurred while downloading the form" });
-    }
-  };
+  // // Download forms as PDF
+  // const downloadForm = async (req, res) => {
+  //   const { Assessment_Id } = req.params;
+  //   try {
+  //     const responses = await Answer.find({ user: Assessment_Id }).populate("question");
+  //     const pdfBuffer = await createPdfFromResponses(responses);
+  //     res.set("Content-Type", "application/pdf");
+  //     res.set("Content-Disposition", `attachment; filename=form-${Assessment_Id}.pdf`);
+  //     res.send(pdfBuffer);
+  //   } catch (err) {
+  //     logger.error("Error downloading form:", err);
+  //     res
+  //       .status(500)
+  //       .json({ error: "An error occurred while downloading the form" });
+  //   }
+  // };
   
-  // Generate report functionality
-  const generateReport = async (req, res) => {
-    const { Assessment_Id } = req.params;
+  // // Generate report functionality
+  // const generateReport = async (req, res) => {
+  //   const { Assessment_Id } = req.params;
   
-    try {
-      const report = await Report.findOne({ user: Assessment_Id }).populate("answers");
-      if (!report) return res.status(404).json({ error: "Report not found" });
+  //   try {
+  //     const report = await Report.findOne({ user: Assessment_Id }).populate("answers");
+  //     if (!report) return res.status(404).json({ error: "Report not found" });
   
-      const pdfBuffer = await createPdfFromReport(report);
-      res.set("Content-Type", "application/pdf");
-      res.set("Content-Disposition", `attachment; filename=report-${Assessment_Id}.pdf`);
-      res.send(pdfBuffer);
-    } catch (err) {
-      logger.error("Error generating report:", err);
-      res
-        .status(500)
-        .json({ error: "An error occurred while generating the report" });
-    }
-  };
+  //     const pdfBuffer = await createPdfFromReport(report);
+  //     res.set("Content-Type", "application/pdf");
+  //     res.set("Content-Disposition", `attachment; filename=report-${Assessment_Id}.pdf`);
+  //     res.send(pdfBuffer);
+  //   } catch (err) {
+  //     logger.error("Error generating report:", err);
+  //     res
+  //       .status(500)
+  //       .json({ error: "An error occurred while generating the report" });
+  //   }
+  // };
   
  
   
@@ -405,7 +405,7 @@
     submitAssessment,
     submitForm,
     viewResponses,
-    downloadForm,
-    generateReport,
+    // downloadForm,
+    // generateReport,
   };
   

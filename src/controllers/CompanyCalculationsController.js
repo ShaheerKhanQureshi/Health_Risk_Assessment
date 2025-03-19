@@ -3,26 +3,31 @@ const logger = require("../utils/logger");
 const pdfmake = require('pdfmake');
 const path = require("path");
 
+
+
 const calculateBMI = (employees) => {
   const bmiData = {
-    "Below-Normal-Weight": 0,
-    "Normal-Weight": 0,
+    "BelowNormalWeight": 0,
+    "NormalWeight": 0,
     "Overweight": 0,
-    "Class-I-Obesity": 0,
-    "Class-II-Obesity": 0,
-    "Class-III-Obesity": 0,
+    "ClassIObesity": 0,
+    "ClassIIObesity": 0,
+    "ClassIIIObesity": 0, 
   };
 
   employees.forEach((emp) => {
     const { weight, height } = JSON.parse(emp.employee_info);
     if (weight && height) {
-      const bmi = weight / Math.pow(height / 100, 2);
-      let category = "Below-Normal-Weight";
-      if (bmi >= 18.5 && bmi <= 24.9) category = "Normal-Weight";
+      const feet = Math.floor(height);
+      const inches = (height - feet) * 10;
+      const totalHeightCm = (feet * 30.48) + (inches * 2.54);
+      const bmi = weight / Math.pow(totalHeightCm / 100, 2);
+      let category = "BelowNormalWeight";
+      if (bmi >= 18.5 && bmi <= 24.9) category = "NormalWeight";
       else if (bmi >= 25 && bmi <= 29.9) category = "Overweight";
-      else if (bmi >= 30 && bmi <= 34.9) category = "Class-I-Obesity";
-      else if (bmi >= 35 && bmi <= 39.9) category = "Class-II-Obesity";
-      else if (bmi >= 40) category = "Class-III-Obesity";
+      else if (bmi >= 30 && bmi <= 34.9) category = "ClassIObesity";
+      else if (bmi >= 35 && bmi <= 39.9) category = "ClassIIObesity";
+      else if (bmi >= 40) category = "ClassIIIObesity";
       bmiData[category]++;
     }
   });
@@ -90,7 +95,6 @@ const calculateConditionPrevalence = (employees) => {
   return conditions;
 };
 
-
 const calculateRiskDistribution = (employees) => {
   // Define section total max scores
   const sectionMaxScores = {
@@ -114,21 +118,12 @@ const calculateRiskDistribution = (employees) => {
     "Burnout at Work": []
   };
 
-  const riskCategories = {
-    "Low Risk (0-80)": 0,
-    "Moderate Risk (81-160)": 0,
-    "High Risk (161-240)": 0,
-    "Very High Risk (241-320)": 0,
-    "Severe Risk (321-400)": 0
-  };
-
   // Initialize total employee count
   const totalEmployees = employees.length;
 
   if (totalEmployees === 0) {
     return {
       sectionScores,
-      riskCategories,
       totalEmployees
     };
   }
@@ -168,38 +163,10 @@ const calculateRiskDistribution = (employees) => {
     }
   }
 
-  // Calculate how many employees fall into each risk category based on average score for each section
-  for (let section in sectionScores) {
-    sectionScores[section].forEach((score) => {
-      let category = '';
-      if (score <= 80) {
-        category = "Low Risk (0-80)";
-      } else if (score <= 160) {
-        category = "Moderate Risk (81-160)";
-      } else if (score <= 240) {
-        category = "High Risk (161-240)";
-      } else if (score <= 320) {
-        category = "Very High Risk (241-320)";
-      } else {
-        category = "Severe Risk (321-400)";
-      }
-
-      riskCategories[category]++;
-    });
-  }
-
-  // Calculate percentage distribution for each risk category
-  for (let category in riskCategories) {
-    const percentage = ((riskCategories[category] / totalEmployees) * 100).toFixed(2);
-    riskCategories[category] = {
-      count: riskCategories[category],
-      percentage: percentage
-    };
-  }
 
   return {
     sectionAverages,       // Average scores per section
-    riskCategories,        // Risk categories with percentages
+
     totalEmployees         // Total number of employees
   };
 };
@@ -569,30 +536,194 @@ const calculateSatisfactionLevels = (employees, question = satisfactionQuestion)
 };
 
 
+// const calculateFitnessHealthData = (employees) => {
+//   const companyConditions = {};
+
+
+//   const conditions = {
+//     cholesterol: {
+//       "Normal Cholesterol": { count: 0, interpretation: "Generally considered healthy with low cardiovascular risk." },
+//       "Borderline High Cholesterol": { count: 0, interpretation: "Possible risk for heart disease; lifestyle changes recommended." },
+//       "High Cholesterol": { count: 0, interpretation: "Increased risk of cardiovascular disease; consider medical intervention." },
+//       "Unknown": { count: 0, interpretation: "Cholesterol level unknown." }
+//     },
+//     bloodPressure: {
+//       "Normal Blood Pressure": { count: 0, interpretation: "Indicates good cardiovascular health." },
+//       "Elevated Blood Pressure": { count: 0, interpretation: "Risk of hypertension; lifestyle changes recommended." },
+//       "Hypertension Stage 1": { count: 0, interpretation: "Hypertension stage 1; requires lifestyle changes and possibly medication." },
+//       "Hypertension Stage 2": { count: 0, interpretation: "Hypertension stage 2; urgent medical intervention may be required." },
+//       "Low Blood Pressure": { count: 0, interpretation: "Low blood pressure; may need further evaluation if symptoms are present." },
+//       "Unknown": { count: 0, interpretation: "Blood pressure unknown." }
+//     },
+//     glucose: {
+//       "Normal Glucose": { count: 0, interpretation: "Indicates healthy glucose levels." },
+//       "Prediabetes": { count: 0, interpretation: "Indicates prediabetes; lifestyle modifications are recommended." },
+//       "Diabetes": { count: 0, interpretation: "Indicates diabetes; requires further testing and management." },
+//       "Low Glucose": { count: 0, interpretation: "Glucose level too low; consult a healthcare provider." },
+//       "Unknown": { count: 0, interpretation: "Glucose level unknown." }
+//     }
+//   };
+
+//   employees.forEach((emp) => {
+//     const companySlug = emp.company_slug;
+//     if (!companySlug) return;
+
+//     if (!companyConditions[companySlug]) {
+//       companyConditions[companySlug] = { ...conditions };
+//     }
+
+//     let healthData = [];
+//     try {
+//       healthData = JSON.parse(emp.health_assessment);
+//     } catch (e) {
+//       console.error(`Error parsing health_assessment for employee ${emp.id}: ${e.message}`);
+//       return;
+//     }
+
+//     healthData.forEach((section) => {
+//       if (section.subHeading === "Personal Medical History") {
+//         section.questions.forEach((question) => {
+//           if (question.questionId === "PMH14") {
+//             // Blood Pressure Processing
+//             const bpValue = processBloodPressure(question.response);
+//             if (bpValue) companyConditions[companySlug].bloodPressure[bpValue].count++;
+//           }
+//           if (question.questionId === "PMH15") {
+//             // Glucose Processing
+//             const glucoseValue = processGlucose(question.response);
+//             if (glucoseValue) companyConditions[companySlug].glucose[glucoseValue].count++;
+//           }
+//           if (question.questionId === "PMH16") {
+//             // Cholesterol Processing
+//             const cholesterolValue = processCholesterol(question.response);
+//             if (cholesterolValue) companyConditions[companySlug].cholesterol[cholesterolValue].count++;
+//           }
+//         });
+//       }
+//     });
+//   });
+
+//   const result = {};
+//   Object.keys(companyConditions).forEach((companySlug) => {
+//     const companyData = companyConditions[companySlug];
+//     const totalEmployeesInCompany = employees.filter((emp) => emp.company_slug === companySlug).length;
+
+//     const companyPrevalence = {
+//       cholesterol: {},
+//       bloodPressure: {},
+//       glucose: {}
+//     };
+
+//     Object.keys(companyData.cholesterol).forEach((condition) => {
+//       companyPrevalence.cholesterol[condition] = {
+//         percentage: ((companyData.cholesterol[condition].count / totalEmployeesInCompany) * 100).toFixed(2),
+//         interpretation: companyData.cholesterol[condition].interpretation
+//       };
+//     });
+
+//     Object.keys(companyData.bloodPressure).forEach((condition) => {
+//       companyPrevalence.bloodPressure[condition] = {
+//         percentage: ((companyData.bloodPressure[condition].count / totalEmployeesInCompany) * 100).toFixed(2),
+//         interpretation: companyData.bloodPressure[condition].interpretation
+//       };
+//     });
+
+//     Object.keys(companyData.glucose).forEach((condition) => {
+//       companyPrevalence.glucose[condition] = {
+//         percentage: ((companyData.glucose[condition].count / totalEmployeesInCompany) * 100).toFixed(2),
+//         interpretation: companyData.glucose[condition].interpretation
+//       };
+//     });
+
+//     result[companySlug] = companyPrevalence;
+//   });
+
+//   return result;
+// };
+
+// // Function to process Blood Pressure
+// const processBloodPressure = (bpResponse) => {
+//   if (!bpResponse) return null;
+
+//   const bp = bpResponse.trim().toLowerCase();
+
+//   if (bp.includes("140 mmhg or higher / 90 mmhg or higher")) {
+//     return "Hypertension Stage 2";
+//   } else if (bp.includes("130-139 mmhg / 85-89 mmhg")) {
+//     return "Hypertension Stage 1";
+//   } else if (bp.includes("120-129 mmhg / 80-84 mmhg")) {
+//     return "Elevated Blood Pressure";
+//   } else if (bp.includes("80-119 mmhg / 60-79 mmhg")) {
+//     return "Normal Blood Pressure";
+//   } else if (bp.includes("less than 80 mmhg / less than 60 mmhg")) {
+//     return "Low Blood Pressure";
+//   }
+//   return "Unknown";
+// };
+
+
+// const processGlucose = (glucoseResponse) => {
+//   if (!glucoseResponse) return null;
+
+//   const glucose = glucoseResponse.trim().toLowerCase();
+
+//   if (glucose.includes("150 mg/dl or higher")) {
+//     return "Diabetes";
+//   } else if (glucose.includes("126-149 mg/dl")) {
+//     return "Diabetes";
+//   } else if (glucose.includes("100-125 mg/dl")) {
+//     return "Prediabetes";
+//   } else if (glucose.includes("70-99 mg/dl")) {
+//     return "Normal Glucose";
+//   } else if (glucose.includes("less than 70 mg/dl")) {
+//     return "Low Glucose";
+//   }
+//   return "Unknown";
+// };
+
+
+// const processCholesterol = (cholesterolResponse) => {
+//   if (!cholesterolResponse) return null;
+
+//   const cholesterol = cholesterolResponse.trim().toLowerCase();
+
+//   if (cholesterol.includes("greater than 3")) {
+//     return "High Cholesterol";
+//   } else if (cholesterol.includes("2.5-3")) {
+//     return "Borderline High Cholesterol";
+//   } else if (cholesterol.includes("2-2.5")) {
+//     return "Normal Cholesterol";
+//   } else if (cholesterol.includes("1.5-2")) {
+//     return "Normal Cholesterol";
+//   } else if (cholesterol.includes("less than 1.5")) {
+//     return "Normal Cholesterol";
+//   }
+//   return "Unknown";
+// };
 const calculateFitnessHealthData = (employees) => {
   const companyConditions = {};
 
-
   const conditions = {
     cholesterol: {
-      "Normal Cholesterol": { count: 0, interpretation: "Generally considered healthy with low cardiovascular risk." },
-      "Borderline High Cholesterol": { count: 0, interpretation: "Possible risk for heart disease; lifestyle changes recommended." },
-      "High Cholesterol": { count: 0, interpretation: "Increased risk of cardiovascular disease; consider medical intervention." },
+      "Less than 1.5": { count: 0, interpretation: "Optimal ratio; indicates low risk for cardiovascular disease." },
+      "1.5 - 2.0": { count: 0, interpretation: "Good ratio; generally considered healthy, with a low risk of CVD." },
+      "2.5 - 3.0": { count: 0, interpretation: "Moderate risk; individuals should consider making lifestyle changes." },
+      "Greater than 3.0": { count: 0, interpretation: "High risk; indicates a significant risk for cardiovascular disease; medical intervention may be necessary." },
       "Unknown": { count: 0, interpretation: "Cholesterol level unknown." }
     },
     bloodPressure: {
-      "Normal Blood Pressure": { count: 0, interpretation: "Indicates good cardiovascular health." },
-      "Elevated Blood Pressure": { count: 0, interpretation: "Risk of hypertension; lifestyle changes recommended." },
-      "Hypertension Stage 1": { count: 0, interpretation: "Hypertension stage 1; requires lifestyle changes and possibly medication." },
-      "Hypertension Stage 2": { count: 0, interpretation: "Hypertension stage 2; urgent medical intervention may be required." },
-      "Low Blood Pressure": { count: 0, interpretation: "Low blood pressure; may need further evaluation if symptoms are present." },
+      "140 mmHg or higher / 90 mmHg or higher": { count: 0, interpretation: "Hypertension stage 2" },
+      "130-139 mmHg / 85-89 mmHg": { count: 0, interpretation: "Hypertension stage 1" },
+      "120-129 mmHg / 80-84 mmHg": { count: 0, interpretation: "Elevated blood pressure" },
+      "80-119 mmHg / 60-79 mmHg": { count: 0, interpretation: "Normal blood pressure" },
+      "Less than 80 mmHg / less than 60 mmHg": { count: 0, interpretation: "Low blood pressure" },
       "Unknown": { count: 0, interpretation: "Blood pressure unknown." }
     },
     glucose: {
-      "Normal Glucose": { count: 0, interpretation: "Indicates healthy glucose levels." },
-      "Prediabetes": { count: 0, interpretation: "Indicates prediabetes; lifestyle modifications are recommended." },
-      "Diabetes": { count: 0, interpretation: "Indicates diabetes; requires further testing and management." },
-      "Low Glucose": { count: 0, interpretation: "Glucose level too low; consult a healthcare provider." },
+      "150 mg/dL or higher": { count: 0, interpretation: "Indicates uncontrolled diabetes" },
+      "126 - 149 mg/dL": { count: 0, interpretation: "Indicates diabetes" },
+      "100 - 125 mg/dL": { count: 0, interpretation: "Indicates prediabetes" },
+      "70 - 99 mg/dL": { count: 0, interpretation: "Indicates normal fasting glucose" },
       "Unknown": { count: 0, interpretation: "Glucose level unknown." }
     }
   };
@@ -681,90 +812,144 @@ const processBloodPressure = (bpResponse) => {
   const bp = bpResponse.trim().toLowerCase();
 
   if (bp.includes("140 mmhg or higher / 90 mmhg or higher")) {
-    return "Hypertension Stage 2";
+    return "140 mmHg or higher / 90 mmHg or higher";
   } else if (bp.includes("130-139 mmhg / 85-89 mmhg")) {
-    return "Hypertension Stage 1";
+    return "130-139 mmHg / 85-89 mmHg";
   } else if (bp.includes("120-129 mmhg / 80-84 mmhg")) {
-    return "Elevated Blood Pressure";
+    return "120-129 mmHg / 80-84 mmHg";
   } else if (bp.includes("80-119 mmhg / 60-79 mmhg")) {
-    return "Normal Blood Pressure";
+    return "80-119 mmHg / 60-79 mmHg";
   } else if (bp.includes("less than 80 mmhg / less than 60 mmhg")) {
-    return "Low Blood Pressure";
+    return "Less than 80 mmHg / less than 60 mmHg";
   }
   return "Unknown";
 };
 
-// Function to process Glucose Levels
 const processGlucose = (glucoseResponse) => {
   if (!glucoseResponse) return null;
 
   const glucose = glucoseResponse.trim().toLowerCase();
 
   if (glucose.includes("150 mg/dl or higher")) {
-    return "Diabetes";
+    return "150 mg/dL or higher";
   } else if (glucose.includes("126-149 mg/dl")) {
-    return "Diabetes";
+    return "126 - 149 mg/dL";
   } else if (glucose.includes("100-125 mg/dl")) {
-    return "Prediabetes";
+    return "100 - 125 mg/dL";
   } else if (glucose.includes("70-99 mg/dl")) {
-    return "Normal Glucose";
-  } else if (glucose.includes("less than 70 mg/dl")) {
-    return "Low Glucose";
+    return "70 - 99 mg/dL";
   }
   return "Unknown";
 };
 
-// Function to process Cholesterol Levels
 const processCholesterol = (cholesterolResponse) => {
   if (!cholesterolResponse) return null;
 
   const cholesterol = cholesterolResponse.trim().toLowerCase();
 
   if (cholesterol.includes("greater than 3")) {
-    return "High Cholesterol";
+    return "Greater than 3.0";
   } else if (cholesterol.includes("2.5-3")) {
-    return "Borderline High Cholesterol";
-  } else if (cholesterol.includes("2-2.5")) {
-    return "Normal Cholesterol";
+    return "2.5 - 3.0";
   } else if (cholesterol.includes("1.5-2")) {
-    return "Normal Cholesterol";
+    return "1.5 - 2.0";
   } else if (cholesterol.includes("less than 1.5")) {
-    return "Normal Cholesterol";
+    return "Less than 1.5";
   }
   return "Unknown";
 };
 
+const calculateEmployeeRiskScores = (employees) => {
+  // Risk category ranges and corresponding messages
+  const riskCategories = [
+    { range: [0, 80], category: "Low Risk!" },
+    { range: [81, 160], category: "Moderate Risk! " },
+    { range: [161, 240], category: "High Risk! " },
+    { range: [241, 320], category: "Very High Risk!" },
+    { range: [321, 400], category: "Severe Risk!" }
+  ];
+
+  const riskCount = {
+    "Low Risk! ": 0,
+    "Moderate Risk! ": 0,
+    "High Risk!": 0,
+    "Very High Risk!": 0,
+    "Severe Risk!.": 0
+  };
+
+  // Function to calculate total score for an employee
+  const calculateTotalScore = (healthData) => {
+    let totalScore = 0;
+    healthData.forEach((section) => {
+      if (section.sectionScore) {
+        totalScore += section.sectionScore;
+      }
+    });
+    return totalScore;
+  };
+
+  // Process each employee
+  employees.forEach((emp) => {
+    let healthData = [];
+    try {
+      healthData = JSON.parse(emp.health_assessment); // Assuming health_assessment is a JSON string
+    } catch (e) {
+      console.error(`Error parsing health_assessment for employee ${emp.id}: ${e.message}`);
+      return;
+    }
+
+    const totalScore = calculateTotalScore(healthData);
+
+    // Determine the risk category based on the total score
+    riskCategories.forEach((category) => {
+      const [min, max] = category.range;
+      if (totalScore >= min && totalScore <= max) {
+        riskCount[category.category]++;
+      }
+    });
+  });
+
+  // Calculate the percentage distribution for each risk category
+  const totalEmployees = employees.length;
+  const riskPercentage = {};
+
+  Object.keys(riskCount).forEach((category) => {
+    riskPercentage[category] = ((riskCount[category] / totalEmployees) * 100).toFixed(2);
+  });
+
+  return riskPercentage;
+};
+
+
+
 
 const getReportData = async (slug) => {
   try {
-    // Fetch company data based on the provided slug
+ 
     const [companyResult] = await db.query("SELECT * FROM companies WHERE url = ?", [slug]);
     if (companyResult.length === 0) throw new Error("Company not found");
     const company = companyResult[0];
 
-    // Fetch employee data (assessment responses) for the specified company
     const [employeeResult] = await db.query("SELECT * FROM assessment_response WHERE company_slug = ?", [slug]);
     if (employeeResult.length === 0) throw new Error("No employees found for the company");
 
-    // Get total employees and gender distribution
+
     const totalEmployees = employeeResult.length;
     const MaleEmployees = employeeResult.filter((emp) => JSON.parse(emp.employee_info).gender === "Male").length;
     const FemaleEmployees = employeeResult.filter((emp) => JSON.parse(emp.employee_info).gender === "Female").length;
 
-    // Calculate health-related data
+
     const ageDistribution = calculateAgeDistribution(employeeResult);
     const bmiData = calculateBMI(employeeResult);
     const prevalentHealthCondition = calculateConditionPrevalence(employeeResult);
-    const riskLevels = calculateRiskDistribution(employeeResult);
-    const HealthData = calculateFitnessHealthData(employeeResult); // This includes BP, cholesterol, and glucose levels
+    const riskLevels = calculateEmployeeRiskScores(employeeResult);
+    const HealthData = calculateFitnessHealthData(employeeResult);
     const WomanHealthChart = calculateWomanHealthChart(employeeResult);
     const satisfactionLevels = calculateSatisfactionLevels(employeeResult);
     const ServiceBenifit = calculateServicesBenefit(employeeResult);
     const ExpensesChart = calculateExpensesChart(employeeResult);
     const SectionWiseRiskDistribution = calculateRiskDistribution(employeeResult);
-    // const totalaverages = calculateHealthRisk(employeeResult)
 
-    // Return the report data for the company
     return {
       company: {
         id: company.id,
@@ -783,7 +968,6 @@ const getReportData = async (slug) => {
         HealthData,
         WomanHealthChart,
         ExpensesChart,
-        // totalaverages, 
         satisfactionLevels,
         SectionWiseRiskDistribution,
         ServiceBenifit,
@@ -795,172 +979,88 @@ const getReportData = async (slug) => {
     throw new Error("Error fetching report data");
   }
 };
-// const getReportData = async (slug) => {
-//   try {
-//     const companyResult = await db.query("SELECT * FROM companies WHERE url = ?", [slug]);
-//     if (!companyResult || companyResult.length === 0) {
-//       throw new Error("Company not found");
-//     }
 
-//     const company = companyResult[0];
-//     const employeeResult = await db.query("SELECT * FROM assessment_response WHERE company_slug = ?", [slug]);
-//     if (!employeeResult || employeeResult.length === 0) {
-//       throw new Error("No employees found for the company");
-//     }
-
-//     // Initialize employee counters and data containers
-//     const totalEmployees = employeeResult.length;
-//     let maleCount = 0;
-//     let femaleCount = 0;
-//     let validEmployees = [];
-    
-//     // Process employee data, parse employee_info only if valid
-//     employeeResult.forEach(emp => {
-//       let employeeInfo;
-//       try {
-//         employeeInfo = emp.employee_info ? JSON.parse(emp.employee_info) : null;
-//       } catch (err) {
-//         console.error(`Invalid JSON for employee ${emp.id}:`, err);
-//         return; // Skip this employee if JSON is malformed
-//       }
-      
-//       if (employeeInfo) {
-//         validEmployees.push(employeeInfo);
-//         if (employeeInfo.gender === "Male") maleCount++;
-//         if (employeeInfo.gender === "Female") femaleCount++;
-//       }
-//     });
-
-//     // If there are no valid employees after filtering
-//     if (validEmployees.length === 0) {
-//       throw new Error("No valid employee data found.");
-//     }
-
-//     // Calculate health-related data
-//     const ageDistribution = calculateAgeDistribution(validEmployees);
-//     const bmiData = calculateBMI(validEmployees);
-//     const prevalentHealthCondition = calculateConditionPrevalence(validEmployees);
-//     const riskLevels = calculateRiskDistribution(validEmployees);
-//     const healthData = calculateFitnessHealthData(validEmployees);
-//     const womanHealthChart = calculateWomanHealthChart(validEmployees);
-//     const satisfactionLevels = calculateSatisfactionLevels(validEmployees);
-//     const serviceBenefit = calculateServicesBenefit(validEmployees);
-//     const expensesChart = calculateExpensesChart(validEmployees);
-//     const sectionWiseRiskDistribution = calculateRiskDistribution(validEmployees);
-
-//     // Return the report data
-//     return {
-//       company: {
-//         id: company.id,
-//         name: company.name,
-//         companyType: company.companyType,
-//         phoneNumber: company.phoneNumber,
-//         email: company.email,
-//         city: company.city,
-//         url: company.url,
-//         totalEmployees,
-//         maleEmployees: maleCount,
-//         femaleEmployees: femaleCount,
-//         conditionPrevalence: prevalentHealthCondition,
-//         ageDistribution,
-//         bmiData,
-//         healthData,
-//         womanHealthChart,
-//         expensesChart,
-//         satisfactionLevels,
-//         sectionWiseRiskDistribution,
-//         serviceBenefit,
-//         riskLevels,
-//       },
-//     };
-//   } catch (error) {
-//     console.error("Error fetching report data:", error);
-//     throw new Error("Error fetching report data");
-//   }
-// };
+const generatePdfReport = async (reportData) => {
+  const { company } = reportData;
 
 
-// const generatePdfReport = async (reportData) => {
-//   const { company } = reportData;
+  const docDefinition = {
+    content: [
+      { text: `Health Report for ${company.name}`, style: 'header' },
+      { text: `Company Type: ${company.companyType}`, style: 'subheader' },
+      { text: `Location: ${company.city}`, style: 'subheader' },
+      { text: `Contact: ${company.phoneNumber} | ${company.email}`, style: 'subheader' },
 
-//   // Define document definition for pdfmake
-//   const docDefinition = {
-//     content: [
-//       { text: `Health Report for ${company.name}`, style: 'header' },
-//       { text: `Company Type: ${company.companyType}`, style: 'subheader' },
-//       { text: `Location: ${company.city}`, style: 'subheader' },
-//       { text: `Contact: ${company.phoneNumber} | ${company.email}`, style: 'subheader' },
-      
-//       { text: 'Employee Overview', style: 'sectionHeader' },
-//       {
-//         table: {
-//           body: [
-//             ['Total Employees', company.totalEmployees],
-//             ['Male Employees', company.MaleEmployees],
-//             ['Female Employees', company.FemaleEmployees]
-//           ]
-//         }
-//       },
+      { text: 'Employee Overview', style: 'sectionHeader' },
+      {
+        table: {
+          body: [
+            ['Total Employees', company.totalEmployees],
+            ['Male Employees', company.MaleEmployees],
+            ['Female Employees', company.FemaleEmployees]
+          ]
+        }
+      },
 
-//       { text: 'Health Data Overview', style: 'sectionHeader' },
-//       { text: `Age Distribution: ${JSON.stringify(company.ageDistribution)}`, style: 'content' },
-//       { text: `BMI Data: ${JSON.stringify(company.bmiData)}`, style: 'content' },
-//       { text: `Prevalent Health Conditions: ${JSON.stringify(company.conditionPrevalence)}`, style: 'content' },
-//       { text: `Risk Levels: ${JSON.stringify(company.riskLevels)}`, style: 'content' },
+      { text: 'Health Data Overview', style: 'sectionHeader' },
+      { text: `Age Distribution: ${JSON.stringify(company.ageDistribution)}`, style: 'content' },
+      { text: `BMI Data: ${JSON.stringify(company.bmiData)}`, style: 'content' },
+      { text: `Prevalent Health Conditions: ${JSON.stringify(company.conditionPrevalence)}`, style: 'content' },
+      { text: `Risk Levels: ${JSON.stringify(company.riskLevels)}`, style: 'content' },
 
-//       { text: 'Women\'s Health', style: 'sectionHeader' },
-//       { text: `Women's Health Data: ${JSON.stringify(company.WomanHealthChart)}`, style: 'content' },
+      { text: 'Women\'s Health', style: 'sectionHeader' },
+      { text: `Women's Health Data: ${JSON.stringify(company.WomanHealthChart)}`, style: 'content' },
 
-//       { text: 'Satisfaction and Services', style: 'sectionHeader' },
-//       { text: `Satisfaction Levels: ${JSON.stringify(company.satisfactionLevels)}`, style: 'content' },
-//       { text: `Service Benefits: ${JSON.stringify(company.ServiceBenifit)}`, style: 'content' },
+      { text: 'Satisfaction and Services', style: 'sectionHeader' },
+      { text: `Satisfaction Levels: ${JSON.stringify(company.satisfactionLevels)}`, style: 'content' },
+      { text: `Service Benefits: ${JSON.stringify(company.ServiceBenifit)}`, style: 'content' },
 
-//       { text: 'Financial Insights', style: 'sectionHeader' },
-//       { text: `Expenses Chart: ${JSON.stringify(company.ExpensesChart)}`, style: 'content' },
+      { text: 'Financial Insights', style: 'sectionHeader' },
+      { text: `Expenses Chart: ${JSON.stringify(company.ExpensesChart)}`, style: 'content' },
 
-//       { text: 'Theoretical Analysis', style: 'sectionHeader' },
-//       { text: 'Based on the collected data, the company can evaluate the following...', style: 'content' }
-//     ],
-//     styles: {
-//       header: {
-//         fontSize: 18,
-//         bold: true,
-//         alignment: 'center',
-//         margin: [0, 0, 0, 10]
-//       },
-//       subheader: {
-//         fontSize: 14,
-//         italics: true,
-//         margin: [0, 10, 0, 5]
-//       },
-//       sectionHeader: {
-//         fontSize: 16,
-//         bold: true,
-//         margin: [0, 15, 0, 5]
-//       },
-//       content: {
-//         fontSize: 12,
-//         margin: [0, 5, 0, 5]
-//       }
-//     }
-//   };
+      { text: 'Theoretical Analysis', style: 'sectionHeader' },
+      { text: 'Based on the collected data, the company can evaluate the following...', style: 'content' }
+    ],
+    styles: {
+      header: {
+        fontSize: 18,
+        bold: true,
+        alignment: 'center',
+        margin: [0, 0, 0, 10]
+      },
+      subheader: {
+        fontSize: 14,
+        italics: true,
+        margin: [0, 10, 0, 5]
+      },
+      sectionHeader: {
+        fontSize: 16,
+        bold: true,
+        margin: [0, 15, 0, 5]
+      },
+      content: {
+        fontSize: 12,
+        margin: [0, 5, 0, 5]
+      }
+    }
+  };
 
-//   const pdfDoc = pdfmake.createPdf(docDefinition);
+  const pdfDoc = pdfmake.createPdf(docDefinition);
 
-//   const pdfPath = path.join(__dirname, 'report.pdf');
-  
-//   // Save the PDF to a file
-//   return new Promise((resolve, reject) => {
-//     pdfDoc.getBuffer((buffer) => {
-//       fs.writeFile(pdfPath, buffer, (err) => {
-//         if (err) return reject(err);
-//         resolve(pdfPath);
-//       });
-//     });
-//   });
-// };
+  const pdfPath = path.join(__dirname, 'report.pdf');
+
+
+  return new Promise((resolve, reject) => {
+    pdfDoc.getBuffer((buffer) => {
+      fs.writeFile(pdfPath, buffer, (err) => {
+        if (err) return reject(err);
+        resolve(pdfPath);
+      });
+    });
+  });
+};
 
 module.exports = {
   getReportData,
-  // generatePdfReport,
+  generatePdfReport,
 };

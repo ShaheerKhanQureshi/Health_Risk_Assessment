@@ -1,0 +1,50 @@
+2025-01-17T12:53:12.566Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T12:56:38.166Z [info]: POST /api/auth/login 
+2025-01-17T12:56:40.408Z [info]: GET /api/dashboard/sessionByCompany 
+2025-01-17T12:56:40.419Z [info]: GET /api/dashboard/totalUsers 
+2025-01-17T12:56:40.477Z [info]: GET /api/dashboard/totalCompanies 
+2025-01-17T12:56:40.507Z [info]: GET /api/dashboard/fitnessHealthData 
+2025-01-17T12:56:40.536Z [info]: GET /api/dashboard/userLogs 
+2025-01-17T12:56:43.897Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2025-01-17T13:03:25.265Z [info]: GET /api/auth/all?page=1&limit=8&sort=newest 
+2025-01-17T13:07:51.033Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T13:08:00.596Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T13:08:00.693Z [info]: Shutting down gracefully... 
+2025-01-17T14:36:35.532Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T14:41:47.660Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T14:41:52.032Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T14:42:08.117Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T14:42:10.800Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T14:42:12.811Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T14:42:35.569Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T14:42:36.876Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T14:42:41.034Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T14:42:47.954Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T14:42:51.463Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T14:48:26.381Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T14:48:45.289Z [info]: GET /api/auth/createAdmin 
+2025-01-17T14:53:21.419Z [info]: POST /api/auth/createAdmin 
+2025-01-17T14:53:43.611Z [info]: POST /api/auth/createAdmin 
+2025-01-17T14:54:00.923Z [info]: POST /api/auth/createAdmin 
+2025-01-17T14:54:10.814Z [info]: POST /api/auth/createAdmin 
+2025-01-17T14:56:02.006Z [info]: POST /api/auth/deleteuser/12 
+2025-01-17T14:57:30.675Z [info]: POST /api/auth/deleteuser/1?assessment_id=12 
+2025-01-17T14:57:42.051Z [info]: POST /api/auth/deleteuser/1:?assessment_id=12 
+2025-01-17T14:58:03.683Z [info]: POST /api/auth/deleteuser/1?id=12 
+2025-01-17T14:58:11.824Z [info]: POST /api/auth/deleteuser/id=12 
+2025-01-17T14:58:52.793Z [info]: DELETE /api/auth/deleteuser/id=12 
+2025-01-17T14:59:09.034Z [info]: DELETE /api/auth/deleteuser/:userId=12 
+2025-01-17T14:59:59.098Z [info]: DELETE /api/users/deleteuser/:userId=12 
+2025-01-17T15:00:18.306Z [info]: DELETE /api/users/deleteuser/:Id=12 
+2025-01-17T15:00:33.610Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T15:00:37.328Z [info]: DELETE /api/users/deleteuser/:Id=12 
+2025-01-17T15:29:53.817Z [info]: POST /api/auth/login 
+2025-01-17T15:29:54.662Z [info]: GET /api/dashboard/sessionByCompany 
+2025-01-17T15:29:54.669Z [info]: GET /api/dashboard/totalUsers 
+2025-01-17T15:29:54.719Z [info]: GET /api/dashboard/totalCompanies 
+2025-01-17T15:29:54.740Z [info]: GET /api/dashboard/fitnessHealthData 
+2025-01-17T15:29:54.765Z [info]: GET /api/dashboard/userLogs 
+2025-01-17T15:29:57.133Z [info]: GET /api/companies?page=1&limit=8&sort=newest 
+2025-01-17T15:30:34.853Z [info]: POST /api/companies 
+2025-01-17T15:39:51.555Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 
+2025-01-17T15:40:16.650Z [info]: Server running on  http://backend.spectrumenterprises.com.pk:5000 

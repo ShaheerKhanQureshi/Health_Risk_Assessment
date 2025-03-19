@@ -18,7 +18,7 @@ router.get("/companies/:slug", roleAuth(["admin", "sub-admin"]), (req, res) => {
           console.error("Database error:", err); // This should log the specific error message
           return res.status(500).json({ error: err.message });
         }
-        console.log("Query results:", results); // Log the results to confirm if any records are returned
+        // console.log("Query results:", results); 
         return res.json(results);
       }
     );

@@ -5,7 +5,7 @@ const roleAuth = (roles) => {
         const token = req.headers.authorization?.split(' ')[1];
 
         if (!token) {
-            console.log("Authorization token not provided."); // Log for troubleshooting
+            console.log("Authorization token not provided."); 
             return res.status(401).json({ message: 'Unauthorized' });
         }
 
@@ -15,7 +15,7 @@ const roleAuth = (roles) => {
                 return res.status(403).json({ message: 'Forbidden' });
             }
 
-            console.log("Decoded token:", decoded); // Log decoded token for verification
+            
 
             if (!roles.includes(decoded.role)) {
                 console.log(`User role '${decoded.role}' is not authorized. Expected roles: ${roles.join(', ')}`); // Log unauthorized access

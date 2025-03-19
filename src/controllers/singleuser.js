@@ -1,5 +1,7 @@
-const db = require('../config/db');  
+const db = require('../config/db');
 const PDFDocument = require('pdfkit');
+const path = require('path'); // For path resolution
+const fs = require('fs');
 // Function to calculate age from date of birth
 const calculateAge = (dob) => {
   const birthDate = new Date(dob);
@@ -37,7 +39,7 @@ const getUserHealthReport = async (req, res) => {
   }
 
   try {
-    const company = await getCompanyBySlug(company_slug);  
+    const company = await getCompanyBySlug(company_slug);
     if (!company) {
       return res.status(404).json({
         success: false,
@@ -84,7 +86,7 @@ const getUserHealthReport = async (req, res) => {
 
     const { cholesterol_level, cholesterolRisk } = getCholesterolRisk(healthAssessment);
 
-    const { totalScore, sectionScores , riskMessage } = getSectionScoresWithDetails(healthAssessment);
+    const { totalScore, sectionScores, riskMessage } = getSectionScoresWithDetails(healthAssessment);
 
     return res.json({
       success: true,
@@ -115,14 +117,19 @@ const getUserHealthReport = async (req, res) => {
   }
 };
 
-
-
+// const calculateBMI = (weight, height) => {
+//   if (!height || !weight) return null;
+//   const heightInMeters = height / 100; 
+//   return (weight / (heightInMeters * heightInMeters)).toFixed(2);
+// };
 const calculateBMI = (weight, height) => {
   if (!height || !weight) return null;
-  const heightInMeters = height / 100; 
+  const feet = Math.floor(height);
+  const inches = (height - feet) * 10;
+  const totalInches = (feet * 12) + inches;
+  const heightInMeters = totalInches * 0.0254;
   return (weight / (heightInMeters * heightInMeters)).toFixed(2);
 };
-
 
 const getBMICategory = (bmi) => {
   if (bmi < 18.5) return "Below Normal";
@@ -131,13 +138,114 @@ const getBMICategory = (bmi) => {
   else return "Obesity";
 };
 
+// const getBloodPressureData = (healthAssessment) => {
+//   const bpData = healthAssessment?.find(item => item.subHeading === "Personal Medical History")
+//     ?.questions?.find(q => q.questionId === "PMH14" && q.response);
+
+//   if (!bpData || !bpData.response) {
+//     return { bpValue: null, bpInterpretation: "Unknown" };
+//   }
+
+//   const response = bpData.response.trim().toLowerCase();
+
+//   const bpCategories = {
+//     "140 mmhg or higher / 90 mmhg or higher": {
+//       bpValue: "140+/90+",
+//       bpInterpretation: "High Blood Pressure (Hypertension Stage 2)"
+//     },
+//     "130-139 mm hg / 85-89 mmhg": {
+//       bpValue: "130-139 / 85-89",
+//       bpInterpretation: "High Blood Pressure (Hypertension Stage 1)"
+//     },
+//     "120-129 mmhg / 80-84 mmhg": {
+//       bpValue: "120-129 / 80-84",
+//       bpInterpretation: "Elevated Blood Pressure"
+//     },
+//     "80-119 mmhg / 60-79 mmhg": {
+//       bpValue: "Normal",
+//       bpInterpretation: "Normal Blood Pressure"
+//     },
+//     "less than 80 mmhg / less than 60 mmhg": {
+//       bpValue: "Low",
+//       bpInterpretation: "Low Blood Pressure"
+//     },
+//     "i don't know": {
+//       bpValue: "Unknown",
+//       bpInterpretation: "Blood Pressure Unknown"
+//     }
+//   };
+
+//   if (bpCategories[response]) {
+//     return bpCategories[response];
+//   }
+
+//   return { bpValue: null, bpInterpretation: "Unknown" };
+// };
+
+
+// const getDiabetesRisk = (healthAssessment) => {
+//   const glucoseData = healthAssessment?.find(item => item.subHeading === "Personal Medical History")
+//     ?.questions?.find(q => q.questionId === "PMH15" && q.response);  // Directly check questionId
+
+//   if (!glucoseData || !glucoseData.response) return { glucose_level: null, diabetesRisk: "Unknown" };
+
+//   let glucose_level;
+
+//   if (typeof glucoseData.response === 'string') {
+//     glucose_level = parseFloat(glucoseData.response.replace(/[^\d.-]/g, ''));
+//   } else if (typeof glucoseData.response === 'number') {
+//     glucose_level = glucoseData.response;
+//   } else {
+//     glucose_level = null;
+//   }
+
+//   if (glucose_level === null || isNaN(glucose_level)) {
+//     return { glucose_level: null, diabetesRisk: "Unknown" };
+//   }
+
+//   const risk = glucose_level >= 150 ? "High Risk" : "Normal";
+
+//   return { glucose_level, diabetesRisk: risk };
+// };
+
+
+// const getCholesterolRisk = (healthAssessment) => {
+//   const cholesterolData = healthAssessment?.find(item => item.subHeading === "Personal Medical History")
+//     ?.questions?.find(q => q.questionId === "PMH16" && q.response);
+
+//   if (!cholesterolData || !cholesterolData.response) return { cholesterol_level: null, cholesterolRisk: "Unknown" };
+
+//   const response = cholesterolData.response.trim().toLowerCase();
+
+//   if (response === "greater than 3") {
+//     return { cholesterol_level: 3.1, cholesterolRisk: "High Risk" };
+//   }
+//   if (response === "2.5-3") {
+//     return { cholesterol_level: (2.5 + 3) / 2, cholesterolRisk: "High Risk" };
+//   }
+//   if (response === "2-2.5") {
+//     return { cholesterol_level: (2 + 2.5) / 2, cholesterolRisk: "Moderate Risk" };
+//   }
+//   if (response === "1.5-2") {
+//     return { cholesterol_level: (1.5 + 2) / 2, cholesterolRisk: "Low Risk" };
+//   }
+//   if (response === "less than 1.5") {
+//     return { cholesterol_level: 1.4, cholesterolRisk: "Low Risk" };
+//   }
+//   if (response === "i don't know") {
+//     return { cholesterol_level: null, cholesterolRisk: "Unknown" };
+//   }
+
+//   return { cholesterol_level: null, cholesterolRisk: "Unknown" };
+// };
+
 
 const getBloodPressureData = (healthAssessment) => {
   const bpData = healthAssessment?.find(item => item.subHeading === "Personal Medical History")
     ?.questions?.find(q => q.questionId === "PMH14" && q.response);
 
   if (!bpData || !bpData.response) {
-    return { bpValue: null, bpInterpretation: "Unknown" };
+    return { bpValue: "Unknown", bpInterpretation: "Blood Pressure Unknown" };
   }
 
   const response = bpData.response.trim().toLowerCase();
@@ -169,118 +277,102 @@ const getBloodPressureData = (healthAssessment) => {
     }
   };
 
-  if (bpCategories[response]) {
-    return bpCategories[response];
-  }
-
-  return { bpValue: null, bpInterpretation: "Unknown" };
+  return bpCategories[response] || { bpValue: "Unknown", bpInterpretation: "Blood Pressure Unknown" };
 };
-
 
 const getDiabetesRisk = (healthAssessment) => {
   const glucoseData = healthAssessment?.find(item => item.subHeading === "Personal Medical History")
-    ?.questions?.find(q => q.questionId === "PMH15" && q.response);  // Directly check questionId
+    ?.questions?.find(q => q.questionId === "PMH15" && q.response);
 
-  if (!glucoseData || !glucoseData.response) return { glucose_level: null, diabetesRisk: "Unknown" };
-
-  let glucose_level;
-
-  if (typeof glucoseData.response === 'string') {
-    glucose_level = parseFloat(glucoseData.response.replace(/[^\d.-]/g, ''));
-  } else if (typeof glucoseData.response === 'number') {
-    glucose_level = glucoseData.response;
-  } else {
-    glucose_level = null;
+  if (!glucoseData || !glucoseData.response) {
+    return { glucose_level: "Unknown", glucoseInterpretation: "Glucose Unknown" };
   }
 
-  if (glucose_level === null || isNaN(glucose_level)) {
-    return { glucose_level: null, diabetesRisk: "Unknown" };
-  }
+  const response = glucoseData.response.trim().toLowerCase();
 
-  const risk = glucose_level >= 150 ? "High Risk" : "Normal";
+  const glucoseCategories = {
+    "150 mg/dl or higher": {
+      glucose_level: "150+",
+      glucoseInterpretation: "High Risk"
+    },
+    "126-149 mg/dl": {
+      glucose_level: "126-149",
+      glucoseInterpretation: "Pre-Diabetes"
+    },
+    "100-125 mg/dl": {
+      glucose_level: "100-125",
+      glucoseInterpretation: "Borderline High"
+    },
+    "70-99 mg/dl": {
+      glucose_level: "70-99",
+      glucoseInterpretation: "Normal"
+    },
+    "less than 70 mg/dl": {
+      glucose_level: "Less than 70",
+      glucoseInterpretation: "Low Risk"
+    },
+    "i don't know": {
+      glucose_level: "Unknown",
+      glucoseInterpretation: "Glucose Unknown"
+    }
+  };
 
-  return { glucose_level, diabetesRisk: risk };
+  return glucoseCategories[response] || { glucose_level: "Unknown", glucoseInterpretation: "Glucose Unknown" };
 };
-
 
 const getCholesterolRisk = (healthAssessment) => {
   const cholesterolData = healthAssessment?.find(item => item.subHeading === "Personal Medical History")
     ?.questions?.find(q => q.questionId === "PMH16" && q.response);
 
-  if (!cholesterolData || !cholesterolData.response) return { cholesterol_level: null, cholesterolRisk: "Unknown" };
+  if (!cholesterolData || !cholesterolData.response) {
+    return { cholesterol_level: "Unknown", cholesterolInterpretation: "Cholesterol Unknown" };
+  }
 
   const response = cholesterolData.response.trim().toLowerCase();
 
-  if (response === "greater than 3") {
-    return { cholesterol_level: 3.1, cholesterolRisk: "High Risk" };
-  } 
-  if (response === "2.5-3") {
-    return { cholesterol_level: (2.5 + 3) / 2, cholesterolRisk: "High Risk" };
-  }
-  if (response === "2-2.5") {
-    return { cholesterol_level: (2 + 2.5) / 2, cholesterolRisk: "Moderate Risk" };
-  }
-  if (response === "1.5-2") {
-    return { cholesterol_level: (1.5 + 2) / 2, cholesterolRisk: "Low Risk" };
-  }
-  if (response === "less than 1.5") {
-    return { cholesterol_level: 1.4, cholesterolRisk: "Low Risk" };
-  }
-  if (response === "i don't know") {
-    return { cholesterol_level: null, cholesterolRisk: "Unknown" };
-  }
+  const cholesterolCategories = {
+    "greater than 3": {
+      cholesterol_level: "3.1+",
+      cholesterolInterpretation: "Very High Risk"
+    },
+    "2.5-3": {
+      cholesterol_level: (2.5 + 3) / 2,
+      cholesterolInterpretation: "High Risk"
+    },
+    "2-2.5": {
+      cholesterol_level: (2 + 2.5) / 2,
+      cholesterolInterpretation: "Moderate Risk"
+    },
+    "1.5-2": {
+      cholesterol_level: (1.5 + 2) / 2,
+      cholesterolInterpretation: "Low Risk"
+    },
+    "less than 1.5": {
+      cholesterol_level: 1.4,
+      cholesterolInterpretation: "Very Low Risk"
+    },
+    "i don't know": {
+      cholesterol_level: "Unknown",
+      cholesterolInterpretation: "Cholesterol Unknown"
+    }
+  };
 
-  return { cholesterol_level: null, cholesterolRisk: "Unknown" };
+  return cholesterolCategories[response] || { cholesterol_level: "Unknown", cholesterolInterpretation: "Cholesterol Unknown" };
 };
 
 
-// const getSectionScoresWithDetails = (healthAssessment) => {
-//   let totalScore = 0;
-//   let sectionScores = [];
-
-//   // Loop over the health assessment data and calculate scores for each section
-//   healthAssessment.forEach(item => {
-//     const sectionName = item.subHeading;
-//     let sectionScore = 0;
-
-//     let sectionDetails = {
-//       sectionName,
-//       score: 0,
-//     };
-
-//     sectionScore = item.questions.reduce((acc, q) => acc + (q.score || 0), 0);
-//     sectionDetails.score = sectionScore;
-//     totalScore += sectionScore;
-
-//     sectionScores.push(sectionDetails);
-//   });
-
-//   // Determine the risk message based on the total score
-//   let riskMessage = "";
-//   if (totalScore <= 80) {
-//     riskMessage = "You're in good health! Keep up the great work with your current habits. Continue focusing on preventive care to maintain your well-being.";
-//   } else if (totalScore <= 160) {
-//     riskMessage = "There are areas you could improve. Small lifestyle changes, along with proactive healthcare, can greatly benefit your long-term health.";
-//   } else if (totalScore <= 240) {
-//     riskMessage = "Potential health risks detected. It's important to take action soon to address these areas and improve your overall health.";
-//   } else if (totalScore <= 320) {
-//     riskMessage = "Your health may be at serious risk. Immediate lifestyle changes and professional guidance are recommended to improve your situation.";
-//   } else {
-//     riskMessage = "Urgent attention is needed. Critical health issues require immediate intervention and support from healthcare professionals.";
-//   }
-
-//   // Return the data with risk message
-//   return { totalScore, sectionScores, riskMessage };
-// };
 const getSectionScoresWithDetails = (healthAssessment) => {
   let totalScore = 0;
   let sectionScores = [];
 
-  // Loop over the health assessment data and calculate scores for each section
   healthAssessment.forEach(item => {
     const sectionName = item.subHeading;
-    let sectionScore = 0;
 
+    if (sectionName === "Personal Information" || sectionName === "Health Benefits and Expenditure") {
+      return;
+    }
+
+    let sectionScore = 0;
     let sectionDetails = {
       sectionName,
       score: 0,
@@ -292,59 +384,39 @@ const getSectionScoresWithDetails = (healthAssessment) => {
 
     sectionScores.push(sectionDetails);
   });
-
-  // Determine the risk message based on the total score
   let riskMessage = "";
   if (totalScore <= 80) {
-    riskMessage = "You're in good health!";
+    riskMessage = "Low Risk! You're in good health!";
   } else if (totalScore <= 160) {
-    riskMessage = "There are some areas where you could improve. ";
+    riskMessage = "Moderate Risk! There are some areas where you could improve.";
   } else if (totalScore <= 240) {
-    riskMessage = " This indicates potential health risks.";
+    riskMessage = "High Risk! This indicates potential health risks.";
   } else if (totalScore <= 320) {
-    riskMessage = " Your health may be at serious risk.";
+    riskMessage = "Very High Risk! Your health may be at serious risk.";
   } else {
     riskMessage = "Urgent attention is needed.";
   }
 
-  // Return the data with risk message
+
   return { totalScore, sectionScores, riskMessage };
 };
 
 const generateHealthReportPDF = async (company_slug, assessment_id, res) => {
-  const doc = new PDFDocument();
+  const doc = new PDFDocument({ margin: 30 });
   res.setHeader('Content-Type', 'application/pdf');
-  res.setHeader('Content-Disposition', 'attachment; filename=yourhealth_report.pdf');
-  
-  doc.pipe(res);
 
   try {
     const company = await getCompanyBySlug(company_slug);
-    if (!company) {
-      return res.status(404).json({ success: false, message: "Company not found" });
-    }
+    if (!company) throw new Error("Company not found");
 
-    const query = `
-      SELECT employee_info, health_assessment 
-      FROM assessment_response 
-      WHERE assessment_id = ? AND company_slug = ?;
-    `;
+    const query = "SELECT employee_info, health_assessment FROM assessment_response WHERE assessment_id = ? AND company_slug = ?";
     const [results] = await db.execute(query, [assessment_id, company_slug]);
+    if (results.length === 0) throw new Error("Assessment not found");
 
-    if (results.length === 0) {
-      return res.status(404).json({ success: false, message: "No data found for the provided assessment_id" });
-    }
+    const employeeInfo = JSON.parse(results[0].employee_info);
+    const healthAssessment = JSON.parse(results[0].health_assessment);
 
-    let employeeInfo, healthAssessment;
-    try {
-      employeeInfo = JSON.parse(results[0].employee_info);
-      healthAssessment = JSON.parse(results[0].health_assessment);
-    } catch (jsonErr) {
-      console.error("Error parsing data:", jsonErr.message);
-      return res.status(500).json({ success: false, message: "Error parsing data" });
-    }
-
-    const { dob, height, weight } = employeeInfo;
+    const { firstName = 'N/A', lastName = 'N/A', dob, height, weight } = employeeInfo;
     const age = calculateAge(dob);
     const bmi = calculateBMI(weight, height);
     const bmiCategory = getBMICategory(bmi);
@@ -354,86 +426,331 @@ const generateHealthReportPDF = async (company_slug, assessment_id, res) => {
     const { cholesterol_level, cholesterolRisk } = getCholesterolRisk(healthAssessment);
     const { totalScore, sectionScores, riskMessage } = getSectionScoresWithDetails(healthAssessment);
 
-    const data = {
-      fullName: employeeInfo.fullName,
-      age,
-      height,
-      weight,
-      bmi,
-      bmiCategory,
-      bpValue,
-      bpInterpretation,
-      glucose_level,
-      diabetesRisk,
-      cholesterol_level,
-      cholesterolRisk,
-      totalScore,
-      sectionScores,
-      riskMessage
-    };
-    
-    doc.fontSize(18).text('Health Assessment Report', { align: 'center', bold: true });
-    doc.moveDown(2);
-    
-    doc.fontSize(14).text('Employee Information', { underline: true, bold: true });
-    doc.moveDown(1);
-    
-    let fullName = data.firstNameName ? data.lastName : 'N/A';
-    if (fullName !== 'N/A') {
-      const nameParts = fullName.split(' ');
-      const firstName = nameParts[0] || 'N/A';
-      const lastName = nameParts.length > 1 ? nameParts[1] : 'N/A';
-      fullName = `${firstName} ${lastName}`;
-    }
-    
-    doc.fontSize(12).text(`Name: ${fullName}`);
-    doc.text(`Age: ${data.age || 'N/A'}`);
-    doc.text(`Height: ${data.height} cm`);
-    doc.text(`Weight: ${data.weight} kg`);
-    doc.moveDown(1);
-    
-    doc.text(`BMI: ${data.bmi} (${data.bmiCategory})`);
-    doc.text(`Blood Pressure: ${data.bpValue}`);
-    doc.text(`Interpretation: ${data.bpInterpretation}`);
-    doc.moveDown(1);
-    
-    doc.text(`Glucose Level: ${data.glucose_level} mg/dL`);
-    doc.text(`Diabetes Risk: ${data.diabetesRisk}`);
-    doc.moveDown(1);
-    
-    doc.text(`Cholesterol Level: ${data.cholesterol_level} mg/dL`);
-    doc.text(`Cholesterol Risk: ${data.cholesterolRisk}`);
-    doc.moveDown(1);
-    
-    doc.text(`Total Score: ${data.totalScore}`);
-    doc.text(`Risk Level: ${data.riskMessage}`);
-    doc.moveDown(1);
-    
-    doc.fontSize(14).text('Health Assessment Breakdown', { underline: true, bold: true });
-    doc.moveDown(1);
-    
-    sectionScores.forEach(section => {
-      doc.fontSize(12).text(`Section: ${section.sectionName } `,{bold: true});
-      doc.text(`Score: ${section.score}`);
-    });
-    
-    doc.moveDown(2);
-    doc.text('Thank you for completing your health assessment!', { align: 'center', italics: true });
-    doc.moveDown(1);
-    doc.text('This document is for informational purposes only.', { align: 'center', fontSize: 10 });
-    doc.text('For further details, please consult with your healthcare provider.', { align: 'center', fontSize: 10 });
-    doc.moveDown(1);
-    doc.text('Signature: ____________________________', { align: 'center' });
-    doc.text('Date: ________________________________', { align: 'center' });
-    
-    doc.end();
-    
+    const fileName = `${firstName}_${lastName}_${company.name}_health_assessment_report.pdf`;
 
+    res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+    doc.pipe(res);
+
+    doc.rect(50, 50, doc.page.width - 100, 40).stroke();
+    doc.fontSize(16).fillColor('black').text('Health Assessment Report', 50, 60, { align: 'center' });
+
+    doc.moveDown(2);
+    doc.fontSize(10).fillColor('black').text(
+      'This Health Assessment Report is designed to provide a detailed analysis of an individual’s health profile. It includes key metrics such as BMI, blood pressure, glucose levels, and other health indicators, assessed based on the latest standards. This report aims to help individuals and organizations identify potential health risks and promote well-being.',
+      { width: doc.page.width - 100, align: 'justify' }
+    );
+
+    doc.moveDown(0.5);
+    doc.fontSize(12).font('Helvetica-Bold').text('Employee Information', { underline: true });
+    doc.fontSize(10).font('Helvetica').fillColor('black');
+    doc.moveDown(0.5)
+    const employeeData = [
+      { label: 'Name', value: `${firstName} ${lastName}` },
+      { label: 'Age', value: `${age}` },
+      { label: 'Height', value: height ? `${Math.floor(height)} feet ${Math.round((height % 1) * 12)} inches` : 'N/A' },
+      { label: 'Weight', value: `${weight || 'N/A'} kg` },
+      { label: 'BMI', value: `${bmi} (${bmiCategory})` },
+    ];
+    employeeData.forEach((data) => {
+      doc.font('Helvetica-Bold').text(`${data.label}:`, { continued: true });
+      doc.font('Helvetica').text(` ${data.value}`, { lineGap: 2 });
+    });
+
+    doc.moveDown(0.5);
+    doc.fontSize(12).font('Helvetica-Bold').text('Health Data', { underline: true });
+    doc.moveDown(1);
+
+    doc.fontSize(10).font('Helvetica-Bold').text('Glucose Level:', { continued: true });
+    doc.font('Helvetica').fillColor('black').text(` ${glucose_level || 'N/A'} `);
+    doc.font('Helvetica-Bold').text('Interpretation:', { continued: true });
+    doc.font('Helvetica').text(` ${diabetesRisk || 'N/A'}`);
+
+    doc.moveDown(0.5);
+    doc.fontSize(10).font('Helvetica-Bold').text('Blood Pressure:', { continued: true });
+    doc.font('Helvetica').text(` ${bpValue || 'N/A'}`);
+    doc.font('Helvetica-Bold').text('Interpretation:', { continued: true });
+    doc.font('Helvetica').text(` ${bpInterpretation || 'N/A'}`);
+
+    doc.moveDown(1);
+    doc.fontSize(10).font('Helvetica-Bold').text('Cholesterol Level:', { continued: true });
+    doc.font('Helvetica').text(` ${cholesterol_level || 'N/A'} `);
+    doc.font('Helvetica-Bold').text('Interpretation:', { continued: true });
+    doc.font('Helvetica').text(` ${cholesterolRisk || 'N/A'}`);
+
+    doc.moveDown(1);
+    doc.fontSize(12).font('Helvetica-Bold').text('Section Wise Scoring', { underline: true });
+    doc.moveDown();
+
+    const startX = 50;
+    const startY = doc.y;
+    const colWidths = [250, 100, 200];
+    const rowHeight = 25;
+
+    doc.fontSize(10).font('Helvetica-Bold');
+    ['Sections', 'Total Score', 'Category'].forEach((header, i) => {
+      doc.text(header, startX + colWidths.slice(0, i).reduce((a, b) => a + b, 0), startY, {
+        width: colWidths[i],
+        align: 'center',
+      });
+    });
+
+    doc.fontSize(10).font('Helvetica').fillColor('black');
+    sectionScores.forEach((row, rowIndex) => {
+      const y = startY + rowHeight * (rowIndex + 1);
+      const category = getCategory(row.sectionName, row.score);
+
+      doc.text(row.sectionName, startX, y, { width: colWidths[0], align: 'center' });
+      doc.text(row.score, startX + colWidths[0], y, { width: colWidths[1], align: 'center' });
+      doc.text(category, startX + colWidths[0] + colWidths[1], y, { width: colWidths[2], align: 'center' });
+    });
+
+    const tableEndY = startY + rowHeight * (sectionScores.length + 1);
+    const spaceBelowTable = 20;
+    const leftMargin = 50;
+
+    if (tableEndY + spaceBelowTable + 60 > doc.page.height - 50) {
+      doc.addPage();
+      doc.moveTo(leftMargin, 50);
+    } else {
+      doc.moveTo(leftMargin, tableEndY + spaceBelowTable);
+    }
+
+    doc.fontSize(12)
+      .moveDown(1)
+      .font('Helvetica-Bold')
+      .fillColor('black')
+      .text('Total Score and Interpretation', leftMargin, doc.y, { underline: true });
+
+    doc.fontSize(12)
+      .moveDown(1)
+      .font('Helvetica')
+      .fillColor('black')
+      .text(`Total Score: ${totalScore}`, leftMargin);
+    doc.text(`Interpretation: ${riskMessage}`, leftMargin);
+
+    doc.end();
   } catch (err) {
-    console.error("Error in generateHealthReportPDF:", err.message);
-    return res.status(500).json({ success: false, message: "An error occurred while generating the report" });
+    console.error('Error during PDF generation:', err.message);
+    if (!res.headersSent) {
+      res.status(500).json({ success: false, message: 'An error occurred while generating the report.' });
+    }
   }
 };
+const getCategory = (sectionName, score) => {
+  const categories = {
+    'Personal Health Habits': [
+      { range: [0, 10], category: 'Healthy Habits' },
+      { range: [11, 20], category: 'Good Habits' },
+      { range: [21, 30], category: 'Moderately Healthy Habits' },
+      { range: [31, 40], category: 'Risky Habits (High Risk)' },
+      { range: [41, 50], category: 'Unhealthy Habits' },
+    ],
+    'Personal Medical History': [
+      { range: [0, 30], category: 'Healthy Records' },
+      { range: [31, 60], category: 'Mild Risk' },
+      { range: [61, 90], category: 'Moderate Risk' },
+      { range: [91, 120], category: 'Elevated Risk' },
+      { range: [121, 156], category: 'High Risk' },
+    ],
+    'Women Health': [
+      { range: [0, 10], category: 'Optimal Health' },
+      { range: [11, 20], category: 'Moderate Risk' },
+      { range: [21, 23], category: 'High Risk' },
+    ],
+    'Lifestyle and Diet': [
+      { range: [0, 10], category: 'Healthy Lifestyle and Diet' },
+      { range: [11, 20], category: 'Balanced Lifestyle and Diet Risk' },
+      { range: [21, 31], category: 'Unhealthy Lifestyle and Diet' },
+    ],
+    'Mental and Emotional Health Risk': [
+      { range: [0, 8], category: 'Mental Fortitude' },
+      { range: [9, 16], category: 'Stable but Sensitive' },
+      { range: [17, 24], category: 'Vulnerable to Stress' },
+      { range: [25, 32], category: 'Mental Health at Risk' },
+      { range: [33, 40], category: 'Critical Mental Health Concern' },
+    ],
+    'Occupational Health Risk': [
+      { range: [0, 20], category: 'Optimal Work Life Balance' },
+      { range: [21, 40], category: 'Generally Good Health' },
+      { range: [41, 60], category: 'Moderate Risk' },
+      { range: [61, 80], category: 'High Risk of Occupational Strain' },
+      { range: [81, 100], category: 'Critical Occupational Health Concern' },
+    ],
+    'Burnout at Work': [
+      { range: [0, 20], category: 'Low Risk of Burnout' },
+      { range: [21, 40], category: 'Moderate Risk of Burnout' },
+      { range: [41, 60], category: 'Noticeable Risk of Burnout' },
+      { range: [61, 80], category: 'High Risk of Burnout' },
+      { range: [81, 100], category: 'Severe Burnout' },
+    ],
+  };
+
+  const sectionRanges = categories[sectionName];
+  if (!sectionRanges) return 'Unknown';
+
+  for (let i = 0; i < sectionRanges.length; i++) {
+    const { range, category } = sectionRanges[i];
+    if (score >= range[0] && score <= range[1]) {
+      return category;
+    }
+  }
+
+  return 'Unknown';
+};
+
+// const generateHealthReportPDF = async (company_slug, assessment_id, res) => {
+//   const doc = new PDFDocument({ margin: 30 });
+//   res.setHeader('Content-Type', 'application/pdf');
+
+//   try {
+//     const company = await getCompanyBySlug(company_slug);
+//     if (!company) throw new Error("Company not found");
+
+//     const query = "SELECT employee_info, health_assessment FROM assessment_response WHERE assessment_id = ? AND company_slug = ?";
+//     const [results] = await db.execute(query, [assessment_id, company_slug]);
+//     if (results.length === 0) throw new Error("Assessment not found");
+
+//     const employeeInfo = JSON.parse(results[0].employee_info);
+//     const healthAssessment = JSON.parse(results[0].health_assessment);
+
+//     const { firstName = 'N/A', lastName = 'N/A', dob, height, weight } = employeeInfo;
+//     const age = calculateAge(dob);
+//     const bmi = calculateBMI(weight, height);
+//     const bmiCategory = getBMICategory(bmi);
+
+//     const { bpValue, bpInterpretation } = getBloodPressureData(healthAssessment);
+//     const { glucose_level, diabetesRisk } = getDiabetesRisk(healthAssessment);
+//     const { cholesterol_level, cholesterolRisk } = getCholesterolRisk(healthAssessment);
+//     const { totalScore, sectionScores, riskMessage } = getSectionScoresWithDetails(healthAssessment);
+
+//     // Generate a custom file name with employee name and company name
+//     const fileName = `${firstName}_${lastName}_${company.name}_health_assessment_report.pdf`;
+
+//     res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
+//     doc.pipe(res);
+
+//     // Title with Center Alignment
+//     doc.rect(50, 50, doc.page.width - 100, 40).stroke();
+//     doc.fontSize(18).fillColor('black').text('Health Assessment Report', 50, 60, { align: 'center' });
+
+//     // Introduction Paragraph
+//     doc.moveDown(1);
+//     doc.fontSize(10).fillColor('black').text(
+//       'This Health Assessment Report is designed to provide a detailed analysis of an individual’s health profile. It includes key metrics such as BMI, blood pressure, glucose levels, and other health indicators, assessed based on the latest standards. This report aims to help individuals and organizations identify potential health risks and promote well-being.',
+//       { width: doc.page.width - 100, align: 'justify' }
+//     );
+
+//     // Employee Info Section with Proper Alignment and Spacing
+//     doc.moveDown(0.5);
+//     doc.fontSize(12).font('Helvetica-Bold').text('Employee Information', { underline: true });
+//     doc.fontSize(10).font('Helvetica').fillColor('black');
+//     doc.moveDown(0.5)
+//     const employeeData = [
+//       { label: 'Name', value: `${firstName} ${lastName}` },
+//       { label: 'Age', value: `${age}` },
+//       { label: 'Height', value: height ? `${Math.floor(height)} feet ${Math.round((height % 1) * 12)} inches` : 'N/A' },
+//       { label: 'Weight', value: `${weight || 'N/A'} kg` },
+//       { label: 'BMI', value: `${bmi} (${bmiCategory})` },
+//     ];
+//     employeeData.forEach((data) => {
+//       doc.font('Helvetica-Bold').text(`${data.label}:`, { continued: true });
+//       doc.font('Helvetica').text(` ${data.value}`, { lineGap: 2 });
+//     });
+
+//     // Health Data Section
+//     doc.moveDown(0.5);
+//     doc.fontSize(12).font('Helvetica-Bold').text('Health Data', { underline: true });
+//     doc.moveDown(1);
+
+//     // Glucose Level
+//     doc.fontSize(10).font('Helvetica-Bold').text('Glucose Level:', { continued: true });
+//     doc.font('Helvetica').fillColor('black').text(` ${glucose_level || 'N/A'} mg/dL`);
+//     doc.font('Helvetica-Bold').text('Interpretation:', { continued: true });
+//     doc.font('Helvetica').text(` ${diabetesRisk || 'N/A'}`);
+
+//     // Blood Pressure
+//     doc.moveDown(0.5);
+//     doc.fontSize(10).font('Helvetica-Bold').text('Blood Pressure:', { continued: true });
+//     doc.font('Helvetica').text(` ${bpValue || 'N/A'}`);
+//     doc.font('Helvetica-Bold').text('Interpretation:', { continued: true });
+//     doc.font('Helvetica').text(` ${bpInterpretation || 'N/A'}`);
+
+//     // Cholesterol Level
+//     doc.moveDown(1);
+//     doc.fontSize(10).font('Helvetica-Bold').text('Cholesterol Level:', { continued: true });
+//     doc.font('Helvetica').text(` ${cholesterol_level || 'N/A'} mg/dL`);
+//     doc.font('Helvetica-Bold').text('Interpretation:', { continued: true });
+//     doc.font('Helvetica').text(` ${cholesterolRisk || 'N/A'}`);
+
+//     // Section Wise Scoring Table
+//     doc.moveDown(1);
+//     doc.fontSize(12).font('Helvetica-Bold').text('Section Wise Scoring', { underline: true });
+//     doc.moveDown();
+
+//     // Table Headers and Rows
+//     const startX = 50;
+//     const startY = doc.y;
+//     const colWidths = [250, 100, 200];
+//     const rowHeight = 25;
+
+//     // Headers
+//     doc.fontSize(10).font('Helvetica-Bold');
+//     ['Sections', 'Total Score', 'Category'].forEach((header, i) => {
+//       doc.text(header, startX + colWidths.slice(0, i).reduce((a, b) => a + b, 0), startY, {
+//         width: colWidths[i],
+//         align: 'center',
+//       });
+//     });
+
+//     // Rows
+//     doc.fontSize(12).font('Helvetica').fillColor('black');
+//     sectionScores.forEach((row, rowIndex) => {
+//       const y = startY + rowHeight * (rowIndex + 1);
+//       const category = getCategory(row.sectionName, row.score);
+
+//       doc.text(row.sectionName, startX, y, { width: colWidths[0], align: 'center' });
+//       doc.text(row.score, startX + colWidths[0], y, { width: colWidths[1], align: 'center' });
+//       doc.text(category, startX + colWidths[0] + colWidths[1], y, { width: colWidths[2], align: 'center' });
+//     });
+//     // Adjust positioning for Total Score and Interpretation
+//     const tableEndY = startY + rowHeight * (sectionScores.length + 1);
+//     const spaceBelowTable = 20; // Space after the table
+//     const leftMargin = 50; // Same margin as other headings
+
+//     // Ensure enough space exists; otherwise, add a new page
+//     if (tableEndY + spaceBelowTable + 60 > doc.page.height - 50) {
+//       doc.addPage();
+//       doc.moveTo(leftMargin, 50); // Move to top-left of the new page
+//     } else {
+//       doc.moveTo(leftMargin, tableEndY + spaceBelowTable); // Continue below the table
+//     }
+
+//     // Add "Total Score and Interpretation" heading
+//     doc.fontSize(14)
+//     doc.moveDown(2)
+//       .font('Helvetica-Bold')
+//       .fillColor('black')
+//       .text('Total Score and Interpretation', leftMargin, doc.y, { underline: true });
+
+//     // Add score and interpretation
+//     doc.fontSize(12)
+//     doc.moveDown(1)
+//       .font('Helvetica')
+//       .fillColor('black')
+//       .text(`Total Score: ${totalScore}`, leftMargin);
+//     doc.text(`Interpretation: ${riskMessage}`, leftMargin);
+
+//     doc.end();
+//   } catch (err) {
+//     console.error('Error during PDF generation:', err.message);
+//     if (!res.headersSent) {
+//       res.status(500).json({ success: false, message: 'An error occurred while generating the report.' });
+//     }
+//   }
+// };
+
+// Function to get the category for each section score
+
 
 module.exports = {
   getUserHealthReport,

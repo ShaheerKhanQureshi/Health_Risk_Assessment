@@ -2,51 +2,8 @@
 const { v4: uuidv4 } = require("uuid"); // Ensure UUID import is correct
 const db = require("../config/db"); // Database connection
 const generateSlug = (name) => name.toLowerCase().replace(/\s+/g, "-"); // Example slug generator
-
-const baseUrl = process.env.BASE_URL || "http://localhost:3000";
-
-// const createCompany = async (req, res) => {
-//   const { name, companyType, phoneNumber, email, city } = req.body;
-
-//   const slug = generateSlug(name);
-
-//   try {
-//     logger.info("Checking for existing slug...");
-//     const [results] = await db.query("SELECT * FROM companies WHERE url = ?", [
-//       slug,
-//     ]);
-
-//     if (results.length > 0) {
-//       logger.warn(`Slug already exists for name: ${name}`);
-//       return res
-//         .status(400)
-//         .json({
-//           message: "Slug already exists. Please choose a different name.",
-//         });
-//     }
-
-//     logger.info("Inserting new company into database...");
-//     const result = await db.query(
-//       "INSERT INTO companies (name, companyType, phoneNumber, email, city, url) VALUES (?, ?, ?, ?, ?, ?)",
-//       [name, companyType, phoneNumber, email, city, slug]
-//     );
-
-//     logger.info("Inserting form structure for company...");
-//     //   await db.query('INSERT INTO form_structure (company_id) VALUES (?)', [id]);
-
-//     const companyFormLink = `${baseUrl}/form/${slug}`;
-//     res.status(201).json({
-//       message: "Company and form added successfully",
-//       result,
-//       slug: companyFormLink,
-//     });
-
-//     logger.info(`Company created successfully with slug: ${slug}`);
-//   } catch (error) {
-//     logger.error("Error creating company:", error);
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// };
+const logger = require('../utils/logger');
+const baseUrl = process.env.BASE_URL || "http://dashbaord.themeantorhealth.com";
 
 const createCompanyAndSendEmail = async (req, res) => {
   const { name, companyType, phoneNumber, email, city } = req.body;
@@ -113,7 +70,7 @@ const getAllCompanies = async (req, res) => {
 const getCompanyById = async (req, res) => {
   const { id } = req.params;
   try {
-    const [results] = await db.query("SELECT * FROM companies WHERE id = ?", [  
+    const [results] = await db.query("SELECT * FROM companies WHERE id = ?", [
       id,
     ]);
     if (results.length === 0) {
@@ -170,35 +127,30 @@ const deleteCompany = async (req, res) => {
 
 // const getCompanyAndEmployees = async (req, res) => {
 //   const { slug } = req.params;
-  
-//   // Uncomment this for role checking if needed
-//   // if (!req.user || !['admin', 'sub-admin'].includes(req.user.role)) {
-//     //     return res.status(403).json({ error: "Forbidden: Insufficient permissions" });
-//     // }
-    
-//     try {
-//       const [company] = await db.query("SELECT * FROM companies WHERE url = ?", [slug]);
-  
-//       if (!company || company.length === 0) {
-//         return res.status(404).json({ error: "Company not found" });
-//       }
-  
-//       const [employeesData] = await db.query(
-//         "SELECT employee_info FROM assessment_response WHERE company_slug = ?",
-//         [slug]
-//       );
-      
-//       // Assuming employeesData is an array
-//       const employees = employeesData.map(record => {
-//         return JSON.parse(record.employee_info); // Parse the JSON string to an object
-//       });
-      
-//       res.json({ company: company[0], employees });
-//     } catch (error) {
-//       logger.error("Error fetching company and employees:", error);
-//       res.status(500).json({ error: error.message });
+
+//   try {
+//     const [company] = await db.query("SELECT * FROM companies WHERE url = ?", [slug]);
+
+//     if (!company || company.length === 0) {
+//       return res.status(404).json({ error: "Company not found" });
 //     }
-//   };
+
+//     const [employeesData] = await db.query(
+//       "SELECT assessment_id, employee_info FROM assessment_response WHERE company_slug = ?",
+//       [slug]
+//     );
+
+//     const employees = employeesData.map(record => ({
+//       assessment_id: record.assessment_id,
+//       employee_info: JSON.parse(record.employee_info)  // Keeping employee_info as it is
+//     }));
+
+//     res.json({ company: company[0], employees });
+//   } catch (error) {
+//     logger.error("Error fetching company and employees:", error);
+//     res.status(500).json({ error: error.message });
+//   }
+// };
 const getCompanyAndEmployees = async (req, res) => {
   const { slug } = req.params;
 
@@ -210,54 +162,109 @@ const getCompanyAndEmployees = async (req, res) => {
     }
 
     const [employeesData] = await db.query(
-      "SELECT assessment_id, employee_info FROM assessment_response WHERE company_slug = ?",
+      "SELECT assessment_id, employee_info, created_at FROM assessment_response WHERE company_slug = ?",
       [slug]
     );
 
     const employees = employeesData.map(record => ({
       assessment_id: record.assessment_id,
-      employee_info: JSON.parse(record.employee_info)  // Keeping employee_info as it is
+      employee_info: JSON.parse(record.employee_info),
+      created_at: record.created_at
     }));
 
-    res.json({ company: company[0], employees });
+    res.json({
+      company: {
+        ...company[0],
+        created_at: company[0].created_at
+      },
+      employees
+    });
   } catch (error) {
     logger.error("Error fetching company and employees:", error);
     res.status(500).json({ error: error.message });
   }
 };
 
-  const { getEmployeeAssessmentData } = require('../models/AssessmentModel');
-const logger = require('../utils/logger');
+const { getEmployeeAssessmentData } = require('../models/AssessmentModel');
+
 
 const calculateBMI = (weight, heightFeet, heightInches) => {
   const heightInMeters = heightFeet * 0.3048 + heightInches * 0.0254;
   return (weight / (heightInMeters * heightInMeters)).toFixed(2);
 };
 
+const getCompanyAndEmployeeGenderCount = async (req, res) => {
+  const { slug } = req.params;
+
+  try {
+    // Fetch company data
+    const [company] = await db.query("SELECT * FROM companies WHERE url = ?", [slug]);
+
+    if (!company || company.length === 0) {
+      return res.status(404).json({ error: "Company not found" });
+    }
+
+    // Fetch employees data
+    const [employeesData] = await db.query(
+      "SELECT assessment_id, employee_info FROM assessment_response WHERE company_slug = ?",
+      [slug]
+    );
+
+    // Initialize gender counts
+    let maleCount = 0;
+    let femaleCount = 0;
+
+    // Process each employee and count gender
+    employeesData.forEach(record => {
+      const employeeInfo = JSON.parse(record.employee_info);
+
+      // Assuming the employee_info contains a gender field
+      if (employeeInfo.gender === 'Male') {
+        maleCount++;
+      } else if (employeeInfo.gender === 'Female') {
+        femaleCount++;
+      }
+    });
+
+    // Return company data along with gender count
+    res.json({
+      company: company[0],
+      genderCount: {
+        male: maleCount,
+        female: femaleCount
+      }
+    });
+  } catch (error) {
+    logger.error("Error fetching company and employee gender count:", error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
 const getEmployeeDetails = async (req, res) => {
   const { slug, id } = req.params;
-  
+
   try {
     const assessmentData = await getEmployeeAssessmentData(id, slug);
-    
+
     if (!assessmentData) {
       return res.status(404).json({ message: "Employee not found" });
     }
-    
+
     const { employeeInfo, healthAssessment } = assessmentData;
-    
+
     const weight = parseFloat(employeeInfo.weight);
     const heightFeet = parseFloat(employeeInfo.heightFeet);
     const heightInches = parseFloat(employeeInfo.heightInches);
     const bmi = weight && heightFeet && heightInches
-    ? calculateBMI(weight, heightFeet, heightInches)
-    : "N/A";
-    
+      ? calculateBMI(weight, heightFeet, heightInches)
+      : "N/A";
+
     const bp = healthAssessment.bp || "No data";
     const diabetesRisk = healthAssessment.diabetes || "No data";
     const cholesterol = healthAssessment.cholesterol || "No data";
     const riskSectionScores = healthAssessment.risk_section_scores || {};
-    
+
     res.json({
       employee: {
         ...employeeInfo,
@@ -284,5 +291,6 @@ module.exports = {
   deleteCompany,
   getCompanyAndEmployees,
   getEmployeeDetails,
-  createCompany
+  createCompany,
+  getCompanyAndEmployeeGenderCount,
 };

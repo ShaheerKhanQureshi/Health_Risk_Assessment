@@ -5,7 +5,7 @@ const { authenticate } = require("../middlewares/auth");
 const assessmentController = require("../controllers/assessmentController");
 // const { calculateScores } = require('../utils/scoreCalculator');
 
-// Submit health assessment form (no authorization required)
+
 router.post("/submitAssessment/:slug", assessmentController.submitAssessment);
 // router.post("/submit", assessmentController.submitForm);
 

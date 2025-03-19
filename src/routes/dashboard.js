@@ -1,4 +1,4 @@
-const express = require("express");
+  const express = require("express");
 const db = require('../config/db'); // Ensure this path points to the correct db.js file
 const { authenticate } = require("../middlewares/auth");
 const dashboardController = require('../controllers/dashboardController');
@@ -33,11 +33,11 @@ router.get("/stats", authenticate("admin"), async (req, res) => {
   }
 });
 
-
 router.get('/totalUsers', dashboardController.getTotalUsers);
 router.get('/totalCompanies', dashboardController.getTotalCompanies);
 router.get('/sessionByCompany', dashboardController.getSessionByCompany);
 router.get('/userLogs', dashboardController.getUserLogs);
 router.get('/performanceMetrics', dashboardController.getPerformanceMetrics);
+router.get('/fitnessHealthData', dashboardController.getFitnessHealthData);
 
 module.exports = router;

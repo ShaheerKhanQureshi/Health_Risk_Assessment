@@ -37,7 +37,7 @@ const getEmployeeHealthInfo = async (req, res) => {
   }
 
   try {
-    const company = await getCompanyBySlug(company_slug);  
+    const company = await getCompanyBySlug(company_slug);
     if (!company) {
       return res.status(404).json({
         success: false,
@@ -126,25 +126,143 @@ const getEmployeeHealthInfo = async (req, res) => {
   }
 };
 
+// const calculateBMI = (weight, height) => {
+//   if (!height || !weight) return null;
+//   const heightInMeters = height / 100; 
+//   return (weight / (heightInMeters * heightInMeters)).toFixed(2);
+// };
+
+// const getBMICategory = (bmi) => {
+//   if (bmi < 18.5) return "Below Normal";
+//   else if (bmi < 25) return "Normal";
+//   else if (bmi < 30) return "Overweight";
+//   else return "Obesity";
+// };
 const calculateBMI = (weight, height) => {
   if (!height || !weight) return null;
-  const heightInMeters = height / 100; 
+
+  const feet = Math.floor(height);
+  const inches = (height - feet) * 10;
+
+  const heightInCm = (feet * 30.48) + (inches * 2.54);
+  const heightInMeters = heightInCm / 100;
+
   return (weight / (heightInMeters * heightInMeters)).toFixed(2);
 };
 
 const getBMICategory = (bmi) => {
-  if (bmi < 18.5) return "Below Normal";
-  else if (bmi < 25) return "Normal";
-  else if (bmi < 30) return "Overweight";
-  else return "Obesity";
+  if (bmi < 18.5) return "Below normal weight";
+  else if (bmi >= 18.5 && bmi < 25) return "Normal weight";
+  else if (bmi >= 25 && bmi < 30) return "Overweight";
+  else if (bmi >= 30 && bmi < 35) return "Class I Obesity";
+  else if (bmi >= 35 && bmi < 40) return "Class II Obesity";
+  else return "Class III Obesity";
 };
 
+
+// const getBloodPressureData = (healthAssessment) => {
+//   const bpData = healthAssessment?.find(item => item.subHeading === "Personal Medical History")
+//     ?.questions?.find(q => q.questionId === "PMH14" && q.response);
+
+//   if (!bpData || !bpData.response) {
+//     return { bpValue: null, bpInterpretation: "Unknown" };
+//   }
+
+//   const response = bpData.response.trim().toLowerCase();
+//   const bpCategories = {
+//     "140 mmhg or higher / 90 mmhg or higher": {
+//       bpValue: "140+/90+",
+//       bpInterpretation: "High Blood Pressure (Hypertension Stage 2)"
+//     },
+//     "130-139 mm hg / 85-89 mmhg": {
+//       bpValue: "130-139 / 85-89",
+//       bpInterpretation: "High Blood Pressure (Hypertension Stage 1)"
+//     },
+//     "120-129 mmhg / 80-84 mmhg": {
+//       bpValue: "120-129 / 80-84",
+//       bpInterpretation: "Elevated Blood Pressure"
+//     },
+//     "80-119 mmhg / 60-79 mmhg": {
+//       bpValue: "Normal",
+//       bpInterpretation: "Normal Blood Pressure"
+//     },
+//     "less than 80 mmhg / less than 60 mmhg": {
+//       bpValue: "Low",
+//       bpInterpretation: "Low Blood Pressure"
+//     },
+//     "i don't know": {
+//       bpValue: "Unknown",
+//       bpInterpretation: "Blood Pressure Unknown"
+//     }
+//   };
+
+//   if (bpCategories[response]) {
+//     return bpCategories[response];
+//   }
+
+//   return { bpValue: null, bpInterpretation: "Unknown" };
+// };
+
+// const getDiabetesRisk = (healthAssessment) => {
+//   const glucoseData = healthAssessment?.find(item => item.subHeading === "Personal Medical History")
+//     ?.questions?.find(q => q.questionId === "PMH15" && q.response);
+
+//   if (!glucoseData || !glucoseData.response) return { glucose_level: null, diabetesRisk: "Unknown" };
+
+//   let glucose_level;
+
+//   if (typeof glucoseData.response === 'string') {
+//     glucose_level = parseFloat(glucoseData.response.replace(/[^\d.-]/g, ''));
+//   } else if (typeof glucoseData.response === 'number') {
+//     glucose_level = glucoseData.response;
+//   } else {
+//     glucose_level = null;
+//   }
+
+//   if (glucose_level === null || isNaN(glucose_level)) {
+//     return { glucose_level: null, diabetesRisk: "Unknown" };
+//   }
+
+//   const risk = glucose_level >= 150 ? "High Risk" : "Normal";
+
+//   return { glucose_level, diabetesRisk: risk };
+// };
+
+// const getCholesterolRisk = (healthAssessment) => {
+//   const cholesterolData = healthAssessment?.find(item => item.subHeading === "Personal Medical History")
+//     ?.questions?.find(q => q.questionId === "PMH16" && q.response);
+
+//   if (!cholesterolData || !cholesterolData.response) return { cholesterol_level: null, cholesterolRisk: "Unknown" };
+
+//   const response = cholesterolData.response.trim().toLowerCase();
+
+//   if (response === "greater than 3") {
+//     return { cholesterol_level: 3.1, cholesterolRisk: "High Risk" };
+//   }
+//   if (response === "2.5-3") {
+//     return { cholesterol_level: (2.5 + 3) / 2, cholesterolRisk: "High Risk" };
+//   }
+//   if (response === "2-2.5") {
+//     return { cholesterol_level: (2 + 2.5) / 2, cholesterolRisk: "Moderate Risk" };
+//   }
+//   if (response === "1.5-2") {
+//     return { cholesterol_level: (1.5 + 2) / 2, cholesterolRisk: "Low Risk" };
+//   }
+//   if (response === "less than 1.5") {
+//     return { cholesterol_level: 1.4, cholesterolRisk: "Low Risk" };
+//   }
+//   if (response === "i don't know") {
+//     return { cholesterol_level: null, cholesterolRisk: "Unknown" };
+//   }
+
+//   return { cholesterol_level: null, cholesterolRisk: "Unknown" };
+// };
 const getBloodPressureData = (healthAssessment) => {
   const bpData = healthAssessment?.find(item => item.subHeading === "Personal Medical History")
     ?.questions?.find(q => q.questionId === "PMH14" && q.response);
 
   if (!bpData || !bpData.response) {
-    return { bpValue: null, bpInterpretation: "Unknown" };
+    return { bpValue: "Unknown", bpInterpretation: "Blood Pressure Unknown" };
   }
 
   const response = bpData.response.trim().toLowerCase();
@@ -175,18 +293,22 @@ const getBloodPressureData = (healthAssessment) => {
     }
   };
 
-  if (bpCategories[response]) {
-    return bpCategories[response];
-  }
-
-  return { bpValue: null, bpInterpretation: "Unknown" };
+  return bpCategories[response] || { bpValue: "Unknown", bpInterpretation: "Blood Pressure Unknown" };
 };
 
 const getDiabetesRisk = (healthAssessment) => {
   const glucoseData = healthAssessment?.find(item => item.subHeading === "Personal Medical History")
     ?.questions?.find(q => q.questionId === "PMH15" && q.response);
 
-  if (!glucoseData || !glucoseData.response) return { glucose_level: null, diabetesRisk: "Unknown" };
+  if (!glucoseData || !glucoseData.response) {
+    return { glucose_level: "Unknown", glucoseInterpretation: "Glucose Unknown" };
+  }
+
+  const response = glucoseData.response.trim().toLowerCase();
+
+  if (response === "i don't know") {
+    return { glucose_level: "Unknown", glucoseInterpretation: "Glucose Unknown" };
+  }
 
   let glucose_level;
 
@@ -199,42 +321,52 @@ const getDiabetesRisk = (healthAssessment) => {
   }
 
   if (glucose_level === null || isNaN(glucose_level)) {
-    return { glucose_level: null, diabetesRisk: "Unknown" };
+    return { glucose_level: "Unknown", glucoseInterpretation: "Glucose Unknown" };
   }
 
   const risk = glucose_level >= 150 ? "High Risk" : "Normal";
 
-  return { glucose_level, diabetesRisk: risk };
+  return { glucose_level, glucoseInterpretation: risk };
 };
 
 const getCholesterolRisk = (healthAssessment) => {
   const cholesterolData = healthAssessment?.find(item => item.subHeading === "Personal Medical History")
     ?.questions?.find(q => q.questionId === "PMH16" && q.response);
 
-  if (!cholesterolData || !cholesterolData.response) return { cholesterol_level: null, cholesterolRisk: "Unknown" };
+  if (!cholesterolData || !cholesterolData.response) {
+    return { cholesterol_level: "Unknown", cholesterolInterpretation: "Cholesterol Unknown" };
+  }
 
   const response = cholesterolData.response.trim().toLowerCase();
 
-  if (response === "greater than 3") {
-    return { cholesterol_level: 3.1, cholesterolRisk: "High Risk" };
-  } 
-  if (response === "2.5-3") {
-    return { cholesterol_level: (2.5 + 3) / 2, cholesterolRisk: "High Risk" };
-  }
-  if (response === "2-2.5") {
-    return { cholesterol_level: (2 + 2.5) / 2, cholesterolRisk: "Moderate Risk" };
-  }
-  if (response === "1.5-2") {
-    return { cholesterol_level: (1.5 + 2) / 2, cholesterolRisk: "Low Risk" };
-  }
-  if (response === "less than 1.5") {
-    return { cholesterol_level: 1.4, cholesterolRisk: "Low Risk" };
-  }
-  if (response === "i don't know") {
-    return { cholesterol_level: null, cholesterolRisk: "Unknown" };
-  }
+  const cholesterolCategories = {
+    "greater than 3": {
+      cholesterol_level: 3.1,
+      cholesterolInterpretation: "High Risk"
+    },
+    "2.5-3": {
+      cholesterol_level: (2.5 + 3) / 2,
+      cholesterolInterpretation: "High Risk"
+    },
+    "2-2.5": {
+      cholesterol_level: (2 + 2.5) / 2,
+      cholesterolInterpretation: "Moderate Risk"
+    },
+    "1.5-2": {
+      cholesterol_level: (1.5 + 2) / 2,
+      cholesterolInterpretation: "Low Risk"
+    },
+    "less than 1.5": {
+      cholesterol_level: 1.4,
+      cholesterolInterpretation: "Low Risk"
+    },
+    "i don't know": {
+      cholesterol_level: "Unknown",
+      cholesterolInterpretation: "Cholesterol Unknown"
+    }
+  };
 
-  return { cholesterol_level: null, cholesterolRisk: "Unknown" };
+  return cholesterolCategories[response] || { cholesterol_level: "Unknown", cholesterolInterpretation: "Cholesterol Unknown" };
 };
 
 const getSectionScoresWithDetails = (healthAssessment) => {
@@ -280,7 +412,7 @@ const getSectionScoresWithDetails = (healthAssessment) => {
 //     auth: {
 //       user: 'qshaheerkhan@gmail.com',  
 //       pass: 'utbiglxxydbulnuw',  
-     
+
 //     },
 //   });
 
@@ -322,9 +454,9 @@ const sendEmail = async (email, firstName, lastName, companyName, occupation, ag
   const transporter = nodemailer.createTransport({
     service: 'gmail', // Or another email service
     auth: {
-        user: 'qshaheerkhan@gmail.com', 
-        pass: 'utbiglxxydbulnuw',  
-      
+      user: 'qshaheerkhan@gmail.com',
+      pass: 'utbiglxxydbulnuw',
+
     },
   });
 
@@ -406,7 +538,7 @@ const sendEmail = async (email, firstName, lastName, companyName, occupation, ag
         }
         .button {
           display: inline-block;
-          background-color: #0066cc; /* Primary blue */
+          background-color: blue; /* Primary blue */
           color: white;
           padding: 10px 25px;
           text-decoration: none;
@@ -417,6 +549,7 @@ const sendEmail = async (email, firstName, lastName, companyName, occupation, ag
         }
         .button:hover {
           background-color: #004d99; /* Darker blue for hover */
+          color: white;
         }
         .footer {
           text-align: center;
@@ -436,13 +569,13 @@ const sendEmail = async (email, firstName, lastName, companyName, occupation, ag
           <h2>Mentor Health Report</h2>
         </div>
         
-        <!-- Content -->
-        <div class="content">
+       <!-- Content -->
+          <div class="content">
           <!-- Image Section -->
-          <div class="image-section">
-            <img src="src/controllers/logo.png" alt="Health Overview Image">
-          </div>
-  
+        <div class="image-section">
+        <img src="C:\Users\Shaheer Khan\Desktop\Backend\src\controllers\logo.png">
+       </div>
+        </div>
           <!-- Greeting -->
           <h3>Hello ${firstName || "Valued Employee"} ${lastName || ""},</h3>
           <p>
@@ -490,7 +623,7 @@ const sendEmail = async (email, firstName, lastName, companyName, occupation, ag
     </body>
   </html>
   `;
-  
+
 
   // Setup email options
   const mailOptions = {
